@@ -1,0 +1,15 @@
+{
+  "name": "@bluum/verified-theme",
+  "version": "1.0.0",
+  "private": false,
+  "type": "module",
+  "files": [
+    "bluum-theme.json",
+    "design",
+    "public",
+    "src"
+  ],
+  "scripts": {
+    "validate": "node scripts/validate.mjs"
+  }
+}
