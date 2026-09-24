@@ -5,10 +5,13 @@ Design source and release manifest for the second Bluum Medusa storefront theme.
 ## Source
 
 - Figma file: [Bluum Peptides Client — Copy](https://www.figma.com/design/ZNbMTryLUq3YrcK9sex3L1/Bluum-Peptides-Client--Copy-?node-id=257-3148&p=f)
-- Desktop home: `257:3622`
+- Release page: `257:3148` (`Final_update`)
+- Desktop home: `257:11906`
 - Mobile home: `257:6141`
 - Desktop catalog: `257:11707`
 - Desktop product: `257:5229`
+
+The comprehensive Figma-to-route map is in [`design/pages.json`](design/pages.json). The latest page-by-page UX audit is in [`docs/figma-medusa-ux-audit.md`](docs/figma-medusa-ux-audit.md).
 
 ## Runtime contract
 
@@ -28,3 +31,5 @@ The theme owns storefront presentation only. Medusa remains the source of truth 
 - Surfaces: soft gray cards, 24 px radius
 
 Run `npm run validate` before publishing a release.
+
+Publishing a Git commit or syncing this repository never activates the theme. Activation is a separate, explicit action in **Medusa Admin → Online Store → Themes**.

@@ -1,0 +1,27 @@
+{
+  "source_file": "ZNbMTryLUq3YrcK9sex3L1",
+  "release_page": {
+    "name": "Final_update",
+    "node": "257:3148"
+  },
+  "pages": [
+    { "name": "Home", "route": "/", "desktop": "257:11906", "mobile": "257:6141", "status": "pass" },
+    { "name": "Shop", "route": "/collections/all", "desktop": "257:11707", "status": "pass" },
+    { "name": "Product", "route": "/products/$handle", "desktop": "257:5229", "status": "pass" },
+    { "name": "Cart", "route": "/cart", "desktop": "257:8654", "status": "partial" },
+    { "name": "Account", "route": "/account/*", "desktop": "257:11327", "status": "partial" },
+    { "name": "FAQ", "route": "/pages/faq", "desktop": "257:11140", "status": "pass" },
+    { "name": "Lab Reports", "route": "/pages/coa-lookup", "desktop": "257:10665", "status": "partial" },
+    { "name": "Science", "route": "/pages/about-us", "desktop": "257:3171", "mobile": "257:6997", "status": "partial" },
+    { "name": "Privacy", "route": "/policies/privacy-policy", "desktop": "257:9772", "status": "partial" },
+    { "name": "Blog", "route": "/blogs/research", "desktop": "257:10086", "mobile": "257:7649", "status": "pass" },
+    { "name": "Article", "route": "/blogs/research/$handle", "desktop": "257:10386", "mobile": "257:8380", "status": "pass" },
+    { "name": "Contact", "route": "/pages/contact", "desktop": "257:9919", "mobile": "257:7482", "status": "pass" }
+  ],
+  "components": [
+    { "name": "Mobile menu", "node": "257:6941", "status": "pass" },
+    { "name": "Footer", "status": "pass" },
+    { "name": "Product card", "status": "pass" },
+    { "name": "Buttons", "status": "pass" }
+  ]
+}
