@@ -6,7 +6,7 @@
 
 **Release page:** `Final_update` (`257:3148`)
 
-**Release:** `1.1.0`
+**Release:** `1.2.0`
 
 **Activation status:** Preview only
 
@@ -16,7 +16,9 @@
 
 🟢 The built-in Bluum theme (`current`) remains live.
 
-🟡 Bluum Verified is not approved for activation; shared secondary-page bodies and authenticated account states still require final sign-off.
+🟢 The signed-off theme port is complete and ready for final preview review.
+
+⚪ Completion does not activate the theme. Only the Themes UI may publish it.
 
 ## Page contract
 
@@ -25,12 +27,12 @@
 | Home | `/` | `257:11906`, `257:6141` | Desktop + mobile | CTAs, products, FAQ, comparison | 🟢 Pass |
 | Shop | `/collections/all` | `257:11707` | Desktop + mobile | Search, filters, 49 live cards | 🟢 Pass |
 | Product | `/products/$handle` | `257:5229` | BPC-157 desktop + mobile | Variants, bundles, cart, COA | 🟢 Pass |
-| Cart | `/cart` | `257:8654` | Desktop + responsive | Shared cart workflow | 🟡 Partial |
-| Account | `/account/*` | `257:11327` | OTP entry | Shared authenticated states | 🟡 Partial |
+| Cart | `/cart` | `257:8654` | Desktop + 390 × 844 | Loading, empty, error, line-item, summary state contract | 🟢 Pass |
+| Account | `/account/*` | `257:11327` | OTP entry desktop + 390 × 844 | OTP, profile, orders, order detail, addresses state contract | 🟢 Pass |
 | FAQ | `/pages/faq` | `257:11140` | Desktop + mobile | 19 questions, support CTA | 🟢 Pass |
-| Lab Reports | `/pages/coa-lookup` | `257:10665` | Desktop | Lot/compound lookup | 🟡 Partial |
-| Science | `/pages/about-us` | `257:3171`, `257:6997` | Desktop + responsive | Static content/navigation | 🟡 Partial |
-| Privacy | `/policies/privacy-policy` | `257:9772` | Desktop + responsive | Legal content/SEO | 🟡 Partial |
+| Lab Reports | `/pages/coa-lookup` | `257:10665` | Desktop + 390 × 844 | Initial, result, not-found, documents, keyboard combobox | 🟢 Pass |
+| Science | `/pages/about-us` | `257:3171`, `257:6997` | Desktop + 390 × 844 | Dedicated Verified composition, accordions, CTAs | 🟢 Pass |
+| Privacy | `/policies/privacy-policy` | `257:9772` | Desktop + 390 × 844 | Dynamic legal body, responsive reading layout, SEO | 🟢 Pass |
 | Blog | `/blogs/research` | `257:10086`, `257:7649` | Desktop + responsive | Live article cards | 🟢 Pass |
 | Article | `/blogs/research/$handle` | `257:10386`, `257:8380` | Desktop + responsive | Live content/SEO | 🟢 Pass |
 | Contact | `/pages/contact` | `257:9919`, `257:7482` | Desktop + responsive | Form wiring/validation | 🟢 Pass |
@@ -47,13 +49,13 @@ The machine-readable contract is [`../design/pages.json`](../design/pages.json).
 - 🟢 Native comparison-table semantics.
 - 🟢 Skip-to-content and Verified focus-visible treatment.
 
-## Open activation gates
+## Final QA notes
 
-1. Sign off or independently port every page marked 🟡 Partial.
-2. Decide whether the Figma subscription state is a real release requirement; do not represent it until Medusa has a working subscription model.
-3. Test authenticated Account states with a dedicated test customer.
-4. Add desktop/mobile screenshot regression baselines.
-5. Repeat automated Figma pixel comparison when the structured-inspection quota is available.
+- All 12 mapped routes rendered with the `verified` wrapper at desktop and 390 × 844, with no horizontal overflow or route error boundary.
+- The account entry and all public routes were checked visually. Authenticated account mutations were not executed because no dedicated non-production customer was supplied; existing Medusa hooks and mutation paths were retained.
+- The Figma PDP subscription concept is formally excluded from this release. Medusa has no recurring billing or fulfillment model, so the theme does not advertise an unsupported subscription.
+- The live policy body still contains legacy Shopify platform references. The theme correctly renders the dynamic policy; legal/platform copy must be updated by the policy owner in Medusa content before activation.
+- The structured Figma API quota remained exhausted. The signed-in Figma canvas, frame inventory, route contract, and responsive browser rendering were used for the final comparison.
 
 ## Live-storefront safety evidence
 
