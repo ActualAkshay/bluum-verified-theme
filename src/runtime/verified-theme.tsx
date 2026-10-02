@@ -68,7 +68,13 @@ const VerifiedNavbar = () => {
         'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])',
       ) || [],
     ).filter((element) => element.getClientRects().length > 0)
-    const frame = requestAnimationFrame(() => focusable()[0]?.focus())
+    const fitMenu = () => {
+      if (menu) menu.style.maxHeight = `${Math.max(0, window.innerHeight - menu.getBoundingClientRect().top - 16)}px`
+    }
+    const frame = requestAnimationFrame(() => { fitMenu(); focusable()[0]?.focus() })
+    window.addEventListener("resize", fitMenu)
+    const observer = typeof ResizeObserver === "undefined" ? undefined : new ResizeObserver(fitMenu)
+    if (headerRef.current) observer?.observe(headerRef.current)
 
     const onKeyDown = (event: KeyboardEvent) => {
       // Portaled search/cart dialogs own their keyboard interaction until dismissed.
@@ -103,6 +109,8 @@ const VerifiedNavbar = () => {
     document.addEventListener("pointerdown", onPointerDown)
     return () => {
       cancelAnimationFrame(frame)
+      window.removeEventListener("resize", fitMenu)
+      observer?.disconnect()
       document.removeEventListener("keydown", onKeyDown)
       document.removeEventListener("pointerdown", onPointerDown)
     }
