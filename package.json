@@ -10,6 +10,8 @@
     "src"
   ],
   "scripts": {
-    "validate": "node scripts/validate.mjs"
+    "validate": "node scripts/validate.mjs",
+    "sync:storefront": "node scripts/sync-storefront.mjs",
+    "test:sync": "node --test scripts/sync-storefront.test.mjs"
   }
 }

@@ -4,19 +4,27 @@
     "name": "Final_update",
     "node": "257:3148"
   },
+  "verification": {
+    "release_state": "local_iteration",
+    "status_meaning": "mapped means a route or component is represented in the theme contract; it is not a visual or functional pass",
+    "prior_runtime_audit": "The 2026-10-02 local audit reported all 12 routes rendered at desktop and mobile; this is historical evidence, not verification of subsequent edits.",
+    "exact_design": "not_verified",
+    "design_boundary": "Figma MCP quota blocked complete frame-by-frame exports. Detailed Shop and Product screenshots plus the board overview were available; complete exact visual parity is not established.",
+    "functional_boundary": "Authenticated account mutations, populated-cart writes, contact submission, checkout and payment were not exercised in the prior local audit."
+  },
   "pages": [
-    { "name": "Home", "route": "/", "desktop": "257:11906", "mobile": "257:6141", "status": "pass" },
-    { "name": "Shop", "route": "/collections/all", "desktop": "257:11707", "status": "pass" },
-    { "name": "Product", "route": "/products/$handle", "desktop": "257:5229", "status": "pass" },
-    { "name": "Cart", "route": "/cart", "desktop": "257:8654", "status": "pass" },
-    { "name": "Account", "route": "/account/*", "desktop": "257:11327", "status": "pass" },
-    { "name": "FAQ", "route": "/pages/faq", "desktop": "257:11140", "status": "pass" },
-    { "name": "Lab Reports", "route": "/pages/coa-lookup", "desktop": "257:10665", "status": "pass" },
-    { "name": "Science", "route": "/pages/about-us", "desktop": "257:3171", "mobile": "257:6997", "status": "pass" },
-    { "name": "Privacy", "route": "/policies/privacy-policy", "desktop": "257:9772", "status": "pass" },
-    { "name": "Blog", "route": "/blogs/research", "desktop": "257:10086", "mobile": "257:7649", "status": "pass" },
-    { "name": "Article", "route": "/blogs/research/$handle", "desktop": "257:10386", "mobile": "257:8380", "status": "pass" },
-    { "name": "Contact", "route": "/pages/contact", "desktop": "257:9919", "mobile": "257:7482", "status": "pass" }
+    { "name": "Home", "route": "/", "desktop": "257:3622", "mobile": "257:6141", "status": "mapped" },
+    { "name": "Shop", "route": "/collections/all", "desktop": "257:11707", "mobile": "257:12414", "status": "mapped" },
+    { "name": "Product", "route": "/products/$handle", "desktop": "257:5229", "mobile": "257:15510", "status": "mapped" },
+    { "name": "Cart", "route": "/cart", "desktop": "257:8723", "mobile": "257:8654", "status": "mapped" },
+    { "name": "Account", "route": "/account/*", "desktop": "257:11327", "mobile": "257:13208", "status": "mapped" },
+    { "name": "FAQ", "route": "/pages/faq", "desktop": "257:11140", "mobile": "257:12805", "status": "mapped" },
+    { "name": "Lab Reports", "route": "/pages/coa-lookup", "desktop": "257:10665", "status": "mapped" },
+    { "name": "Science", "route": "/pages/about-us", "desktop": "257:3171", "mobile": "257:6997", "status": "mapped" },
+    { "name": "Privacy", "route": "/policies/privacy-policy", "desktop": "257:9772", "mobile": "257:13027", "status": "mapped" },
+    { "name": "Blog", "route": "/blogs/research", "desktop": "257:10086", "mobile": "257:7649", "status": "mapped" },
+    { "name": "Article", "route": "/blogs/research/$handle", "desktop": "257:10386", "mobile": "257:8380", "status": "mapped" },
+    { "name": "Contact", "route": "/pages/contact", "desktop": "257:9919", "mobile": "257:7482", "status": "mapped" }
   ],
   "exclusions": [
     {
@@ -26,9 +34,9 @@
     }
   ],
   "components": [
-    { "name": "Mobile menu", "node": "257:6941", "status": "pass" },
-    { "name": "Footer", "status": "pass" },
-    { "name": "Product card", "status": "pass" },
-    { "name": "Buttons", "status": "pass" }
+    { "name": "Mobile menu", "node": "257:6941", "status": "mapped" },
+    { "name": "Footer", "status": "mapped" },
+    { "name": "Product card", "status": "mapped" },
+    { "name": "Buttons", "status": "mapped" }
   ]
 }
