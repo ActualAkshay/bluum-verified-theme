@@ -2,10 +2,14 @@ import * as Accordion from "@radix-ui/react-accordion"
 import ProductCard from "@/components/product-card"
 import { useExperimentContent } from "@/components/experiment-provider"
 import { useAgeGate } from "@/components/age-gate"
-import { useLatestProducts } from "@/lib/hooks/use-products"
+import { useProducts } from "@/lib/hooks/use-products"
+import { bestSellingProductsQueryOptions, CATALOG_QUERY_PARAMS } from "@/lib/data/products"
+import { useQuery } from "@tanstack/react-query"
+import { useEffect } from "react"
 import type { HttpTypes } from "@medusajs/types"
 import { Link, useLoaderData } from "@tanstack/react-router"
 import { VerifiedSupport } from "./verified-support"
+import { featuredLookbackDays, selectVerifiedFeaturedProducts } from "./verified-featured"
 
 const values = [
   {
@@ -60,8 +64,17 @@ const Check = ({ value }: { value: boolean }) => (
 
 export const VerifiedHome = () => {
   const { region } = useLoaderData({ strict: false }) as { region: HttpTypes.StoreRegion }
-  const { data, isPending, isError, refetch } = useLatestProducts({ limit: 4, region_id: region?.id })
-  const products = data?.products || []
+  const { data, isPending, isError, refetch, hasNextPage, fetchNextPage, isFetchingNextPage } = useProducts({
+    query_params: CATALOG_QUERY_PARAMS,
+    region_id: region?.id,
+  })
+  const { data: rankedIds = [] } = useQuery(bestSellingProductsQueryOptions({
+    days: featuredLookbackDays(import.meta.env.VITE_VERIFIED_FEATURED_LOOKBACK_DAYS),
+  }))
+  useEffect(() => {
+    if (hasNextPage && !isFetchingNextPage && !isError) void fetchNextPage()
+  }, [hasNextPage, isFetchingNextPage, isError, fetchNextPage])
+  const products = selectVerifiedFeaturedProducts(data?.pages.flatMap((page) => page.products) || [], rankedIds)
   const { content: hero, ref: heroRef } = useExperimentContent("hero")
   const { visible: ageGateVisible } = useAgeGate()
 
@@ -171,7 +184,7 @@ export const VerifiedHome = () => {
       </section>
 
       <section className="verified-section verified-comparison">
-        <h2>How <em>bluum</em> compares</h2>
+        <h2>How <img className="verified-inline-logo" src="/images/bluum.svg" alt="Bluum" /> compares</h2>
         <div className="verified-comparison-scroll">
           <table className="verified-comparison-table">
             <caption className="sr-only">Bluum product comparison</caption>

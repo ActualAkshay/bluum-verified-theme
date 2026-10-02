@@ -43,6 +43,18 @@ const VerifiedNavbar = () => {
   const headerRef = useRef<HTMLElement>(null)
   const menuTriggerRef = useRef<HTMLButtonElement>(null)
 
+  useEffect(() => {
+    const header = headerRef.current
+    const root = header?.closest<HTMLElement>('[data-storefront-theme="verified"]')
+    if (!header || !root) return
+    const measure = () => root.style.setProperty("--verified-sticky-height", `${header.getBoundingClientRect().height}px`)
+    measure()
+    const observer = typeof ResizeObserver === "undefined" ? undefined : new ResizeObserver(measure)
+    observer?.observe(header)
+    window.addEventListener("resize", measure)
+    return () => { observer?.disconnect(); window.removeEventListener("resize", measure) }
+  }, [])
+
   useEffect(() => setMenuOpen(false), [location.pathname])
   useEffect(() => {
     const desktop = window.matchMedia("(min-width: 1000px)")
@@ -156,6 +168,9 @@ const VerifiedNavbar = () => {
       </div>
       {menuOpen && (
         <nav id="verified-mobile-menu" className="verified-mobile-nav" aria-label="Mobile navigation">
+          <button type="button" className="verified-mobile-close" onClick={() => { setMenuOpen(false); menuTriggerRef.current?.focus() }}>
+            Close menu <MenuIcon open />
+          </button>
           <div className="verified-mobile-search">
             <PredictiveSearchTrigger />
             <span>Search products</span>
@@ -233,7 +248,7 @@ const VerifiedFooter = () => {
     <footer className="verified-footer" data-storefront-footer>
       <div className="verified-footer-grid">
         <section>
-          <p>Stay in the loop on the latest products<br />and discounts.</p>
+          <p>Stay in the loop on the latest products and discounts.</p>
           <form onSubmit={submit} className="verified-newsletter">
             <label className="sr-only" htmlFor="verified-footer-email">Your email</label>
             <input
@@ -256,12 +271,12 @@ const VerifiedFooter = () => {
             <a href="https://instagram.com/bluumpeptides" target="_blank" rel="noreferrer">Instagram</a>
           </address>
         </section>
-        {footerColumns.map((column) => (
+        <div className="verified-footer-links">{footerColumns.map((column) => (
           <nav key={column.title} aria-label={column.title}>
             <h2>{column.title}</h2>
             {column.links.map(([label, href]) => <Link key={label} to={href as string} resetScroll>{label}</Link>)}
           </nav>
-        ))}
+        ))}</div>
       </div>
       <div className="verified-footer-brand">
         <img src="/images/bluum.svg" alt="Bluum" />

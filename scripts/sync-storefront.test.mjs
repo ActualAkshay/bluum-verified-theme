@@ -22,8 +22,8 @@ async function fixture(t) {
   return root
 }
 
-test("allowlist contains only the seven theme runtime snapshots", () => {
-  assert.deepEqual(runtimeFiles.map((file) => file.target), ["src/themes/verified-theme.tsx", "src/themes/verified-home.tsx", "src/themes/verified-science.tsx", "src/styles/verified-theme.css", "src/themes/verified-catalog-controls.tsx", "src/themes/verified-catalog.ts", "src/themes/verified-support.tsx"])
+test("allowlist contains only the eight theme runtime snapshots", () => {
+  assert.deepEqual(runtimeFiles.map((file) => file.target), ["src/themes/verified-theme.tsx", "src/themes/verified-home.tsx", "src/themes/verified-science.tsx", "src/styles/verified-theme.css", "src/themes/verified-catalog-controls.tsx", "src/themes/verified-catalog.ts", "src/themes/verified-support.tsx", "src/themes/verified-featured.ts"])
   assert.throws(() => parseArguments(["--storefront", "/tmp", "--target", "../../backend"]))
   assert.throws(() => parseArguments(["--storefront"]))
   assert.throws(() => parseArguments(["--check"]))

@@ -16,6 +16,7 @@ export const runtimeFiles = Object.freeze([
   { name: "verified-catalog-controls.tsx", target: "src/themes/verified-catalog-controls.tsx", allowCreation: true },
   { name: "verified-catalog.ts", target: "src/themes/verified-catalog.ts", allowCreation: true },
   { name: "verified-support.tsx", target: "src/themes/verified-support.tsx", allowCreation: true },
+  { name: "verified-featured.ts", target: "src/themes/verified-featured.ts", allowCreation: true },
 ].map(Object.freeze))
 
 const checksum = (content) => createHash("sha256").update(content).digest("hex")
