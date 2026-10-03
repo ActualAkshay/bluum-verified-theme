@@ -2112,13 +2112,13 @@
 [data-storefront-theme="verified"] [data-product-section] {
   padding-block: 0 var(--verified-section-gap);
 }
-[data-storefront-theme="verified"] [data-product-section="about"] {
+[data-storefront-theme="verified"] :is([data-product-section="about"], [data-product-section="highlights"]) {
   padding-top: var(--verified-section-gap);
 }
 [data-storefront-theme="verified"] [data-product-section="faq"] { padding-bottom: 0; }
 [data-storefront-theme="verified"] .verified-product-page [data-product-section] { width: 100%; }
 [data-storefront-theme="verified"] .verified-product-page .verified-product-specifications {
-  padding-top: clamp(32px, 4vw, 56px);
+  padding-top: var(--verified-section-gap);
 }
 [data-storefront-theme="verified"] [data-product-section="research"] > .bluum-product-research {
   width: 100%;
