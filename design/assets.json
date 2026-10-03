@@ -1,6 +1,10 @@
 {
   "schema_version": 1,
   "assets": [
+    {"path":"product-highlight-dropper.png","sha256":"17e27a9cfe2e1bb428117196cb75d8048c93389814499a00d2bca3e1d919ce9d","previous_sha256":[]},
+    {"path":"product-highlight-experiment.png","sha256":"39f69a5074b544696aa7802292d151298ea1b731fa735e67fa70a7a27043516c","previous_sha256":[]},
+    {"path":"product-highlight-hematology.png","sha256":"8ebc69cef21d3804c401dc62ad494f28debdef389ed9e725b4eb33a1090fa8ec","previous_sha256":[]},
+    {"path":"product-highlights-vial.png","sha256":"c54de401b3e2f990165aa3b99a8d3d1072af835c40bcac4a1f39157ecde39c5d","previous_sha256":[]},
     {"path":"science-card-integrity.png","sha256":"abeca7beaa1f1a2c74d0341a6d0e7a0130a17271253c7cfbebdaf6af990f7360","previous_sha256":[]},
     {"path":"science-card-testing.png","sha256":"9c34023ae5e6773542c327cfc7b8b220864846ec20b814bd7e234f219f2d4646","previous_sha256":[]},
     {"path":"science-card-transparency.png","sha256":"202cd21d987eaaa9982984f2679d7abd9c973c0f3c4019697eec36a5c061c334","previous_sha256":[]},
