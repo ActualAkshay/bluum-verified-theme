@@ -387,7 +387,7 @@ export const VerifiedTheme = ({
   useEffect(() => {
     if (shellRef.current) return installVerifiedDisclosureMotion(shellRef.current)
   }, [location.pathname])
-  const heroUnderlay = chrome === "storefront" && ["/", "/pages/about-us", "/pages/contact"].includes(location.pathname)
+  const heroUnderlay = chrome === "storefront" && (["/", "/pages/about-us", "/pages/contact"].includes(location.pathname) || location.pathname.startsWith("/blogs/research"))
   return (
     <div ref={shellRef} className="verified-theme min-h-dvh flex flex-col" data-storefront-theme="verified" data-hero-underlay={heroUnderlay ? "true" : undefined}>
       <a href="#storefront-main" className="verified-skip-link">Skip to content</a>
