@@ -236,7 +236,7 @@ export const VerifiedHome = () => {
               <Accordion.Header>
                 <Accordion.Trigger><img src={`/images/themes/verified/approach-icons/${approachIcons[index]}.svg`} alt="" /><span>{title}</span><span className="verified-accordion-symbol" aria-hidden="true" /></Accordion.Trigger>
               </Accordion.Header>
-              <Accordion.Content>{description}</Accordion.Content>
+              <Accordion.Content><div className="verified-accordion-body">{description}</div></Accordion.Content>
             </Accordion.Item>
           ))}
         </Accordion.Root>
@@ -295,7 +295,7 @@ export const VerifiedHome = () => {
           {faqs.map(([question, answer]) => (
             <Accordion.Item key={question} value={question}>
               <Accordion.Trigger><span>{question}</span><span aria-hidden="true">+</span></Accordion.Trigger>
-              <Accordion.Content>{answer}</Accordion.Content>
+              <Accordion.Content><div className="verified-accordion-body">{answer}</div></Accordion.Content>
             </Accordion.Item>
           ))}
         </Accordion.Root>

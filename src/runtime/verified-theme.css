@@ -683,7 +683,7 @@
   transform: rotate(45deg);
 }
 
-.verified-faq-page__groups [data-state="open"] + [data-state="open"] {
+.verified-faq-page__groups [role="region"] > p {
   padding: 16px 0 24px;
   color: rgb(35 31 30 / 68%);
   line-height: 1.55;
@@ -1897,8 +1897,8 @@
 .verified-faq-list > div:not(:last-child) { border-bottom: 1px solid rgb(35 31 30 / 18%); }
 .verified-approach-list button,
 .verified-faq-list button { border-bottom: 0; padding-block: var(--verified-space-24); }
-.verified-approach-list [role="region"],
-.verified-faq-list [role="region"] {
+.verified-approach-list .verified-accordion-body,
+.verified-faq-list .verified-accordion-body {
   padding: 0 var(--verified-space-32) var(--verified-space-24) 0;
   color: rgb(35 31 30 / 70%);
   line-height: 1.5;
@@ -1938,13 +1938,13 @@
 .verified-approach-list button[data-state="open"] { padding-bottom: 12px; }
 .verified-approach-list button > img { flex: none; width: 32px; height: 32px; }
 .verified-approach-list button > span:nth-child(2) { flex: 1; line-height: inherit; }
-.verified-approach-list [role="region"] { padding: 0 32px 24px 52px; color: var(--verified-ink); font-size: 16px; line-height: 1.4; }
+.verified-approach-list .verified-accordion-body { padding: 0 32px 24px 52px; color: var(--verified-ink); font-size: 16px; line-height: 1.4; }
 .verified-approach-list [data-state="open"] button > span:last-child { transform: none; }
 .verified-accordion-symbol { flex: none; width: 20px; height: 20px; position: relative; }
 .verified-accordion-symbol::before, .verified-accordion-symbol::after { content: ""; position: absolute; background: currentColor; }
 .verified-accordion-symbol::before { height: 1.5px; width: 16px; left: 2px; top: 9px; }
 .verified-accordion-symbol::after { width: 1.5px; height: 16px; top: 2px; left: 9px; }
-.verified-approach-list button[data-state="open"] .verified-accordion-symbol::after { display: none; }
+.verified-approach-list button[data-state="open"] .verified-accordion-symbol::after { transform: scaleY(0); }
 .verified-approach-artwork { display: contents; }
 .verified-approach .verified-molecule { display: block; right: -32px; top: -126px; bottom: auto; width: min(57.32%, 830px); height: auto; opacity: 1; }
 .verified-home > .verified-proof { width: min(calc(100% - 64px), 1448px); margin: 64px auto 0; min-height: 0; grid-template-columns: 40% 60%; align-items: start; gap: 0; }
@@ -1995,7 +1995,7 @@
   .verified-approach-list button { gap: 20px; font-size: 20px; }
   .verified-approach-list > div:first-child button { padding-top: 0; }
   .verified-approach-list > div:last-child button:not([data-state="open"]) { padding-bottom: 0; }
-  .verified-approach-list [role="region"] { padding-left: 52px; padding-right: 36px; line-height: 1.2; }
+  .verified-approach-list .verified-accordion-body { padding-left: 52px; padding-right: 36px; line-height: 1.2; }
   .verified-approach-artwork { display: block; width: calc(100% + 40px); max-width: 478px; height: auto; aspect-ratio: 393 / 415; align-self: center; margin-top: -60px; overflow: hidden; pointer-events: none; }
   .verified-approach .verified-molecule { position: static; width: 100%; height: auto; margin: 0; pointer-events: none; }
   .verified-home > .verified-proof { width: calc(100% - 40px); grid-template-columns: 1fr; margin-top: 60px; gap: 48px; overflow: hidden; }
@@ -2175,4 +2175,45 @@
 }
 @media (pointer: coarse) and (min-width: 1200px) {
   .verified-footer-links a, .verified-footer-links a:last-child { min-height: 44px; }
+}
+
+/* Radix keeps closing panels mounted until these measured-size animations end. */
+[data-storefront-theme="verified"] [role="region"][data-state][style*="--radix-accordion-content-height"] {
+  overflow: hidden;
+  animation-duration: 280ms;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+[data-storefront-theme="verified"] [role="region"][data-state="open"][style*="--radix-accordion-content-height"] {
+  animation-name: verified-accordion-expand;
+}
+[data-storefront-theme="verified"] [role="region"][data-state="closed"][style*="--radix-accordion-content-height"] {
+  animation-name: verified-accordion-collapse;
+}
+@keyframes verified-accordion-expand {
+  from { height: 0; opacity: 0; }
+  to { height: var(--radix-accordion-content-height); opacity: 1; }
+}
+@keyframes verified-accordion-collapse {
+  from { height: var(--radix-accordion-content-height); opacity: 1; }
+  to { height: 0; opacity: 0; }
+}
+.science-v2-process-illustration { transition: width 280ms ease, height 280ms ease; }
+.science-v2-process-item button { transition: grid-template-columns 280ms ease; }
+.verified-accordion-symbol::after { transition: transform 280ms ease; }
+[data-storefront-theme="verified"] [data-radix-collection-item] > span[aria-hidden="true"] { transition: transform 280ms ease; }
+.verified-faq-list button[data-state="open"] > span[aria-hidden="true"] { transform: rotate(45deg); }
+@media (min-width: 1101px) {
+  /* Desktop workflow copy sits beside its trigger; the illustration animates row height. */
+  [data-storefront-theme="verified"] .science-v2-process-item [role="region"][data-state][style*="--radix-accordion-content-height"] {
+    overflow: visible;
+  }
+  [data-storefront-theme="verified"] .science-v2-process-item [role="region"][data-state="open"][style*="--radix-accordion-content-height"] { animation-name: verified-workflow-reveal; }
+  [data-storefront-theme="verified"] .science-v2-process-item [role="region"][data-state="closed"][style*="--radix-accordion-content-height"] { animation-name: verified-workflow-hide; }
+}
+@keyframes verified-workflow-reveal { from { opacity: 0; } to { opacity: 1; } }
+@keyframes verified-workflow-hide { from { opacity: 1; } to { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  [data-storefront-theme="verified"] [role="region"][data-state][style*="--radix-accordion-content-height"] { animation: none !important; }
+  [data-storefront-theme="verified"] :is(.science-v2-process-illustration, .science-v2-process-item button, [data-radix-collection-item] > span[aria-hidden="true"], summary svg),
+  [data-storefront-theme="verified"] .verified-accordion-symbol::after { transition: none !important; }
 }

@@ -308,6 +308,72 @@ const VerifiedFooter = () => {
   )
 }
 
+/** Enhance native disclosures without replacing their keyboard or no-JS behavior. */
+export const installVerifiedDisclosureMotion = (root: HTMLElement) => {
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)")
+  const running = new Map<HTMLDetailsElement, {
+    animation: Animation
+    targetOpen: boolean
+    overflow: string
+    boxSizing: string
+  }>()
+  const finish = (details: HTMLDetailsElement) => {
+    const state = running.get(details)
+    if (!state) return
+    running.delete(details)
+    state.animation.onfinish = null
+    state.animation.oncancel = null
+    details.open = state.targetOpen
+    state.animation.cancel()
+    details.style.overflow = state.overflow
+    details.style.boxSizing = state.boxSizing
+  }
+  const finishAll = () => { for (const details of running.keys()) finish(details) }
+  const onClick = (event: MouseEvent) => {
+    if (event.defaultPrevented || !(event.target instanceof Element)) return
+    const summary = event.target.closest("summary")
+    const details = summary?.parentElement
+    if (!(details instanceof HTMLDetailsElement) || !root.contains(details)) return
+    if (event.target.closest("a, button, input, select, textarea")) return
+    // Absolutely positioned details are account menus, not expanding page panels.
+    if (details.querySelector(':scope > [class~="absolute"]')) return
+    if (reduced.matches || typeof details.animate !== "function") return
+    event.preventDefault()
+    const previous = running.get(details)
+    const targetOpen = !(previous?.targetOpen ?? details.open)
+    const from = details.getBoundingClientRect().height
+    const overflow = previous?.overflow ?? details.style.overflow
+    const boxSizing = previous?.boxSizing ?? details.style.boxSizing
+    if (previous) {
+      previous.animation.onfinish = null
+      previous.animation.oncancel = null
+      previous.animation.cancel()
+    }
+    details.open = true
+    details.style.boxSizing = "border-box"
+    const bounds = details.getBoundingClientRect()
+    const styles = getComputedStyle(details)
+    const to = targetOpen ? bounds.height : summary!.getBoundingClientRect().bottom - bounds.top
+      + parseFloat(styles.paddingBottom || "0") + parseFloat(styles.borderBottomWidth || "0")
+    details.style.overflow = "hidden"
+    const animation = details.animate([{ height: `${from}px` }, { height: `${to}px` }], {
+      duration: 280, easing: "cubic-bezier(0.22, 1, 0.36, 1)", fill: "both",
+    })
+    running.set(details, { animation, targetOpen, overflow, boxSizing })
+    animation.onfinish = () => finish(details)
+    animation.oncancel = () => finish(details)
+  }
+  root.addEventListener("click", onClick)
+  window.addEventListener("resize", finishAll)
+  reduced.addEventListener("change", finishAll)
+  return () => {
+    root.removeEventListener("click", onClick)
+    window.removeEventListener("resize", finishAll)
+    reduced.removeEventListener("change", finishAll)
+    finishAll()
+  }
+}
+
 export const VerifiedTheme = ({
   children,
   header,
@@ -317,9 +383,13 @@ export const VerifiedTheme = ({
   chrome: "storefront" | "checkout" | "hidden"
 }>) => {
   const location = useLocation()
+  const shellRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    if (shellRef.current) return installVerifiedDisclosureMotion(shellRef.current)
+  }, [location.pathname])
   const heroUnderlay = chrome === "storefront" && ["/", "/pages/about-us"].includes(location.pathname)
   return (
-    <div className="verified-theme min-h-dvh flex flex-col" data-storefront-theme="verified" data-hero-underlay={heroUnderlay ? "true" : undefined}>
+    <div ref={shellRef} className="verified-theme min-h-dvh flex flex-col" data-storefront-theme="verified" data-hero-underlay={heroUnderlay ? "true" : undefined}>
       <a href="#storefront-main" className="verified-skip-link">Skip to content</a>
       {chrome === "storefront" ? <VerifiedNavbar /> : chrome === "checkout" ? header : null}
       {children}
