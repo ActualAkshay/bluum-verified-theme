@@ -83,9 +83,19 @@
   width: 100%;
   margin: 0 auto;
   padding-block: var(--verified-space-16);
-  padding-inline: max(var(--verified-gutter), calc((100% - 1448px) / 2));
+  padding-inline: max(clamp(16px, 2.12vw, 32px), calc((100% - 1448px) / 2));
   background: var(--verified-canvas);
   color: var(--verified-ink);
+}
+
+/* The homepage artwork extends behind both navigation bars. Header measurement
+   includes optional campaign content, so the hero copy clears the entire stack. */
+[data-storefront-theme="verified"][data-hero-underlay="true"] > .verified-header {
+  background: transparent;
+}
+
+[data-storefront-theme="verified"][data-hero-underlay="true"] > #storefront-main {
+  margin-top: calc(-1 * var(--verified-sticky-height));
 }
 
 .verified-announcement {
@@ -110,20 +120,21 @@
   height: 56px;
   margin-top: 4px;
   padding-inline: var(--verified-nav-action-inset);
-  border: 1px solid rgb(255 255 255 / 30%);
+  border: 1px solid rgb(255 255 255 / 10%);
   border-radius: 999px;
-  background: rgb(255 255 255 / 62%);
-  box-shadow: 0 13px 36px rgb(35 31 30 / 7%);
-  backdrop-filter: blur(28px);
+  background: rgb(255 255 255 / 50%);
+  box-shadow: 0 13px 36.3px rgb(218 216 219 / 10%);
+  backdrop-filter: blur(75px);
 }
 
 .verified-desktop-nav {
   display: flex;
   align-items: center;
   gap: 32px;
-  padding-inline-start: calc(var(--verified-space-16) - var(--verified-nav-action-inset));
+  padding-inline-start: calc(39.5px - var(--verified-nav-action-inset));
   font-size: 16px;
   font-weight: 500;
+  line-height: 1.25;
 }
 
 .verified-desktop-nav a,
@@ -137,7 +148,7 @@
 }
 
 @media (min-width: 1000px) and (max-width: 1199px) {
-  .verified-desktop-nav { gap: 16px; font-size: 14px; }
+  .verified-desktop-nav { gap: 16px; font-size: 14px; padding-inline-start: 12px; }
 }
 
 .verified-logo {
@@ -205,7 +216,7 @@
 
 .verified-hero {
   position: relative;
-  min-height: min(982px, 68vw);
+  min-height: max(900px, 64.9471vw);
   overflow: hidden;
   background: #d9ecff;
 }
@@ -235,12 +246,17 @@
   text-align: center;
 }
 
+[data-storefront-theme="verified"][data-hero-underlay="true"] .verified-hero-copy {
+  padding-top: calc(var(--verified-sticky-height) + 42px);
+}
+
 .verified-rating {
   display: flex;
   align-items: center;
   gap: 8px;
   margin: 0 0 16px;
   font-size: 16px;
+  line-height: 1.2;
   letter-spacing: 1px;
 }
 
@@ -251,9 +267,9 @@
 
 .verified-hero h1 {
   margin: 0;
-  font-size: clamp(52px, 4.76vw, 72px);
+  font-size: clamp(52px, 4.76191vw, 72px);
   font-weight: 500;
-  line-height: 1.12;
+  line-height: 1;
   letter-spacing: -0.04em;
 }
 
@@ -1322,6 +1338,10 @@
 }
 
 @media (max-width: 999px) {
+  [data-storefront-theme="verified"] {
+    --verified-sticky-height: 114px;
+  }
+
   .verified-nav-shell {
     height: 50px;
     padding: 0 8px;
@@ -1341,10 +1361,6 @@
 
   .verified-nav-actions {
     gap: 0;
-  }
-
-  .verified-nav-actions > :first-child {
-    display: none;
   }
 
   .verified-mobile-nav {
@@ -1368,7 +1384,7 @@
   }
 
   .verified-hero {
-    min-height: 760px;
+    min-height: 920px;
   }
 
   .verified-hero-copy {
@@ -1396,6 +1412,10 @@
 }
 
 @media (max-width: 699px) {
+  [data-storefront-theme="verified"] {
+    --verified-sticky-height: 112px;
+  }
+
   .verified-announcement {
     height: 26px;
     font-size: 11px;
@@ -1413,20 +1433,34 @@
     object-position: center bottom;
   }
 
+  /* Figma's phone artwork starts below a separately exported 148px gradient. */
+  .verified-hero-picture[data-default-artwork="true"] {
+    background: url("/images/themes/verified/hero-mobile-gradient.png") center top / 100% 148px no-repeat;
+  }
+
+  .verified-hero-picture[data-default-artwork="true"] img {
+    top: 148px;
+    height: calc(100% - 148px);
+  }
+
   .verified-hero-copy {
     width: calc(100% - 40px);
     padding-top: var(--verified-space-48);
   }
 
   .verified-rating {
-    flex-direction: column;
-    gap: 2px;
-    font-size: 13px;
+    gap: 8px;
+    font-size: 16px;
   }
 
   .verified-hero h1 {
-    font-size: 48px;
-    line-height: 1.12;
+    font-size: 44px;
+    line-height: 1;
+  }
+
+  [data-storefront-theme="verified"][data-hero-underlay="true"] .verified-hero-copy {
+    width: min(337px, calc(100% - 32px));
+    padding-top: calc(var(--verified-sticky-height) + 60px);
   }
 
   .verified-trust-strip {

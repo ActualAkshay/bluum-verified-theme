@@ -1,0 +1,33 @@
+{
+  "source": "https://www.figma.com/design/suphZ7em6t0x16CHkewqhO/Bluum-Peptides-Client?node-id=257-3148",
+  "page": "Final_update",
+  "exported_on": "2026-10-03",
+  "assets": [
+    {
+      "file": "public/verified-hero-final.png",
+      "node": "257:4514",
+      "frame": "Homepage_1 / Hero",
+      "width": 1512,
+      "height": 982,
+      "sha256": "72d3838e93f3dd6cbb019d85b248a7351952b4471fb46cf2343e494e79f6141b"
+    },
+    {
+      "file": "public/verified-hero-mobile-final.png",
+      "node": "257:6259",
+      "frame": "Home_mobile / Hero",
+      "top": 148,
+      "width": 393,
+      "height": 650,
+      "sha256": "9dd41b9fb5193363965b26e0ce12bb348d8b1e533dd6599108540ad0e4e9c01d"
+    },
+    {
+      "file": "public/verified-hero-mobile-gradient.png",
+      "node": "257:6258",
+      "frame": "Home_mobile / Hero",
+      "top": 0,
+      "width": 393,
+      "height": 148,
+      "sha256": "7f47e14018a12cffcf605c1c36da12e57e1cec4872f50d68e3a957069eec6c87"
+    }
+  ]
+}

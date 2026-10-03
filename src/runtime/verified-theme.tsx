@@ -305,11 +305,15 @@ export const VerifiedTheme = ({
 }: PropsWithChildren<{
   header: ReactNode
   chrome: "storefront" | "checkout" | "hidden"
-}>) => (
-  <div className="verified-theme min-h-dvh flex flex-col" data-storefront-theme="verified">
-    <a href="#storefront-main" className="verified-skip-link">Skip to content</a>
-    {chrome === "storefront" ? <VerifiedNavbar /> : chrome === "checkout" ? header : null}
-    {children}
-    {chrome === "storefront" ? <VerifiedFooter /> : null}
-  </div>
-)
+}>) => {
+  const location = useLocation()
+  const heroUnderlay = chrome === "storefront" && location.pathname === "/"
+  return (
+    <div className="verified-theme min-h-dvh flex flex-col" data-storefront-theme="verified" data-hero-underlay={heroUnderlay ? "true" : undefined}>
+      <a href="#storefront-main" className="verified-skip-link">Skip to content</a>
+      {chrome === "storefront" ? <VerifiedNavbar /> : chrome === "checkout" ? header : null}
+      {children}
+      {chrome === "storefront" ? <VerifiedFooter /> : null}
+    </div>
+  )
+}

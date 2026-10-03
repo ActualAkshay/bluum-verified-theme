@@ -82,12 +82,12 @@ export const VerifiedHome = () => {
     <div className="verified-home">
       <section ref={heroRef} className="verified-hero">
         {!ageGateVisible && (
-          <picture className="verified-hero-picture">
-            <source media="(max-width: 699px)" srcSet={hero?.image_url || "/images/themes/verified/hero-desktop.png"} />
+          <picture className="verified-hero-picture" data-default-artwork={hero?.image_url ? undefined : "true"}>
+            <source media="(max-width: 699px)" srcSet={hero?.image_url || "/images/themes/verified/hero-mobile-final.png"} />
             <img
               data-bluum-lcp-candidate
               data-experiment-image
-              src={hero?.image_url || "/images/themes/verified/hero-desktop.png"}
+              src={hero?.image_url || "/images/themes/verified/hero-final.png"}
               alt={hero?.image_alt || "Bluum research vial surrounded by white flowers"}
               fetchPriority="high"
             />
