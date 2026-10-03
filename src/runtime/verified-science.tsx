@@ -52,6 +52,20 @@ const questions = [
   ["Can I speak with someone about my order?", "Yes. Contact our support team with your order number for help with an existing order, shipping, or finding documentation for your lot."],
 ] as const
 
+export const VerifiedQuestions = () => (
+  <section className="science-v2-faq verified-section" aria-labelledby="science-v2-faq-title">
+    <div className="science-v2-faq-intro"><h2 id="science-v2-faq-title">Questions,<br /><em>answered</em></h2><img src="/images/themes/verified/science-faq-molecule.png" width="426" height="426" alt="" loading="lazy" /></div>
+    <Accordion.Root type="single" collapsible className="science-v2-faq-list">
+      {questions.map(([question, answer]) => (
+        <Accordion.Item key={question} value={question} className="science-v2-faq-item">
+          <Accordion.Header><Accordion.Trigger><span>{question}</span><span className="science-v2-accordion-indicator" aria-hidden="true">+</span></Accordion.Trigger></Accordion.Header>
+          <Accordion.Content><p>{answer}</p></Accordion.Content>
+        </Accordion.Item>
+      ))}
+    </Accordion.Root>
+  </section>
+)
+
 export const VerifiedScience = () => (
   <main className="verified-secondary-page verified-science-page science-v2-page" data-theme-page="science">
     <section className="science-v2-hero" aria-labelledby="science-v2-title">
@@ -147,17 +161,7 @@ export const VerifiedScience = () => (
       <img className="science-v2-proof-art" src="/images/themes/verified/science-proof-panel.png" width="780" height="668" alt="Bluum vial QR code displayed inside a phone scanner" loading="lazy" />
     </section>
 
-    <section className="science-v2-faq verified-section" aria-labelledby="science-v2-faq-title">
-      <div className="science-v2-faq-intro"><h2 id="science-v2-faq-title">Questions,<br /><em>answered</em></h2><img src="/images/themes/verified/science-faq-molecule.png" width="426" height="426" alt="" loading="lazy" /></div>
-      <Accordion.Root type="single" collapsible className="science-v2-faq-list">
-        {questions.map(([question, answer]) => (
-          <Accordion.Item key={question} value={question} className="science-v2-faq-item">
-            <Accordion.Header><Accordion.Trigger><span>{question}</span><span className="science-v2-accordion-indicator" aria-hidden="true">+</span></Accordion.Trigger></Accordion.Header>
-            <Accordion.Content><p>{answer}</p></Accordion.Content>
-          </Accordion.Item>
-        ))}
-      </Accordion.Root>
-    </section>
+    <VerifiedQuestions />
 
     <VerifiedSupport />
   </main>

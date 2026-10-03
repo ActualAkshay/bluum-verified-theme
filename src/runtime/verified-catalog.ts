@@ -1,4 +1,24 @@
-export type VerifiedCatalogCategory = "all" | "best-sellers" | "blends" | "solutions"
+export type VerifiedCatalogCategory = string
+export type VerifiedCategoryOption = { id: string; name: string }
+type CategorizedProduct = { categories?: Array<{ id?: string; name?: string; handle?: string }> | null }
+
+/** Use actual catalog memberships, never guesses based on product names. */
+export function verifiedCatalogCategories(products: CategorizedProduct[]): VerifiedCategoryOption[] {
+  const categories = new Map<string, VerifiedCategoryOption>()
+  for (const product of products) {
+    for (const category of product.categories || []) {
+      const id = category.id?.trim()
+      const name = category.name?.trim()
+      const generic = [name, category.handle].some((value) => /^(all|all products|frontpage)$/i.test(value?.trim() || ""))
+      if (id && name && !generic) categories.set(id, { id, name })
+    }
+  }
+  return [...categories.values()].sort((a, b) => a.name.localeCompare(b.name))
+}
+
+export function matchesVerifiedCategory(product: CategorizedProduct, category: string): boolean {
+  return category === "all" || Boolean(product.categories?.some(({ id }) => id === category))
+}
 export type VerifiedCatalogSort = "title-asc" | "title-desc" | "price-asc" | "price-desc"
 export type VerifiedPriceRange = { id: string; label: string; min: number; max: number }
 
