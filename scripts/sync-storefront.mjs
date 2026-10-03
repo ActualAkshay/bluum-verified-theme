@@ -9,6 +9,8 @@ const sourceRepository = "https://github.com/ActualAkshay/bluum-verified-theme"
 // This fixed allowlist is deliberately not configurable by CLI or manifest.
 // Initial hashes allow adoption of only the audited, pre-migration snapshots.
 export const runtimeFiles = Object.freeze([
+  { name: "verified-cart.tsx", target: "src/themes/verified-cart.tsx", allowCreation: true },
+  { name: "verified-cart-recommendations.tsx", target: "src/themes/verified-cart-recommendations.tsx", allowCreation: true },
   { name: "verified-product-information.tsx", target: "src/themes/verified-product-information.tsx", allowCreation: true },
   { name: "verified-product-highlights.tsx", target: "src/themes/verified-product-highlights.tsx", allowCreation: true },
   { name: "verified-theme.tsx", target: "src/themes/verified-theme.tsx", initialHash: "180e122c9f15e986a6bb11701f9a4b14963aa12d10bdd42aa061683fa9e667cb" },
