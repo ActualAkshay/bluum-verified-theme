@@ -13,24 +13,21 @@ import { featuredLookbackDays, selectVerifiedFeaturedProducts } from "./verified
 
 const values = [
   {
-    eyebrow: "Trusted for Endotoxin",
-    title: "Sourced & Lyophilized in the USA",
-    image: "/images/storefront/fast-usa-shipping.jpg",
+    caption: "Tested for Endotoxins",
+    image: "/images/themes/verified/compound-endotoxin.png",
   },
   {
-    eyebrow: "Scan the Label. See the Proof.",
-    title: "Every batch documented",
-    image: "/images/storefront/home-hero-mobile.png",
+    caption: "Scan the Label. See the Proof.",
+    image: "/images/themes/verified/compound-scan-background.png",
+    overlay: "/images/themes/verified/compound-scan-phone.png",
   },
   {
-    eyebrow: "Independently Verified Purity",
-    title: "99% purity across most products",
-    image: "/images/storefront/verified-purity.jpg",
+    caption: "Independently Verified Purity",
+    image: "/images/themes/verified/compound-purity.png",
   },
   {
-    eyebrow: "Same Day Shipping Before 2pm",
-    title: "Fast USA dispatch",
-    image: "/images/storefront/next-generation-compounds.png",
+    caption: "Same Day Shipping Before 1pm",
+    image: "/images/themes/verified/compound-shipping.png",
   },
 ] as const
 
@@ -106,15 +103,25 @@ export const VerifiedHome = () => {
         {["Identity Tested", "COA Available", "Ships Today", "USA Lyophilized", "99%+ Purity", "Endotoxin Tested"].map((label) => <span key={label}>✦ {label}</span>)}
       </aside>
 
-      <section className="verified-section verified-compounds">
-        <h2>Find your <em>compound</em></h2>
-        <div className="verified-value-grid">
+      <section className="verified-section verified-compounds" aria-labelledby="verified-compounds-heading">
+        <h2 id="verified-compounds-heading">Find your <em>compound</em></h2>
+        <div className="verified-compound-badges">
+          <div>
+            <img src="/images/themes/verified/compound-usa.png" alt="" width="86" height="48" loading="lazy" />
+            <span>Sourced &amp; Lyophilized<br />in the USA</span>
+          </div>
+          <div>
+            <img src="/images/themes/verified/compound-flask.png" alt="" width="57" height="58" loading="lazy" />
+            <span>99% purity of formulas</span>
+          </div>
+        </div>
+        <div className="verified-value-grid" role="group" aria-label="Compound quality highlights" tabIndex={0}>
           {values.map((value) => (
-            <Link to="/collections/all" key={value.title} className="verified-value-card">
+            <figure key={value.caption} className="verified-value-card">
               <img src={value.image} alt="" loading="lazy" />
-              <span>{value.eyebrow}</span>
-              <strong>{value.title}</strong>
-            </Link>
+              {"overlay" in value && <img className="verified-value-phone" src={value.overlay} alt="" loading="lazy" />}
+              <figcaption>{value.caption}</figcaption>
+            </figure>
           ))}
         </div>
       </section>
