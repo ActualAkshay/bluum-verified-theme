@@ -1,23 +1,29 @@
-export type VerifiedCatalogCategory = string
-export type VerifiedCategoryOption = { id: string; name: string }
-type CategorizedProduct = { categories?: Array<{ id?: string; name?: string; handle?: string }> | null }
+export type VerifiedCatalogCategory = string[]
+export type VerifiedCategoryOption = { id: string; name: string; count: number }
+type CategorizedProduct = { id?: string; categories?: Array<{ id?: string; name?: string; handle?: string }> | null }
 
 /** Use actual catalog memberships, never guesses based on product names. */
 export function verifiedCatalogCategories(products: CategorizedProduct[]): VerifiedCategoryOption[] {
   const categories = new Map<string, VerifiedCategoryOption>()
+  const memberships = new Map<string, Set<string | CategorizedProduct>>()
   for (const product of products) {
     for (const category of product.categories || []) {
       const id = category.id?.trim()
       const name = category.name?.trim()
       const generic = [name, category.handle].some((value) => /^(all|all products|frontpage)$/i.test(value?.trim() || ""))
-      if (id && name && !generic) categories.set(id, { id, name })
+      if (id && name && !generic) {
+        const members = memberships.get(id) || new Set<string | CategorizedProduct>()
+        members.add(product.id || product)
+        memberships.set(id, members)
+        categories.set(id, { id, name, count: members.size })
+      }
     }
   }
   return [...categories.values()].sort((a, b) => a.name.localeCompare(b.name))
 }
 
-export function matchesVerifiedCategory(product: CategorizedProduct, category: string): boolean {
-  return category === "all" || Boolean(product.categories?.some(({ id }) => id === category))
+export function matchesVerifiedCategory(product: CategorizedProduct, categories: string[]): boolean {
+  return categories.length === 0 || Boolean(product.categories?.some(({ id }) => id && categories.includes(id)))
 }
 export type VerifiedCatalogSort = "title-asc" | "title-desc" | "price-asc" | "price-desc"
 export type VerifiedPriceRange = { id: string; label: string; min: number; max: number }
