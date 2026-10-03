@@ -101,13 +101,15 @@
 }
 
 .verified-nav-shell {
+  /* Match the end-button inset to its vertical clearance, including the border. */
+  --verified-nav-action-inset: calc((56px - 44px) / 2 - 1px);
   position: relative;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   height: 56px;
   margin-top: 4px;
-  padding-inline: var(--verified-space-16);
+  padding-inline: var(--verified-nav-action-inset);
   border: 1px solid rgb(255 255 255 / 30%);
   border-radius: 999px;
   background: rgb(255 255 255 / 62%);
@@ -119,6 +121,7 @@
   display: flex;
   align-items: center;
   gap: 32px;
+  padding-inline-start: calc(var(--verified-space-16) - var(--verified-nav-action-inset));
   font-size: 16px;
   font-weight: 500;
 }
