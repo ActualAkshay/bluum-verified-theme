@@ -2065,6 +2065,11 @@
   min-width: 0;
   margin-inline: auto;
 }
+[data-storefront-theme="verified"] .bluum-product-research hr {
+  margin-block: clamp(32px, 4vw, 56px);
+  border: 0;
+  border-top: 1px solid rgb(36 32 31 / 14%);
+}
 [data-storefront-theme="verified"] [data-product-section] .content-container { padding-inline: 0; }
 [data-storefront-theme="verified"] .verified-product-page .bluum-mobile-full-bleed { margin-inline: 0; width: 100%; }
 .verified-mobile-close {
@@ -2199,7 +2204,7 @@
   .verified-category-product article > div:first-child { height: 240px; }
 }
 @media (max-width: 699px) {
-  .verified-home > .verified-approach { width: calc(100% - 40px); display: flex; flex-direction: column; gap: 0; margin-top: 80px; padding-bottom: 0; }
+  .verified-home > .verified-approach { width: calc(100% - 40px); display: flex; flex-direction: column; gap: 0; margin-top: 80px; padding-bottom: 32px; }
   .verified-approach-intro > span { margin-bottom: 16px; line-height: 16px; font-weight: 500; }
   .verified-approach-intro h2 { font-size: clamp(28px, 8.1425vw, 32px); white-space: nowrap; }
   .verified-approach-intro .verified-button { margin-top: 28px; min-height: 52px; font-weight: 500; }
