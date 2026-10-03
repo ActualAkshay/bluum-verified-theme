@@ -317,7 +317,7 @@ export const VerifiedTheme = ({
   chrome: "storefront" | "checkout" | "hidden"
 }>) => {
   const location = useLocation()
-  const heroUnderlay = chrome === "storefront" && location.pathname === "/"
+  const heroUnderlay = chrome === "storefront" && ["/", "/pages/about-us"].includes(location.pathname)
   return (
     <div className="verified-theme min-h-dvh flex flex-col" data-storefront-theme="verified" data-hero-underlay={heroUnderlay ? "true" : undefined}>
       <a href="#storefront-main" className="verified-skip-link">Skip to content</a>

@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "assets": [
+    {"path":"science-card-integrity.png","sha256":"abeca7beaa1f1a2c74d0341a6d0e7a0130a17271253c7cfbebdaf6af990f7360","previous_sha256":[]},
+    {"path":"science-card-testing.png","sha256":"9c34023ae5e6773542c327cfc7b8b220864846ec20b814bd7e234f219f2d4646","previous_sha256":[]},
+    {"path":"science-card-transparency.png","sha256":"202cd21d987eaaa9982984f2679d7abd9c973c0f3c4019697eec36a5c061c334","previous_sha256":[]},
+    {"path":"science-card-usa.png","sha256":"a6d546f98df3b22b38a3847cefb80d1776532924f6d947af2b0f55f78e9c8417","previous_sha256":[]},
+    {"path":"science-fact_check.png","sha256":"c3bbd1f58c7bb905247a76f433fc3218d03347b63f817b962ac852b2be5eab48","previous_sha256":[]},
+    {"path":"science-faq-molecule.png","sha256":"0eba139368ab2068e795a1f2791ba3b51fd2e16b73dd737f99fcaa0efb2fefa0","previous_sha256":[]},
+    {"path":"science-genetics.png","sha256":"6ae865f5a0fb9d6e2eb52fd408e32739420e47f37a876b9c474a2e7a57f4b21b","previous_sha256":[]},
+    {"path":"science-hero-desktop.png","sha256":"6b405808fe7e04e343cd90be8c401d4d88fbb90fe2086f51417675cc55d6c057","previous_sha256":[]},
+    {"path":"science-hero-mobile.png","sha256":"0270d27f9bfd10521d7e94a14347d9a015a915baf1d8c1b651f16451a1736415","previous_sha256":[]},
+    {"path":"science-numbers-desktop.png","sha256":"6bbff2cebd1a7d64db990840ad99afaa053f6deb4bfa2d5334222f07676417d7","previous_sha256":[]},
+    {"path":"science-numbers-mobile.png","sha256":"4d0586730e63f65e03c868fcbc10f97837564c8d941fefa834ef597ebf7a17b5","previous_sha256":[]},
+    {"path":"science-process-fill.png","sha256":"feb8a51d5c9dc3b5aef26a84540388cfdaa4715d65e90493b1b817694d6656c7","previous_sha256":[]},
+    {"path":"science-process-formulation.png","sha256":"5f7d13887b14078cc390996ec4c5342bdf4819554fc897dca3c1cf9fca1bfe5e","previous_sha256":[]},
+    {"path":"science-process-lyophilization.png","sha256":"8bd29183c76de87fed32ef928e7d04f2b3634eb3e35b6df248da8db6bec52ef8","previous_sha256":[]},
+    {"path":"science-process-shipping.png","sha256":"eee210db2ab166030408496450e76d1e99cb37a7852dde829317b5308ded9701","previous_sha256":[]},
+    {"path":"science-process-source.png","sha256":"745854a26dd58e423ecdf12fd24d561f151ae7aa37e17211734dcd9cf7d89897","previous_sha256":[]},
+    {"path":"science-proof-panel.png","sha256":"8064323b7e6782bd6f83a8db3359fe3f120bda6f596fc83ebd02a1c2a3b1a679","previous_sha256":[]},
+    {"path":"science-qr_code_2.png","sha256":"55f41ec47c2c1a89c99571bde15feef04d7d895ad761c22ecc71524ff2e7c481","previous_sha256":[]},
+    {"path":"science-usa-desktop.png","sha256":"7c2aa29880e23a86de625250dbd2f3a573b99bc60570f8d274a5968b69315ee1","previous_sha256":[]},
+    {"path":"science-usa-mobile.png","sha256":"74678fe353e6837faf6b43ebbcc55b5356d78eb360bd10a5f3cba50485d60ed4","previous_sha256":[]},
+    {"path":"science-vial.png","sha256":"5223c595fd64b327977a3f3fd08cab5a41a0b8a30893dfdb5080053c884d0b83","previous_sha256":[]},
+    {
+      "path": "proof-phone.png",
+      "sha256": "aa2b780971ec8d90ac479c0b033a090ae9c297c00b6d9feb78e69ed2720bf7f8",
+      "previous_sha256": []
+    },
+    {
+      "path": "proof-lab.svg",
+      "sha256": "bd814af6f007296e2f66674f0c763c83bc8120960339b970a9db7bd70c51f402",
+      "previous_sha256": []
+    },
+    {
+      "path": "proof-purity.svg",
+      "sha256": "568561f08d73642138dd07a96a98a03cdc3f8b6b92b611d6d1ffe5ce9526adbd",
+      "previous_sha256": []
+    }
+  ]
+}

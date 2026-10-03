@@ -12,6 +12,8 @@
   "scripts": {
     "validate": "node scripts/validate.mjs",
     "sync:storefront": "node scripts/sync-storefront.mjs",
-    "test:sync": "node --test scripts/sync-storefront.test.mjs"
+    "test:sync": "node --test scripts/sync-storefront.test.mjs",
+    "sync:assets": "node scripts/sync-assets.mjs",
+    "test:assets": "node --test scripts/sync-assets.test.mjs"
   }
 }

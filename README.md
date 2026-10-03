@@ -37,6 +37,20 @@ This command is local only: it does not access GitHub or Medusa APIs, change the
 
 For safe public-data QA, Medusa includes `apps/storefront/scripts/preview-readonly-backend.mjs`. It binds `127.0.0.1:5180`, forwards public store reads to the fixed Medusa backend, and rejects all writes. Start the storefront on port 5176 with `VITE_MEDUSA_BACKEND_URL=http://127.0.0.1:5180` and the storefront's public publishable key. Open `http://localhost:5176/?bluum_preview_theme=verified`. Cart creation, authentication and checkout are deliberately unavailable; use mocked tests for those workflows. Direct external newsletter/back-in-stock services are not proxied and must not be submitted during QA.
 
+## Original design assets
+
+Science artwork is exported read-only from the original Figma file, desktop frame `257:3171` and mobile frame `257:6997`. The mobile hero, numbers, and USA scenes use their own exports rather than shrinking desktop imagery. Exported images live in `public/`; `design/assets.json` records their SHA-256 checksums.
+
+After adding an export and its checksum, copy all managed assets without individual Save/upload steps:
+
+```sh
+npm run sync:assets -- --storefront /absolute/path/to/bluum-medusa/apps/storefront
+npm run sync:assets -- --storefront /absolute/path/to/bluum-medusa/apps/storefront --check
+npm run test:assets
+```
+
+This local sync rejects unknown overwrites and never changes activation. Assets ship with the normal storefront release; there is no separate manual CDN upload. Science keeps six unique FAQ questions (the design repeats its first question) and omits the design's illustrative fixed price so it cannot misrepresent current catalog pricing.
+
 ## Design system
 
 - Canvas: `#fffdfb`
