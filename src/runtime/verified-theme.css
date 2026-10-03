@@ -2040,6 +2040,12 @@
 }
 [data-storefront-theme="verified"] [data-product-section="faq"] { padding-bottom: 0; }
 [data-storefront-theme="verified"] .verified-product-page [data-product-section] { width: 100%; }
+[data-storefront-theme="verified"] [data-product-section="research"] > .bluum-product-research {
+  width: 100%;
+  max-width: 1200px;
+  min-width: 0;
+  margin-inline: auto;
+}
 [data-storefront-theme="verified"] [data-product-section] .content-container { padding-inline: 0; }
 [data-storefront-theme="verified"] .verified-product-page .bluum-mobile-full-bleed { margin-inline: 0; width: 100%; }
 .verified-mobile-close {
