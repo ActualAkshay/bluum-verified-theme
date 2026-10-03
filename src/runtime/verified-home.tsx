@@ -151,7 +151,7 @@ export const VerifiedHome = () => {
         )}
         <div className="verified-hero-copy">
           <p className="verified-rating" aria-label="Five out of five stars">★★★★★ <strong>15,000+ happy customers</strong></p>
-          <h1>{hero?.text || <>Research peptides, <em>verified</em></>}</h1>
+          <h1>{hero?.text || <>Research<span className="verified-hero-mobile-break"><br /></span><span className="verified-hero-desktop-space"> </span>peptides, <em>verified</em></>}</h1>
           <Link to={hero?.button_href || "/collections/all"} className="verified-button">
             {hero?.button_label || "Shop Peptides"}
           </Link>
@@ -159,7 +159,7 @@ export const VerifiedHome = () => {
       </section>
 
       <aside className="verified-trust-strip" aria-label="Research quality standards">
-        {["Identity Tested", "COA Available", "Ships Today", "USA Lyophilized", "99%+ Purity", "Endotoxin Tested"].map((label) => <span key={label}>✦ {label}</span>)}
+        {[["99%+ Purity", "workspace_premium"], ["Endotoxin Tested", "biotech"], ["COA Available", "qr_code_2"], ["USA Lyophilized", "globe_location_pin"], ["Identity Tested", "biotech"], ["Ships Today", "globe_location_pin"]].map(([label, icon]) => <span key={label}><img src={`/images/themes/verified/approach-icons/${icon}.svg`} alt="" width="20" height="20" />{label}</span>)}
       </aside>
 
       <section className="verified-section verified-compounds" aria-labelledby="verified-compounds-heading">
