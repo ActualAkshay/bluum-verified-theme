@@ -10,6 +10,7 @@ const sourceRepository = "https://github.com/ActualAkshay/bluum-verified-theme"
 // Initial hashes allow adoption of only the audited, pre-migration snapshots.
 export const runtimeFiles = Object.freeze([
   { name: "verified-product-origin.tsx", target: "src/themes/verified-product-origin.tsx", allowCreation: true },
+  { name: "verified-contact.tsx", target: "src/themes/verified-contact.tsx", allowCreation: true },
   { name: "verified-cart.tsx", target: "src/themes/verified-cart.tsx", allowCreation: true },
   { name: "verified-cart-recommendations.tsx", target: "src/themes/verified-cart-recommendations.tsx", allowCreation: true },
   { name: "verified-product-information.tsx", target: "src/themes/verified-product-information.tsx", allowCreation: true },

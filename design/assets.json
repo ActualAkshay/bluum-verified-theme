@@ -3,6 +3,7 @@
   "assets": [
     {"path":"product-usa-art.png","sha256":"c516a78eecb631f7ff40b7a88bcd0ffb0342d8151e67aaa2bc1ee2d41105601e","previous_sha256":["172586a561177c83ff0d49e758330b781a87e098dc4cf5a7ee0551d545fee7f6"]},
     {"path":"product-usa-badges.png","sha256":"a4933d16d23a3cbc3e5ed23689e3822338516517971ebd97d23bd7766a9e5fc1","previous_sha256":[]},
+    {"path":"contact-hero.png","sha256":"448c6bf0551fa32648effb2bb5e5a8c0c4ac881edd6879db1126ee5770729c0c","previous_sha256":[]},
     {"path":"product-highlight-dropper.png","sha256":"17e27a9cfe2e1bb428117196cb75d8048c93389814499a00d2bca3e1d919ce9d","previous_sha256":[]},
     {"path":"product-highlight-experiment.png","sha256":"39f69a5074b544696aa7802292d151298ea1b731fa735e67fa70a7a27043516c","previous_sha256":[]},
     {"path":"product-highlight-hematology.png","sha256":"8ebc69cef21d3804c401dc62ad494f28debdef389ed9e725b4eb33a1090fa8ec","previous_sha256":[]},
