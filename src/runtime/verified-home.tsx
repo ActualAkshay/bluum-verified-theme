@@ -112,8 +112,10 @@ const faqs = [
   ["Are your products sourced in the USA?", "Bluum works with controlled U.S. sourcing, lyophilization, and fulfillment processes."],
 ] as const
 
-const Check = ({ value }: { value: boolean }) => (
-  <span aria-label={value ? "Yes" : "No"}>{value ? "✓" : "×"}</span>
+const Check = ({ value, highlighted = false }: { value: boolean; highlighted?: boolean }) => (
+  <span role="img" aria-label={value ? "Yes" : "No"}>
+    <img className="verified-comparison-mark" src={`/images/themes/verified/comparison-${value ? highlighted ? "check-light" : "check" : "cross"}.svg`} alt="" />
+  </span>
 )
 
 export const VerifiedHome = () => {
@@ -255,21 +257,28 @@ export const VerifiedHome = () => {
 
       <VerifiedCategories region={region} catalogProducts={data?.pages.flatMap((page) => page.products) || []} catalogPending={isPending} catalogError={isError} retryCatalog={() => void refetch()} />
 
-      <section className="verified-section verified-comparison">
+      <section className="verified-section verified-comparison" aria-labelledby="verified-comparison-heading">
+        <h2 id="verified-comparison-heading">How <img className="verified-inline-logo" src="/images/bluum.svg" alt="Bluum" /> compares</h2>
         <div className="verified-comparison-scroll">
           <table className="verified-comparison-table">
             <caption className="sr-only">Bluum product comparison</caption>
+            <colgroup>
+              <col className="verified-comparison-feature-col" />
+              <col className="verified-comparison-bluum-col" />
+              <col className="verified-comparison-vendor-col" />
+              <col className="verified-comparison-general-col" />
+            </colgroup>
             <thead>
               <tr className="verified-comparison-head">
-                <th scope="col"><h2>How <img className="verified-inline-logo" src="/images/bluum.svg" alt="Bluum" /> compares</h2><span className="sr-only">Feature</span></th>
-                <th scope="col"><div><img className="verified-comparison-art" src="/images/themes/verified/comparison-bluum.png" alt="" /><img className="verified-comparison-logo" src="/images/bluum.svg" alt="Bluum" /></div></th>
-                <th scope="col"><div><img className="verified-comparison-art" src="/images/themes/verified/comparison-vial.png" alt="" /><span>Other peptide vendors</span></div></th>
-                <th scope="col"><div><img className="verified-comparison-art" src="/images/themes/verified/comparison-microscope.png" alt="" /><span>General research vendors</span></div></th>
+                <th scope="col"><span className="sr-only">Feature</span></th>
+                <th scope="col"><div><div className="verified-comparison-art-slot"><img className="verified-comparison-art verified-comparison-art--bluum" src="/images/themes/verified/comparison-bluum.png" alt="" /></div><img className="verified-comparison-logo" src="/images/bluum.svg" alt="Bluum" /></div></th>
+                <th scope="col"><div><div className="verified-comparison-art-slot"><img className="verified-comparison-art verified-comparison-art--vial" src="/images/themes/verified/comparison-vial.png" alt="" /></div><span>Other peptide vendors</span></div></th>
+                <th scope="col"><div><div className="verified-comparison-art-slot"><img className="verified-comparison-art verified-comparison-art--microscope" src="/images/themes/verified/comparison-microscope.png" alt="" /></div><span>General research vendors</span></div></th>
               </tr>
             </thead>
             <tbody>
               {comparison.map(([label, bluum, vendor, general], index) => (
-                <tr key={`${index}-${label}`}><th scope="row">{label}</th><td><Check value={bluum} /></td><td><Check value={vendor} /></td><td><Check value={general} /></td></tr>
+                <tr key={`${index}-${label}`}><th scope="row">{label}</th><td><Check value={bluum} highlighted /></td><td><Check value={vendor} /></td><td><Check value={general} /></td></tr>
               ))}
             </tbody>
           </table>
