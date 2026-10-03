@@ -2133,6 +2133,24 @@
 }
 [data-storefront-theme="verified"] [data-product-section] .content-container { padding-inline: 0; }
 [data-storefront-theme="verified"] .verified-product-page .bluum-mobile-full-bleed { margin-inline: 0; width: 100%; }
+.verified-product-title-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
+.verified-product-title-row h1 { margin-bottom: 0; min-width: 0; }
+.verified-product-title-coa { flex-shrink: 0; display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; text-decoration: underline; text-underline-offset: 4px; }
+.verified-product-origin { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); grid-template-rows: auto 1fr; column-gap: clamp(40px,12vw,190px); row-gap: 80px; border-top: 1px solid rgb(35 31 30 / 14%); padding-block: var(--verified-section-gap); }
+.verified-product-origin__copy > p { font-size: 14px; margin-bottom: 24px; }
+.verified-product-origin h2 { font-size: clamp(32px,3.2vw,48px); line-height: 1.15; letter-spacing: -.04em; font-weight: 500; margin-bottom: 32px; }
+.verified-product-origin h2 em { font-family: "LibreBaskerville", Georgia, serif; font-weight: 400; }
+.verified-product-origin__badges { width: min(100%,476px); height: auto; align-self: end; }
+.verified-product-origin__art { grid-column: 2; grid-row: 1 / span 2; overflow: hidden; border-radius: 24px; aspect-ratio: 665 / 570; }
+.verified-product-origin__art img { width: 100%; height: 100%; object-fit: cover; }
+[data-storefront-theme="verified"] .verified-product-information [data-product-section="research"] { width: 100%; padding: 24px 0 0; margin: 0; }
+@media (max-width: 699px) {
+  .verified-product-origin { display: flex; flex-direction: column; gap: 32px; }
+  .verified-product-origin__copy { text-align: center; }
+  .verified-product-origin h2 { font-size: 32px; }
+  .verified-product-origin__badges { width: 100%; max-width: 476px; align-self: center; }
+  .verified-product-origin__art { width: 100%; }
+}
 .verified-mobile-close {
   display: flex;
   min-height: 44px;
