@@ -1743,12 +1743,12 @@
 .science-v2-usa { min-height: 800px; display: flex; align-items: center; }
 .science-v2-usa-copy { margin-inline: auto; }
 .science-v2-usa-copy p { max-width: 400px; margin: 32px 0; }
-.science-v2-proof { display: grid; grid-template-columns: .85fr 1fr; align-items: center; gap: 48px; margin-block: 80px 160px; }
+.science-v2-proof { display: grid; grid-template-columns: .85fr 1fr; align-items: center; gap: 48px; margin-block: 80px; padding-bottom: 80px; border-bottom: 1px solid rgb(35 31 30 / 16%); }
 .science-v2-proof-copy > p { max-width: 410px; margin: 32px 0; }
 .science-v2-proof-badges { display: flex; flex-wrap: wrap; gap: 24px; margin-top: 32px; }
 .science-v2-proof-badges span { display: flex; align-items: center; gap: 12px; font-size: 14px; }
 .science-v2-proof-badges img { width: 24px; height: 24px; }
-.science-v2-proof-art { width: 100%; height: auto; }
+.science-v2-proof-art { width: 100%; height: auto; border-radius: 24px; }
 .science-v2-faq { display: grid; grid-template-columns: .85fr 1fr; gap: 48px; margin-bottom: 0; }
 .science-v2-faq-intro > img { width: 426px; max-width: calc(100% - 32px); height: auto; margin: 40px 0 0 32px; }
 .science-v2-faq-item + .science-v2-faq-item { border-top: 1px solid rgb(35 31 30 / 16%); }
@@ -1812,7 +1812,7 @@
   .science-v2-usa-art::after { content: ""; position: absolute; inset: 0 0 auto; height: 100px; background: linear-gradient(#d9e6ef, transparent); }
   .science-v2-usa-copy { text-align: center; padding-top: 32px; }
   .science-v2-usa-copy p { margin: 24px auto; }
-  .science-v2-proof { display: flex; flex-direction: column; gap: 40px; margin-block: 80px; text-align: center; }
+  .science-v2-proof { display: flex; flex-direction: column; gap: 40px; margin-block: 80px 0; text-align: center; }
   .science-v2-proof-badges { flex-direction: column; align-items: center; gap: 16px; margin-top: 24px; }
   .science-v2-proof-copy > p { margin: 24px 0; }
   .science-v2-proof-art { height: 413px; object-fit: cover; object-position: center; }
