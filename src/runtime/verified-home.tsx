@@ -139,7 +139,7 @@ export const VerifiedHome = () => {
       <section ref={heroRef} className="verified-hero">
         {!ageGateVisible && (
           <picture className="verified-hero-picture" data-default-artwork={hero?.image_url ? undefined : "true"}>
-            <source media="(max-width: 699px)" srcSet={hero?.image_url || "/images/themes/verified/hero-mobile-final.png"} />
+            <source media="(max-width: 479px)" srcSet={hero?.image_url || "/images/themes/verified/hero-mobile-final.png"} />
             <img
               data-bluum-lcp-candidate
               data-experiment-image

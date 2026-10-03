@@ -230,7 +230,7 @@
 }
 
 .verified-hero-picture img {
-  object-fit: cover;
+  object-fit: contain;
   object-position: center bottom;
 }
 
@@ -1600,14 +1600,17 @@
     object-position: center bottom;
   }
 
-  /* Figma's phone artwork starts below a separately exported 148px gradient. */
-  .verified-hero-picture[data-default-artwork="true"] {
-    background: url("/images/themes/verified/hero-mobile-gradient.png") center top / 100% 148px no-repeat;
-  }
+  /* Phone artwork and its separate gradient use the same source breakpoint. */
+  @media (max-width: 479px) {
+    .verified-hero { min-height: calc(100vw * 798 / 393); }
+    .verified-hero-picture[data-default-artwork="true"] {
+      background: url("/images/themes/verified/hero-mobile-gradient.png") center top / 100% calc(100vw * 148 / 393) no-repeat;
+    }
 
-  .verified-hero-picture[data-default-artwork="true"] img {
-    top: 148px;
-    height: calc(100% - 148px);
+    .verified-hero-picture[data-default-artwork="true"] img {
+      top: calc(100vw * 148 / 393);
+      height: calc(100vw * 650 / 393);
+    }
   }
 
   .verified-hero-copy {
@@ -2351,6 +2354,19 @@
   .verified-product-skeleton { gap: var(--verified-space-16); }
   .verified-section-heading { flex-wrap: wrap; gap: var(--verified-space-16); }
   .verified-section-heading a { margin-top: 0; }
+}
+
+/* Wider panels and tablets use the desktop composition, not an enlarged phone crop. */
+@media (min-width: 480px) and (max-width: 999px) {
+  .verified-hero { min-height: calc(480px + 35vw); }
+  .verified-hero h1 { font-size: clamp(44px, 7vw, 68px); }
+  .verified-hero-mobile-break { display: inline; }
+  .verified-hero-desktop-space { display: none; }
+  [data-storefront-theme="verified"][data-hero-underlay="true"] .verified-hero-copy { width: min(525px, calc(100% - 48px)); }
+}
+@media (min-width: 480px) {
+  .verified-hero { background: linear-gradient(120deg, #acd3fa, #d9ecff); }
+  .verified-hero-picture[data-default-artwork="true"] img { top: auto; bottom: 0; height: auto; mask-image: linear-gradient(to bottom, transparent, black 18%); }
 }
 
 /* Final_update homepage: approach, batch proof, category showcase and comparison. */
