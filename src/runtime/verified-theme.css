@@ -1339,6 +1339,22 @@
 .verified-product-research-notice { margin-top: 28px; padding: 20px; border: 1px solid rgb(36 32 31 / 12%); border-radius: 16px; font-size: 12px; line-height: 1.5; color: rgb(36 32 31 / 70%); }
 .verified-product-research-notice h2 { font-size: 13px; color: var(--verified-ink); }
 .verified-product-research-notice p { margin-top: 12px; }
+.verified-product-information { margin-top: 28px; }
+.verified-product-information__item { border-top: 1px solid rgb(36 32 31 / 14%); }
+.verified-product-information__item:last-child { border-bottom: 1px solid rgb(36 32 31 / 14%); }
+.verified-product-information__item h3 { margin: 0; }
+.verified-product-information__item button { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 16px 0; min-height: 48px; text-align: left; font-size: 16px; font-weight: 400; }
+.verified-product-information__icon { position: relative; width: 16px; height: 16px; flex: 0 0 16px; }
+.verified-product-information__icon::before, .verified-product-information__icon::after { content: ""; position: absolute; background: currentColor; inset: 7px 1px; }
+.verified-product-information__icon::after { transform: rotate(90deg); transition: transform 200ms ease; }
+.verified-product-information button[data-state="open"] .verified-product-information__icon::after { transform: rotate(0); }
+.verified-product-information__body { padding: 0 0 20px; font-size: 14px; line-height: 1.6; overflow-wrap: anywhere; }
+.verified-product-information__body :is(p, dl > div, h2, h3, ul, ol) + * { margin-top: 12px; }
+.verified-product-information__body dt { font-weight: 500; }
+.verified-product-information__body a { text-decoration: underline; text-underline-offset: 3px; }
+.verified-product-research-notice h2 { display: none; }
+.verified-product-research-notice p { margin-top: 0; }
+.verified-product-research-notice p::before { content: "Disclaimer: "; font-weight: 500; }
 .verified-product-highlights { padding-block: 64px 0; border-bottom: 1px solid rgb(36 32 31 / 14%); }
 .verified-product-highlights header { text-align: center; }
 .verified-product-highlights header p { font-size: 12px; margin: 0 0 16px; }
