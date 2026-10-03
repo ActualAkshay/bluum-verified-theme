@@ -475,6 +475,7 @@
   height: 100%;
   object-fit: cover;
 }
+.verified-quality-mobile-art { display: none; }
 
 .verified-quality dl {
   display: grid;
@@ -1769,6 +1770,7 @@
 .verified-accordion-symbol::before { height: 1.5px; width: 16px; left: 2px; top: 9px; }
 .verified-accordion-symbol::after { width: 1.5px; height: 16px; top: 2px; left: 9px; }
 .verified-approach-list button[data-state="open"] .verified-accordion-symbol::after { display: none; }
+.verified-approach-artwork { display: contents; }
 .verified-approach .verified-molecule { display: block; right: -32px; top: -126px; bottom: auto; width: min(57.32%, 830px); height: auto; opacity: 1; }
 .verified-home > .verified-proof { width: min(calc(100% - 64px), 1448px); margin: 64px auto 0; min-height: 0; grid-template-columns: 40% 60%; align-items: start; gap: 0; }
 .verified-proof > div { width: 100%; max-width: 423px; padding: 39px 0 64px; }
@@ -1810,18 +1812,25 @@
   .verified-category-product article > div:first-child { height: 240px; }
 }
 @media (max-width: 699px) {
-  .verified-home > .verified-approach { width: calc(100% - 40px); display: flex; flex-direction: column; gap: 40px; padding-bottom: 32px; }
-  .verified-approach-intro h2 { font-size: 32px; white-space: nowrap; }
+  .verified-home > .verified-approach { width: calc(100% - 40px); display: flex; flex-direction: column; gap: 0; margin-top: 80px; padding-bottom: 0; }
+  .verified-approach-intro > span { margin-bottom: 16px; line-height: 16px; font-weight: 500; }
+  .verified-approach-intro h2 { font-size: clamp(28px, 8.1425vw, 32px); white-space: nowrap; }
+  .verified-approach-intro .verified-button { margin-top: 28px; min-height: 52px; font-weight: 500; }
+  .verified-approach-list { margin-top: 56px; }
   .verified-approach-list button { gap: 20px; font-size: 20px; }
-  .verified-approach-list [role="region"] { padding-left: 52px; padding-right: 20px; }
-  .verified-approach .verified-molecule { position: static; width: 100%; height: auto; margin: -80px 0 -88px; pointer-events: none; }
-  .verified-home > .verified-proof { width: calc(100% - 40px); grid-template-columns: 1fr; margin-top: 64px; gap: 48px; }
+  .verified-approach-list > div:first-child button { padding-top: 0; }
+  .verified-approach-list > div:last-child button:not([data-state="open"]) { padding-bottom: 0; }
+  .verified-approach-list [role="region"] { padding-left: 52px; padding-right: 36px; line-height: 1.2; }
+  .verified-approach-artwork { display: block; width: calc(100% + 40px); max-width: 478px; height: auto; aspect-ratio: 393 / 415; align-self: center; margin-top: -60px; overflow: hidden; pointer-events: none; }
+  .verified-approach .verified-molecule { position: static; width: 100%; height: auto; margin: 0; pointer-events: none; }
+  .verified-home > .verified-proof { width: calc(100% - 40px); grid-template-columns: 1fr; margin-top: 60px; gap: 48px; overflow: hidden; }
   .verified-proof > div { align-items: center; max-width: none; padding: 0; text-align: center; }
-  .verified-proof h2 { font-size: 32px; text-align: left; }
-  .verified-proof .verified-proof-badges { flex-direction: column; gap: 16px; margin-top: 24px; }
-  .verified-proof-badges span { font-size: 14px; }
-  .verified-proof p { font-size: 16px; margin: 24px 0 32px; }
-  .verified-proof .verified-proof-phone { width: 256px; max-width: 100%; justify-self: center; }
+  .verified-proof h2 { font-size: 32px; font-weight: 400; text-align: left; }
+  .verified-proof .verified-proof-badges { flex-direction: column; gap: 16px; margin-top: 20px; }
+  .verified-proof-badges span { font-size: 16px; line-height: 24px; }
+  .verified-proof p { font-size: 16px; line-height: 1.4; margin: 20px 0 28px; }
+  .verified-proof .verified-button { min-height: 52px; font-weight: 500; }
+  .verified-proof .verified-proof-phone { width: 270px; max-width: 100%; justify-self: center; margin-bottom: -28px; }
   .verified-categories { min-height: 810px; aspect-ratio: auto; flex-direction: column; align-items: flex-start; padding: 28px 20px 20px; gap: 100px; }
   .verified-categories-background { background: #b4c4d0; z-index: -2; }
   .verified-categories::before { content: ""; position: absolute; inset: 0; z-index: -1; backdrop-filter: blur(8px); background: rgb(35 31 30 / 10%); mask-image: linear-gradient(black, transparent 55%); pointer-events: none; }
@@ -1831,6 +1840,22 @@
   .verified-category-product { width: 256px; max-width: 100%; padding: 16px; }
   .verified-category-product article > div:first-child { height: 224px; }
   .verified-category-product article h2 { font-size: 16px; }
+}
+
+/* Final_update mobile purity: four live-text cards over the image-only export. */
+@media (max-width: 699px) {
+  .verified-quality { position: relative; isolation: isolate; display: block; background: #ebebed; }
+  .verified-quality-copy { position: relative; z-index: 2; padding: 32px 20px 229px; }
+  .verified-quality h2 { max-width: 329px; font-size: 32px; }
+  .verified-quality-copy > p { max-width: 353px; margin-top: 16px; font-size: 14px; font-weight: 600; line-height: 1.2; }
+  .verified-quality dl { width: 100%; max-width: none; grid-template-columns: minmax(0, 1fr); gap: 7px; margin-top: 32px; }
+  .verified-quality dl > div { display: flex; align-items: flex-end; justify-content: space-between; gap: 8px; min-height: 94px; padding: 16px 20px; border: 0; border-radius: 24px; background: rgb(255 253 251 / 60%); backdrop-filter: blur(20px); }
+  .verified-quality dt { flex: none; display: flex; align-items: flex-start; font-size: clamp(48px, 14.25vw, 56px); font-weight: 400; line-height: 1.1; }
+  .verified-quality dt sup { position: static; top: auto; font-size: 24px; line-height: 1.1; }
+  .verified-quality dd { min-width: 0; margin: 0 0 4px; font-size: 14px; line-height: 1.4; text-align: right; }
+  .verified-quality > img:not(.verified-quality-mobile-art) { display: none; }
+  .verified-quality .verified-quality-mobile-art { display: block; position: absolute; z-index: -2; width: 100%; height: auto; min-height: 0; bottom: 0; object-fit: contain; }
+  .verified-quality::after { content: ""; position: absolute; z-index: -1; inset: 0; background: linear-gradient(#ebebed 0%, #ebebed 60%, rgb(235 235 237 / 0%) 72%); pointer-events: none; }
 }
 
 /* Final_update comparison: 1448px desktop table and full-bleed 393px mobile table.

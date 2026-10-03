@@ -209,7 +209,7 @@ export const VerifiedHome = () => {
         )}
       </section>
 
-      <section className="verified-quality">
+      <section id="verified-quality" className="verified-quality">
         <div className="verified-quality-copy">
           <h2>Purity meets <em>endotoxin control</em></h2>
           <p>Every batch is tested and documented to support cleaner, more consistent research inputs.</p>
@@ -221,9 +221,10 @@ export const VerifiedHome = () => {
           </dl>
         </div>
         <img src="/images/storefront/verified-purity.jpg" alt="Research professional inspecting a Bluum vial" loading="lazy" />
+        <img className="verified-quality-mobile-art" src="/images/themes/verified/purity-mobile-artwork.png" alt="Hands holding a Bluum research vial" loading="lazy" />
       </section>
 
-      <section className="verified-section verified-approach">
+      <section id="verified-approach" className="verified-section verified-approach">
         <div className="verified-approach-intro">
           <span>Our Approach</span>
           <h2>What make us <em>different</em></h2>
@@ -239,10 +240,13 @@ export const VerifiedHome = () => {
             </Accordion.Item>
           ))}
         </Accordion.Root>
-        <img className="verified-molecule" src="/images/themes/verified/approach-molecule.png" alt="" loading="lazy" />
+        <picture className="verified-approach-artwork">
+          <source media="(max-width: 699px)" srcSet="/images/themes/verified/approach-molecule-mobile.png" />
+          <img className="verified-molecule" src="/images/themes/verified/approach-molecule.png" alt="" loading="lazy" />
+        </picture>
       </section>
 
-      <section className="verified-proof">
+      <section id="verified-proof" className="verified-proof">
         <div>
           <h2>Scan the Label.<br /><em>See the Proof.</em></h2>
           <div className="verified-proof-badges">
