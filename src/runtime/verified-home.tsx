@@ -3,9 +3,10 @@ import ProductCard from "@/components/product-card"
 import { useExperimentContent } from "@/components/experiment-provider"
 import { useAgeGate } from "@/components/age-gate"
 import { useProducts } from "@/lib/hooks/use-products"
+import { useCategories } from "@/lib/hooks/use-categories"
 import { bestSellingProductsQueryOptions, CATALOG_QUERY_PARAMS } from "@/lib/data/products"
 import { useQuery } from "@tanstack/react-query"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import type { HttpTypes } from "@medusajs/types"
 import { Link, useLoaderData } from "@tanstack/react-router"
 import { VerifiedSupport } from "./verified-support"
@@ -32,20 +33,76 @@ const values = [
 ] as const
 
 const approach = [
-  ["Every lot tested", "Every batch is screened and documented to reduce unknown variables in sensitive research."],
+  ["Every lot tested", "Every batch is screened for bacterial endotoxins, helping reduce uncharacterized variables in sensitive research."],
   ["Scan the vial, see the COA", "Batch-specific reports keep the evidence connected to the compound in your hands."],
   ["US lyophilized & shipped", "Controlled domestic fulfillment makes handling and dispatch more consistent."],
   ["100% delivery guarantee", "Tracked delivery and responsive support protect every research order."],
 ] as const
 
 const comparison = [
-  ["Batch-specific COA access", true, false, false],
+  ["Batch-specific COA access", true, true, false],
   ["99%+ purity across most products", true, false, false],
   ["Endotoxin screening included", true, false, false],
   ["USA sourced and lyophilized", true, false, true],
   ["Same-day in-stock dispatch", true, true, false],
-  ["Single peptides and research blends", true, false, true],
+  ["Single peptides and research blends", true, false, false],
+  ["99%+ purity across most products", true, false, true],
 ] as const
+
+const approachIcons = ["biotech", "qr_code_2", "globe_location_pin", "workspace_premium"] as const
+const categoryLabels = ["Peptides", "Bioregulators", "Blends", "Solutions"] as const
+
+const VerifiedCategories = ({ region, catalogProducts, catalogPending, catalogError, retryCatalog }: {
+  region: HttpTypes.StoreRegion; catalogProducts: HttpTypes.StoreProduct[]; catalogPending: boolean; catalogError: boolean; retryCatalog: () => void
+}) => {
+  const [selected, setSelected] = useState<string>("Peptides")
+  const { data: categories = [], isPending: categoriesPending, isError: categoriesError, refetch: retryCategories } = useCategories({
+    fields: "id,name,handle,*category_children",
+    queryParams: { limit: 100 },
+  })
+  const category = categories.find((item) => item.name.toLowerCase() === selected.toLowerCase() || item.handle === selected.toLowerCase() || (selected === "Peptides" && item.handle === "research-peptides"))
+  const categoryIds = category ? [category.id, ...(category.category_children || []).map((child) => child.id)] : []
+  const { data, isPending, isError, refetch } = useProducts({
+    query_params: { ...CATALOG_QUERY_PARAMS, limit: 1, category_id: categoryIds },
+    region_id: region?.id,
+    enabled: Boolean(category && region?.id),
+  })
+  // Match the existing storefront's Blends/Solutions catalog filters when no
+  // dedicated Medusa category exists. Never invent bioregulator membership.
+  const fallbackProduct = !category ? catalogProducts.find((item) => {
+    const type = (item.type?.value || "").toLowerCase()
+    const name = `${item.title || ""} ${item.handle || ""}`.replaceAll("-", " ").toLowerCase()
+    if (selected === "Blends") return type.includes("blend") || /\b(?:blend(?:s)?|glow)\b/.test(name)
+    if (selected === "Solutions") return type.includes("solution") || /\bsolution(?:s)?\b|\bbuffered saline\b|\bacid water\b/.test(name)
+    return selected === "Bioregulators" && type.includes("bioregulator")
+  }) : undefined
+  const product = category ? data?.pages[0]?.products[0] : fallbackProduct
+  const loading = categoriesPending || (category ? isPending : catalogPending)
+  const failed = categoriesError || (category ? isError : catalogError)
+  return (
+    <section className="verified-categories" aria-labelledby="verified-categories-heading">
+      <picture className="verified-categories-background">
+        <source media="(max-width: 699px)" srcSet="/images/themes/verified/category-mobile-background.png" />
+        <img src="/images/themes/verified/category-glass-background.png" alt="" loading="lazy" />
+      </picture>
+      <div className="verified-category-options">
+        <h2 id="verified-categories-heading">Top Categories</h2>
+        <div role="group" aria-label="Product categories">
+          {categoryLabels.map((label) => <button key={label} type="button" aria-pressed={selected === label} aria-controls="verified-category-product" onClick={() => setSelected(label)}>{label}</button>)}
+        </div>
+      </div>
+      <div id="verified-category-product" className="verified-category-product" aria-live="polite" aria-label={`${selected} product`}>
+        {product ? <ProductCard key={`${selected}-${product.id}`} product={product} region={region} /> : (
+          <div className="verified-category-state">
+            <p>{failed ? "Products are temporarily unavailable." : loading ? "Loading products…" : `No ${selected.toLowerCase()} available right now.`}</p>
+            {failed && <button type="button" onClick={() => void (categoriesError ? retryCategories() : category ? refetch() : retryCatalog())}>Try again</button>}
+            <Link to="/collections/all">Browse all products</Link>
+          </div>
+        )}
+      </div>
+    </section>
+  )
+}
 
 const faqs = [
   ["How is product purity verified?", "Independent laboratory reports document identity and purity for each available batch."],
@@ -167,40 +224,52 @@ export const VerifiedHome = () => {
       <section className="verified-section verified-approach">
         <div className="verified-approach-intro">
           <span>Our Approach</span>
-          <h2>What makes us <em>different</em></h2>
+          <h2>What make us <em>different</em></h2>
           <Link to="/pages/about-us" className="verified-button">Explore the Science</Link>
         </div>
         <Accordion.Root type="single" collapsible defaultValue="Every lot tested" className="verified-approach-list">
-          {approach.map(([title, description]) => (
+          {approach.map(([title, description], index) => (
             <Accordion.Item key={title} value={title}>
-              <Accordion.Trigger><span>{title}</span><span aria-hidden="true">+</span></Accordion.Trigger>
+              <Accordion.Header>
+                <Accordion.Trigger><img src={`/images/themes/verified/approach-icons/${approachIcons[index]}.svg`} alt="" /><span>{title}</span><span className="verified-accordion-symbol" aria-hidden="true" /></Accordion.Trigger>
+              </Accordion.Header>
               <Accordion.Content>{description}</Accordion.Content>
             </Accordion.Item>
           ))}
         </Accordion.Root>
-        <div className="verified-molecule" aria-hidden="true"><span /><span /><span /><span /><span /></div>
+        <img className="verified-molecule" src="/images/themes/verified/approach-molecule.png" alt="" loading="lazy" />
       </section>
 
       <section className="verified-proof">
         <div>
           <h2>Scan the Label.<br /><em>See the Proof.</em></h2>
-          <p>Each Bluum product label carries a batch identity. Search Lab Reports to review the exact lot behind your research.</p>
+          <div className="verified-proof-badges">
+            <span><img src="/images/themes/verified/proof-lab.svg" alt="" />Endotoxin Lab Tested</span>
+            <span><img src="/images/themes/verified/proof-purity.svg" alt="" />99% purity of formulas</span>
+          </div>
+          <p>Each Bluum product label carries a unique QR code. Scan it to pull up the batch-specific Certificate of Analysis for the exact lot in your hand. No account, no email gate, no waiting.</p>
           <Link to="/pages/coa-lookup" className="verified-button">Check the COA</Link>
         </div>
-        <img src="/images/storefront/home-hero-mobile.png" alt="Bluum vial and product packaging" loading="lazy" />
+        <img className="verified-proof-phone" src="/images/themes/verified/proof-phone.png" alt="Bluum vial QR code displayed inside a phone scanner" loading="lazy" />
       </section>
 
+      <VerifiedCategories region={region} catalogProducts={data?.pages.flatMap((page) => page.products) || []} catalogPending={isPending} catalogError={isError} retryCatalog={() => void refetch()} />
+
       <section className="verified-section verified-comparison">
-        <h2>How <img className="verified-inline-logo" src="/images/bluum.svg" alt="Bluum" /> compares</h2>
         <div className="verified-comparison-scroll">
           <table className="verified-comparison-table">
             <caption className="sr-only">Bluum product comparison</caption>
             <thead>
-              <tr className="verified-comparison-head"><th scope="col"><span className="sr-only">Feature</span></th><th scope="col">Bluum</th><th scope="col">Other peptide vendors</th><th scope="col">General research vendors</th></tr>
+              <tr className="verified-comparison-head">
+                <th scope="col"><h2>How <img className="verified-inline-logo" src="/images/bluum.svg" alt="Bluum" /> compares</h2><span className="sr-only">Feature</span></th>
+                <th scope="col"><div><img className="verified-comparison-art" src="/images/themes/verified/comparison-bluum.png" alt="" /><img className="verified-comparison-logo" src="/images/bluum.svg" alt="Bluum" /></div></th>
+                <th scope="col"><div><img className="verified-comparison-art" src="/images/themes/verified/comparison-vial.png" alt="" /><span>Other peptide vendors</span></div></th>
+                <th scope="col"><div><img className="verified-comparison-art" src="/images/themes/verified/comparison-microscope.png" alt="" /><span>General research vendors</span></div></th>
+              </tr>
             </thead>
             <tbody>
-              {comparison.map(([label, bluum, vendor, general]) => (
-                <tr key={label}><th scope="row">{label}</th><td><Check value={bluum} /></td><td><Check value={vendor} /></td><td><Check value={general} /></td></tr>
+              {comparison.map(([label, bluum, vendor, general], index) => (
+                <tr key={`${index}-${label}`}><th scope="row">{label}</th><td><Check value={bluum} /></td><td><Check value={vendor} /></td><td><Check value={general} /></td></tr>
               ))}
             </tbody>
           </table>
