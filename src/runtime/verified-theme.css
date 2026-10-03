@@ -2040,6 +2040,9 @@
 }
 [data-storefront-theme="verified"] [data-product-section="faq"] { padding-bottom: 0; }
 [data-storefront-theme="verified"] .verified-product-page [data-product-section] { width: 100%; }
+[data-storefront-theme="verified"] .verified-product-page .verified-product-specifications {
+  padding-top: clamp(32px, 4vw, 56px);
+}
 [data-storefront-theme="verified"] [data-product-section="research"] > .bluum-product-research {
   width: 100%;
   max-width: 1200px;
