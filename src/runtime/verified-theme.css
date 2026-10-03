@@ -720,32 +720,67 @@
   border-top: 1px solid rgb(35 31 30 / 12%);
 }
 
-.verified-support h2 {
-  font-size: 38px;
+.verified-support-copy {
+  display: grid;
+  justify-items: start;
+  gap: 24px;
+  min-width: 0;
 }
-
-.verified-support p {
-  margin: 14px 0 24px;
+.verified-support .verified-support-copy > h2 {
+  margin: 0;
+  font-size: clamp(32px, 3.17vw, 48px);
+  line-height: 1.1;
+  font-weight: 500;
+  letter-spacing: -.04em;
+}
+.verified-support-copy h2 em {
+  font-family: "LibreBaskerville", Georgia, serif;
+  font-weight: 400;
+}
+.verified-support .verified-support-copy > p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.4;
+}
+.verified-support-copy .verified-button {
+  margin: 8px 0 0;
 }
 
 .verified-chat {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 8px;
+  gap: 20px;
+  min-width: 0;
 }
-
-.verified-chat span {
-  display: inline-flex;
+.verified-chat-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  max-width: 100%;
+}
+.verified-chat-sender {
+  padding-inline: 20px;
+  color: #96918e;
+  font-size: 16px;
+  line-height: 1.25;
+  letter-spacing: .03em;
+}
+.verified-chat-bubble {
+  display: block;
+  max-width: 100%;
   padding: 10px 16px;
-  border-radius: 12px 12px 4px 12px;
-  background: #3097ff;
+  border-radius: 20px;
+  background: #288bff;
   color: white;
+  font-size: 20px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
 }
-
-.verified-chat span:not(:first-child) {
-  margin-right: 12%;
-  border-radius: 12px 12px 12px 4px;
+.verified-chat-group--client { align-self: flex-end; }
+.verified-chat-group--support { align-self: flex-start; margin-left: 24%; }
+.verified-chat-group--support .verified-chat-bubble {
   background: #e7eff5;
   color: var(--verified-ink);
 }
@@ -1467,10 +1502,9 @@
     align-items: flex-start;
   }
 
-  .verified-chat span:not(:first-child) {
-    margin-right: 0;
-    margin-left: 12%;
-  }
+  .verified-chat-group--support { margin-left: 0; }
+  .verified-chat-bubble { font-size: 16px; }
+  .verified-chat-sender { font-size: 14px; }
 
   [data-storefront-theme="verified"] .verified-catalog-page,
   [data-storefront-theme="verified"] .verified-product-page {
@@ -1652,12 +1686,12 @@
 
 /* Science: independent desktop and mobile compositions from the design file. */
 .science-v2-page { color: var(--verified-ink); }
-.science-v2-page .verified-section, .science-v2-hero-copy, .science-v2-usa-copy { width: min(100% - 64px, 1448px); }
+.science-v2-page .verified-section, .science-v2-page .verified-support, .science-v2-hero-copy, .science-v2-usa-copy { width: min(100% - 64px, 1448px); }
 .science-v2-page h1, .science-v2-page h2, .science-v2-page h3, .science-v2-page p { margin: 0; }
 .science-v2-page h2 { font-size: 48px; line-height: 1.1; font-weight: 500; letter-spacing: -.04em; }
 .science-v2-page p { font-size: 16px; line-height: 1.4; }
 .science-v2-page .verified-eyebrow { font-size: 13px; letter-spacing: 0; text-transform: none; }
-.science-v2-page em { font-family: "Libre Baskerville", Georgia, serif; font-weight: 400; }
+.science-v2-page em { font-family: "LibreBaskerville", Georgia, serif; font-weight: 400; }
 .science-v2-hero, .science-v2-numbers, .science-v2-usa { position: relative; isolation: isolate; }
 .science-v2-hero-art, .science-v2-numbers-art, .science-v2-usa-art { position: absolute; inset: 0; z-index: -1; }
 .science-v2-hero-art img, .science-v2-numbers-art img, .science-v2-usa-art img { width: 100%; height: 100%; object-fit: cover; }
@@ -1715,9 +1749,9 @@
 .science-v2-proof-badges span { display: flex; align-items: center; gap: 12px; font-size: 14px; }
 .science-v2-proof-badges img { width: 24px; height: 24px; }
 .science-v2-proof-art { width: 100%; height: auto; }
-.science-v2-faq { display: grid; grid-template-columns: .85fr 1fr; gap: 48px; margin-bottom: 108px; }
+.science-v2-faq { display: grid; grid-template-columns: .85fr 1fr; gap: 48px; margin-bottom: 0; }
 .science-v2-faq-intro > img { width: 426px; max-width: calc(100% - 32px); height: auto; margin: 40px 0 0 32px; }
-.science-v2-faq-item { border-bottom: 1px solid rgb(35 31 30 / 16%); }
+.science-v2-faq-item + .science-v2-faq-item { border-top: 1px solid rgb(35 31 30 / 16%); }
 .science-v2-faq-item button { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 28px 0; text-align: left; font-size: 20px; }
 .science-v2-faq-item [role="region"] p { padding-bottom: 24px; }
 @media (min-width: 700px) and (max-width: 1100px) {
@@ -1782,7 +1816,7 @@
   .science-v2-proof-badges { flex-direction: column; align-items: center; gap: 16px; margin-top: 24px; }
   .science-v2-proof-copy > p { margin: 24px 0; }
   .science-v2-proof-art { height: 413px; object-fit: cover; object-position: center; }
-  .science-v2-faq { display: flex; flex-direction: column; gap: 40px; padding-top: 80px; border-top: 1px solid rgb(35 31 30 / 16%); margin-bottom: 60px; }
+  .science-v2-faq { display: flex; flex-direction: column; gap: 40px; padding-top: 80px; margin-bottom: 60px; }
   .science-v2-faq-intro { display: contents; }
   .science-v2-faq-intro h2 { order: 0; }
   .science-v2-faq-intro h2 br { display: none; }
@@ -1790,7 +1824,7 @@
   .science-v2-faq-list { order: 1; }
   .science-v2-faq-intro > img { order: 2; width: 302px; margin: 0 auto; }
   .science-v2-faq-item button { font-size: 16px; padding-block: 20px; gap: 16px; }
-  .science-v2-page .verified-section, .science-v2-hero-copy, .science-v2-usa-copy { width: calc(100% - 40px); }
+  .science-v2-page .verified-section, .science-v2-page .verified-support, .science-v2-hero-copy, .science-v2-usa-copy { width: calc(100% - 40px); }
   .science-v2-page .science-v2-standards { width: 100%; }
 }
 
@@ -1870,9 +1904,6 @@
   line-height: 1.5;
 }
 .verified-inline-logo { display: inline-block; width: 2.5em; height: auto; margin-inline: 0.12em; vertical-align: baseline; }
-.verified-chat { min-width: 0; align-items: stretch; }
-.verified-chat span { max-width: 85%; align-self: flex-end; padding: var(--verified-space-12) var(--verified-space-16); }
-.verified-chat span:not(:first-child) { align-self: flex-start; margin: 0; }
 
 @media (min-width: 1024px) {
   [data-storefront-theme="verified"] .verified-product-page .sticky { top: calc(var(--verified-sticky-height) + var(--verified-space-24)); }
