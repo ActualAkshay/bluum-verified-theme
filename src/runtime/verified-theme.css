@@ -3034,3 +3034,17 @@
   .verified-faq-v2__list button { min-height: 56px; padding-block: 14px; font-size: 16px; }
   .verified-faq-v2__aside { font-size: 16px; }
 }
+/* Figma Privacy (257:9772): one centred 783px column, left-aligned title, compact legal text. */
+[data-storefront-theme="verified"] .verified-policy-page[data-policy-handle^="privacy"] .bluum-policy-page__container { display: block; width: min(calc(100% - 40px), 783px); margin-inline: auto; padding-block: 56px 96px; }
+[data-storefront-theme="verified"] .verified-policy-page[data-policy-handle^="privacy"] .bluum-policy-page__title { position: static; margin-bottom: 24px; text-align: left; font-size: clamp(36px, 3.2vw, 48px); line-height: 1.1; font-weight: 500; letter-spacing: -.04em; }
+[data-storefront-theme="verified"] .verified-policy-page .bluum-policy-page__title em { font-family: "LibreBaskerville", Georgia, serif; font-weight: 400; }
+[data-storefront-theme="verified"] .verified-policy-page[data-policy-handle^="privacy"] .bluum-policy-content { padding-top: 0; font-size: 15px; line-height: 1.45; }
+[data-storefront-theme="verified"] .verified-policy-page[data-policy-handle^="privacy"] .bluum-policy-content :is(h1, h2) { margin: 32px 0 12px; padding-top: 0; border-top: 0; font-size: 20px; line-height: 1.25; font-weight: 500; letter-spacing: -.02em; }
+[data-storefront-theme="verified"] .verified-policy-page[data-policy-handle^="privacy"] .bluum-policy-content :is(h3, h4) { margin: 16px 0 6px; font-size: 15px; font-weight: 600; }
+[data-storefront-theme="verified"] .verified-policy-page[data-policy-handle^="privacy"] .bluum-policy-content p { margin: 0 0 10px; }
+[data-storefront-theme="verified"] .verified-policy-page[data-policy-handle^="privacy"] .bluum-policy-content :is(ul, ol) { margin: 0 0 10px; padding-left: 18px; }
+[data-storefront-theme="verified"] .verified-policy-page[data-policy-handle^="privacy"] .bluum-policy-content li { margin: 0; padding: 0; line-height: 1.45; }
+[data-storefront-theme="verified"] .verified-policy-page[data-policy-handle^="privacy"] .bluum-policy-content { font-size: 16px; line-height: 1.5; }
+[data-storefront-theme="verified"] .verified-policy-page[data-policy-handle^="privacy"] .bluum-policy-content :is(h1, h2) { margin-top: 40px; }
+[data-storefront-theme="verified"] .verified-policy-page[data-policy-handle^="privacy"] .bluum-policy-content :is(p, ul, ol) { margin-bottom: 14px; }
+[data-storefront-theme="verified"] .verified-policy-page > .verified-support { border-top: 1px solid rgb(35 31 30 / 16%); }
