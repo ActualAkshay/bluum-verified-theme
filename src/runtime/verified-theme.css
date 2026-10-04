@@ -2971,3 +2971,8 @@
   .verified-home .science-v2-faq-item button,
   [data-theme-page="product"] ~ .science-v2-faq .science-v2-faq-item button { padding-block: 15px; font-size: 18px; }
 }
+/* Figma Shop_mobile heading wraps after "research". Its portrait cards suit portrait photography;
+   the live catalog photos are landscape, so phone tiles keep the photo's shape. */
+@media (max-width: 699px) {
+  [data-storefront-theme="verified"] .verified-catalog-heading em { display: inline; }
+}
