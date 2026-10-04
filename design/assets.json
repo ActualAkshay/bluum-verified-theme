@@ -32,6 +32,10 @@
     {"path":"proof-phone.png","sha256":"aa2b780971ec8d90ac479c0b033a090ae9c297c00b6d9feb78e69ed2720bf7f8","previous_sha256":[]},
     {"path":"proof-lab.svg","sha256":"bd814af6f007296e2f66674f0c763c83bc8120960339b970a9db7bd70c51f402","previous_sha256":[]},
     {"path":"proof-purity.svg","sha256":"568561f08d73642138dd07a96a98a03cdc3f8b6b92b611d6d1ffe5ce9526adbd","previous_sha256":[]},
-    {"path":"purity-desktop-artwork.webp","sha256":"d9440bcfeef19bf3933789b0418811b41728c73bd38dc3fed51e10858ac430b7","previous_sha256":[]}
+    {"path":"purity-desktop-artwork.webp","sha256":"d9440bcfeef19bf3933789b0418811b41728c73bd38dc3fed51e10858ac430b7","previous_sha256":[]},
+    {"path":"pdp-proof-purity.webp","sha256":"d6f017eef0bc4bda8caa038192e38a02f9a55d5a17b0ab36344523c5a1a89f95","previous_sha256":[]},
+    {"path":"pdp-proof-match.webp","sha256":"b2e613388ac5a823909da42787f688d45f5554badccf2a551804db3f04e8f997","previous_sha256":[]},
+    {"path":"pdp-proof-data.webp","sha256":"660a268bfcbaadc3e4dced35a9cabe6f566760e3ef365888e4caeca1250efbe5","previous_sha256":[]},
+    {"path":"pdp-proof-lab.webp","sha256":"0e89c2b790d9c7d46372ba59bf5019f110cc8ee45256c330a9dd548fde2e5f66","previous_sha256":[]}
   ]
 }
