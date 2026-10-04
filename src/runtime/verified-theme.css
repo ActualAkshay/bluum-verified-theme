@@ -2923,8 +2923,10 @@
 .verified-product-lot-document__result { font-size: 16px; }
 @media (max-width: 699px) {
   .verified-product-lot-trigger { padding: 16px; }
-  .verified-product-lot-purity { display: none; }
-  .verified-product-lot-meta { font-size: 13px; }
+  .verified-product-lot-title { display: grid; justify-items: start; gap: 6px; }
+  .verified-product-lot-trigger { align-items: flex-start; }
+  .verified-product-lot-meta { display: grid; gap: 2px; font-size: 13px; }
+  .verified-product-lot-meta > span + span::before { content: none; }
   .verified-product-lot-document { padding: 16px; font-size: 14px; }
   .verified-product-lot-document__result { font-size: 14px; }
 }
@@ -2944,3 +2946,27 @@
 .verified-proof-tile--data strong { font-size: clamp(20px, 1.9vw, 28px); line-height: 1.1; font-weight: 500; letter-spacing: -.02em; }
 .verified-proof-tile--data span { max-width: 220px; font-size: 13px; line-height: 1.35; opacity: .9; }
 @media (max-width: 999px) { .verified-proof-tiles { display: none; } }
+/* Figma PDP highlights: 800px art column, 40px row gap, section 80px top. */
+@media (min-width: 1000px) {
+  .verified-product-highlights { padding-top: 80px; }
+  .verified-product-highlights__grid { max-width: 1200px; margin-top: 8px; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr) minmax(0, 1fr); }
+  .verified-product-highlights__grid ul { gap: 40px; }
+  .verified-product-highlights__art { max-height: 600px; }
+}
+/* Figma PDP: Related heading and ruled FAQ / help sections. */
+.verified-related { padding: 80px 0; border-bottom: 1px solid rgb(35 31 30 / 16%); }
+.verified-related .verified-section-heading h2 { font-size: clamp(32px, 3.2vw, 48px); line-height: 1.1; font-weight: 500; letter-spacing: -.04em; }
+.verified-related .verified-section-heading h2 em { font-family: "LibreBaskerville", Georgia, serif; font-weight: 400; }
+[data-product-section="related"] + .science-v2-faq { margin-top: 80px; }
+[data-theme-page="product"] ~ .science-v2-faq + .verified-support { margin-top: 80px; padding-top: 116px; border-top: 1px solid rgb(35 31 30 / 16%); }
+@media (max-width: 699px) {
+  .verified-related { padding: 56px 0; }
+  .verified-related .verified-section-heading { flex-direction: column; align-items: center; gap: 16px; }
+  [data-product-section="related"] + .science-v2-faq { margin-top: 48px; }
+  [data-theme-page="product"] ~ .science-v2-faq + .verified-support { margin-top: 56px; padding-top: 56px; }
+}
+/* Home and PDP FAQ rows (Figma 257:3622 / 257:5229) are more compact than Science's. */
+@media (min-width: 700px) {
+  .verified-home .science-v2-faq-item button,
+  [data-theme-page="product"] ~ .science-v2-faq .science-v2-faq-item button { padding-block: 15px; font-size: 18px; }
+}
