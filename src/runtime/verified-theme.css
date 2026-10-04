@@ -3048,3 +3048,11 @@
 [data-storefront-theme="verified"] .verified-policy-page[data-policy-handle^="privacy"] .bluum-policy-content :is(h1, h2) { margin-top: 40px; }
 [data-storefront-theme="verified"] .verified-policy-page[data-policy-handle^="privacy"] .bluum-policy-content :is(p, ul, ol) { margin-bottom: 14px; }
 [data-storefront-theme="verified"] .verified-policy-page > .verified-support { border-top: 1px solid rgb(35 31 30 / 16%); }
+/* Figma Account (257:11327): form column + inset rounded image panel. Sign-in stays phone/email OTP. */
+@media (min-width: 700px) {
+  [data-storefront-theme="verified"] .verified-auth-surface { min-height: 0; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; padding: 24px var(--verified-gutter, 24px) 24px; }
+  [data-storefront-theme="verified"] .verified-auth-surface::after { min-height: 0; height: auto; aspect-ratio: 706 / 670; border-radius: 24px; background-color: #e8edf1; }
+  [data-storefront-theme="verified"] .verified-auth-panel { width: min(100%, 350px); padding: 48px 0; }
+  [data-storefront-theme="verified"] .verified-auth-panel h1 { font-size: clamp(36px, 3.2vw, 48px); line-height: 1.1; }
+  [data-storefront-theme="verified"] .verified-auth-panel form > button[type="submit"] { min-height: 46px; }
+}
