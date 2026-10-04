@@ -9,11 +9,17 @@ import { Link, useLocation } from "@tanstack/react-router"
 import { useEffect, useRef, useState, type FormEvent, type PropsWithChildren, type ReactNode } from "react"
 
 const navigation = [
-  { label: "Shop", href: "/collections/all" },
-  { label: "Lab Reports", href: "/pages/coa-lookup" },
-  { label: "Science", href: "/pages/about-us" },
-  { label: "Contact Us", href: "/pages/contact" },
+  { label: "Shop", href: "/collections/all", description: "Research compounds", image: "/images/themes/verified/compound-shipping.png" },
+  { label: "Lab Reports", href: "/pages/coa-lookup", description: "Testing & COAs", image: "/images/themes/verified/science-card-usa.png" },
+  { label: "Science", href: "/pages/about-us", description: "Research & standards", image: "/images/themes/verified/compound-purity.png" },
+  { label: "Contact Us", href: "/pages/contact", description: "Get quick support", image: "/images/themes/verified/contact-hero.png" },
 ] as const
+
+const InstagramIcon = () => (
+  <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+    <rect x="3.5" y="3.5" width="17" height="17" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none" />
+  </svg>
+)
 
 const MenuIcon = ({ open }: { open: boolean }) => (
   <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none">
@@ -38,7 +44,7 @@ const VerifiedNavbar = () => {
   })
   const links = [
     ...navigation,
-    ...(wholesale.data?.approved ? [{ label: "Wholesale", href: "/wholesale" }] : []),
+    ...(wholesale.data?.approved ? [{ label: "Wholesale", href: "/wholesale", description: "Approved accounts", image: undefined }] : []),
   ]
   const headerRef = useRef<HTMLElement>(null)
   const menuTriggerRef = useRef<HTMLButtonElement>(null)
@@ -75,15 +81,16 @@ const VerifiedNavbar = () => {
     if (!menuOpen) return
 
     const menu = document.getElementById("verified-mobile-menu")
-    const focusable = () => Array.from(
+    // The header trigger is the menu's close control, so it joins the focus loop.
+    const focusable = () => [menuTriggerRef.current, ...Array.from(
       menu?.querySelectorAll<HTMLElement>(
         'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])',
       ) || [],
-    ).filter((element) => element.getClientRects().length > 0)
+    )].filter((element): element is HTMLElement => Boolean(element && element.getClientRects().length > 0))
     const fitMenu = () => {
-      if (menu) menu.style.maxHeight = `${Math.max(0, window.innerHeight - menu.getBoundingClientRect().top - 16)}px`
+      if (menu) menu.style.height = `${Math.max(0, window.innerHeight - menu.getBoundingClientRect().top)}px`
     }
-    const frame = requestAnimationFrame(() => { fitMenu(); focusable()[0]?.focus() })
+    const frame = requestAnimationFrame(() => { fitMenu(); focusable()[1]?.focus() })
     window.addEventListener("resize", fitMenu)
     const observer = typeof ResizeObserver === "undefined" ? undefined : new ResizeObserver(fitMenu)
     if (headerRef.current) observer?.observe(headerRef.current)
@@ -100,15 +107,9 @@ const VerifiedNavbar = () => {
       if (event.key !== "Tab") return
       const items = focusable()
       if (!items.length) return
-      const first = items[0]
-      const last = items[items.length - 1]
-      if (event.shiftKey && document.activeElement === first) {
-        event.preventDefault()
-        last.focus()
-      } else if (!event.shiftKey && document.activeElement === last) {
-        event.preventDefault()
-        first.focus()
-      }
+      const index = items.indexOf(document.activeElement as HTMLElement)
+      event.preventDefault()
+      items[(index + (event.shiftKey ? -1 : 1) + items.length) % items.length].focus()
     }
     const onPointerDown = (event: PointerEvent) => {
       if ((event.target as Element)?.closest?.('[role="dialog"][aria-modal="true"]')) return
@@ -168,22 +169,29 @@ const VerifiedNavbar = () => {
       </div>
       {menuOpen && (
         <nav id="verified-mobile-menu" className="verified-mobile-nav" aria-label="Mobile navigation">
-          <button type="button" className="verified-mobile-close" onClick={() => { setMenuOpen(false); menuTriggerRef.current?.focus() }}>
-            Close menu <MenuIcon open />
-          </button>
-          <div className="verified-mobile-search">
-            <PredictiveSearchTrigger />
-            <span>Search products</span>
+          <p className="verified-mobile-nav__title">Menu</p>
+          <ul className="verified-mobile-nav__list">
+            {links.map((item) => (
+              <li key={item.label}>
+                <Link to={item.href}>
+                  <span className="verified-mobile-nav__thumb">{item.image && <img src={item.image} alt="" width="64" height="64" />}</span>
+                  <span className="verified-mobile-nav__text"><strong>{item.label}</strong><small>{item.description}</small></span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <div className="verified-mobile-nav__footer">
+            <div className="verified-mobile-nav__social">
+              <a href="https://instagram.com/bluumpeptides" target="_blank" rel="noreferrer" aria-label="Bluum on Instagram"><InstagramIcon /></a>
+            </div>
+            <Link
+              className="verified-button verified-mobile-nav__account"
+              to={customer ? "/account" : "/login"}
+              search={customer ? undefined : { redirect: "/account" }}
+            >
+              {customer ? "Account" : "Sign In"}
+            </Link>
           </div>
-          {links.map((item) => (
-            <Link key={item.label} to={item.href}>{item.label}</Link>
-          ))}
-          <Link
-            to={customer ? "/account" : "/login"}
-            search={customer ? undefined : { redirect: "/account" }}
-          >
-            {customer ? "Account" : "Sign In"}
-          </Link>
         </nav>
       )}
     </header>
