@@ -14,6 +14,7 @@
     "sync:storefront": "node scripts/sync-storefront.mjs",
     "test:sync": "node --test scripts/sync-storefront.test.mjs",
     "sync:assets": "node scripts/sync-assets.mjs",
-    "test:assets": "node --test scripts/sync-assets.test.mjs"
+    "test:assets": "node --test scripts/sync-assets.test.mjs",
+    "test:featured": "node --experimental-strip-types --test scripts/featured-products.test.mjs"
   }
 }

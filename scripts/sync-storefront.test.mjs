@@ -22,8 +22,25 @@ async function fixture(t) {
   return root
 }
 
-test("allowlist contains only the eight theme runtime snapshots", () => {
-  assert.deepEqual(runtimeFiles.map((file) => file.target), ["src/themes/verified-theme.tsx", "src/themes/verified-home.tsx", "src/themes/verified-science.tsx", "src/styles/verified-theme.css", "src/themes/verified-catalog-controls.tsx", "src/themes/verified-catalog.ts", "src/themes/verified-support.tsx", "src/themes/verified-featured.ts"])
+test("allowlist contains only the fixed theme runtime snapshots", () => {
+  assert.deepEqual(runtimeFiles.map((file) => file.target), [
+    "src/themes/verified-blog.tsx",
+    "src/themes/verified-product-origin.tsx",
+    "src/themes/verified-contact.tsx",
+    "src/themes/verified-cart.tsx",
+    "src/themes/verified-cart-recommendations.tsx",
+    "src/themes/verified-product-information.tsx",
+    "src/themes/verified-product-highlights.tsx",
+    "src/themes/verified-theme.tsx",
+    "src/themes/verified-home.tsx",
+    "src/themes/verified-science.tsx",
+    "src/styles/verified-theme.css",
+    "src/themes/verified-catalog-controls.tsx",
+    "src/themes/verified-catalog.ts",
+    "src/themes/verified-support.tsx",
+    "src/themes/verified-featured.ts",
+  ])
+  assert.deepEqual(runtimeFiles.filter((file) => !file.allowCreation).map((file) => file.name), ["verified-theme.tsx", "verified-home.tsx", "verified-science.tsx", "verified-theme.css"])
   assert.throws(() => parseArguments(["--storefront", "/tmp", "--target", "../../backend"]))
   assert.throws(() => parseArguments(["--storefront"]))
   assert.throws(() => parseArguments(["--check"]))
@@ -73,7 +90,7 @@ test("rejects wrong packages and missing integration targets", async (t) => {
   await writeFile(path.join(root, "package.json"), '{"name":"backend"}')
   await assert.rejects(syncStorefront({ storefront: root }), /must be named storefront/)
   await writeFile(path.join(root, "package.json"), '{"name":"storefront"}')
-  await rm(path.join(root, runtimeFiles[0].target))
+  await rm(path.join(root, runtimeFiles.find((file) => !file.allowCreation).target))
   await assert.rejects(syncStorefront({ storefront: root }), { code: "ENOENT" })
 })
 

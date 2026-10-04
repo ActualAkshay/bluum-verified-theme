@@ -18,8 +18,9 @@ export const VerifiedCartTotals = ({cart, pending = false}: {cart: HttpTypes.Sto
 export const verifiedCartLinePrices = (item: HttpTypes.StoreCartLineItem) => {
   const original = Math.max(0, getLineItemSubtotalBeforeDiscount(item))
   const discount = Math.max(0, (item.discount_total ?? 0) - (item.discount_tax_total ?? 0))
-  const actual = Number.isFinite(item.total) && Number.isFinite(item.tax_total)
-    ? Math.max(0, item.total - item.tax_total)
+  const { total, tax_total: taxTotal } = item
+  const actual = typeof total === "number" && Number.isFinite(total) && typeof taxTotal === "number" && Number.isFinite(taxTotal)
+    ? Math.max(0, total - taxTotal)
     : Math.max(0, original - discount)
   return { original, actual }
 }
