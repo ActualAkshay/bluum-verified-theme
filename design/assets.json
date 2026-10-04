@@ -36,6 +36,8 @@
     {"path":"pdp-proof-purity.webp","sha256":"d6f017eef0bc4bda8caa038192e38a02f9a55d5a17b0ab36344523c5a1a89f95","previous_sha256":[]},
     {"path":"pdp-proof-match.webp","sha256":"b2e613388ac5a823909da42787f688d45f5554badccf2a551804db3f04e8f997","previous_sha256":[]},
     {"path":"pdp-proof-data.webp","sha256":"660a268bfcbaadc3e4dced35a9cabe6f566760e3ef365888e4caeca1250efbe5","previous_sha256":[]},
-    {"path":"pdp-proof-lab.webp","sha256":"0e89c2b790d9c7d46372ba59bf5019f110cc8ee45256c330a9dd548fde2e5f66","previous_sha256":[]}
+    {"path":"pdp-proof-lab.webp","sha256":"0e89c2b790d9c7d46372ba59bf5019f110cc8ee45256c330a9dd548fde2e5f66","previous_sha256":[]},
+    {"path":"blog-hero-desktop.webp","sha256":"369cb07bb0d4d64067430afbc8927d5c78e0fffb80a4fe35b6e1f3da3062cbc5","previous_sha256":[]},
+    {"path":"blog-hero-mobile.webp","sha256":"962cd1bc78d111b75b23afaa73dc9546cffc8665115954dc21a45124bd23fa56","previous_sha256":[]}
   ]
 }
