@@ -3056,3 +3056,15 @@
   [data-storefront-theme="verified"] .verified-auth-panel h1 { font-size: clamp(36px, 3.2vw, 48px); line-height: 1.1; }
   [data-storefront-theme="verified"] .verified-auth-panel form > button[type="submit"] { min-height: 46px; }
 }
+/* Figma Lab Reports (257:10665): italic section headings, rounded lab photo, purity column. */
+[data-storefront-theme="verified"] .verified-lab-result h3 em { font-family: "LibreBaskerville", Georgia, serif; font-style: italic; font-weight: 400; }
+[data-storefront-theme="verified"] .verified-lab-document-art { aspect-ratio: 628 / 539; height: auto; max-height: none; border-radius: 24px; object-fit: cover; }
+@media (max-width: 699px) { [data-storefront-theme="verified"] .verified-lab-document-art { height: auto; } }
+@media (min-width: 700px) {
+  [data-storefront-theme="verified"] .verified-lab-result > section:nth-of-type(1) { grid-template-columns: minmax(0, 1fr) minmax(280px, .78fr); gap: 0 32px; }
+  [data-storefront-theme="verified"] .verified-lab-result > section:nth-of-type(1) h3 { grid-column: 1; }
+  [data-storefront-theme="verified"] .verified-lab-result > section:nth-of-type(1) .verified-lab-document-art { grid-column: 2; grid-row: 1 / span 2; }
+}
+@media (min-width: 700px) {
+  [data-storefront-theme="verified"] .verified-lab-result > section:nth-of-type(1) { grid-template-rows: auto 1fr; }
+}

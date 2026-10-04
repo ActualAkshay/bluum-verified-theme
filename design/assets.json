@@ -38,6 +38,7 @@
     {"path":"pdp-proof-data.webp","sha256":"660a268bfcbaadc3e4dced35a9cabe6f566760e3ef365888e4caeca1250efbe5","previous_sha256":[]},
     {"path":"pdp-proof-lab.webp","sha256":"0e89c2b790d9c7d46372ba59bf5019f110cc8ee45256c330a9dd548fde2e5f66","previous_sha256":[]},
     {"path":"blog-hero-desktop.webp","sha256":"369cb07bb0d4d64067430afbc8927d5c78e0fffb80a4fe35b6e1f3da3062cbc5","previous_sha256":[]},
-    {"path":"blog-hero-mobile.webp","sha256":"962cd1bc78d111b75b23afaa73dc9546cffc8665115954dc21a45124bd23fa56","previous_sha256":[]}
+    {"path":"blog-hero-mobile.webp","sha256":"962cd1bc78d111b75b23afaa73dc9546cffc8665115954dc21a45124bd23fa56","previous_sha256":[]},
+    {"path":"lab-documents-photo.webp","sha256":"bcc272f03c76f345ac54e72560523655716f1c12e7c3b7efc4d22f05ebdf18e9","previous_sha256":[]}
   ]
 }
