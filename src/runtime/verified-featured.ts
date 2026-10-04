@@ -6,6 +6,8 @@ export const VERIFIED_FEATURED_FALLBACK_HANDLES = [
 ] as const
 
 export const VERIFIED_FEATURED_LOOKBACK_DAYS = 90
+/** Featured carousel length and the size of the "Bestsellers" ranking. */
+export const VERIFIED_FEATURED_LIMIT = 8
 
 export function featuredLookbackDays(value: unknown): number {
   const days = Number(value)
@@ -23,7 +25,7 @@ export function isFeaturedProductInStock(product: HttpTypes.StoreProduct): boole
 export function selectVerifiedFeaturedProducts(
   products: HttpTypes.StoreProduct[],
   rankedIds: readonly string[],
-  limit = 4,
+  limit = VERIFIED_FEATURED_LIMIT,
   fallbackHandles: readonly string[] = VERIFIED_FEATURED_FALLBACK_HANDLES,
 ): HttpTypes.StoreProduct[] {
   const available = products.filter(isFeaturedProductInStock)
@@ -37,4 +39,9 @@ export function selectVerifiedFeaturedProducts(
     if (product) selected.set(product.id, product)
   }
   return Array.from(selected.values()).slice(0, Math.max(0, limit))
+}
+
+/** Only live unit-sales rankings earn the badge; curated fallbacks never do. */
+export function verifiedBestsellerIds(rankedIds: readonly string[], count = VERIFIED_FEATURED_LIMIT): Set<string> {
+  return new Set(rankedIds.slice(0, Math.max(0, count)))
 }

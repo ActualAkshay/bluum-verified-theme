@@ -6,11 +6,12 @@ import { useProducts } from "@/lib/hooks/use-products"
 import { useCategories } from "@/lib/hooks/use-categories"
 import { bestSellingProductsQueryOptions, CATALOG_QUERY_PARAMS } from "@/lib/data/products"
 import { useQuery } from "@tanstack/react-query"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useRef, useState, type ReactNode } from "react"
 import type { HttpTypes } from "@medusajs/types"
 import { Link, useLoaderData } from "@tanstack/react-router"
 import { VerifiedSupport } from "./verified-support"
-import { featuredLookbackDays, selectVerifiedFeaturedProducts } from "./verified-featured"
+import { VerifiedQuestions } from "./verified-science"
+import { featuredLookbackDays, selectVerifiedFeaturedProducts, verifiedBestsellerIds } from "./verified-featured"
 
 const values = [
   {
@@ -48,6 +49,19 @@ const comparison = [
   ["Single peptides and research blends", true, false, false],
   ["99%+ purity across most products", true, false, true],
 ] as const
+
+const TrustIcon = ({ children }: { children: ReactNode }) => (
+  <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">{children}</svg>
+)
+const trustIconImage = (name: string) => <img src={`/images/themes/verified/approach-icons/${name}.svg`} alt="" width="20" height="20" />
+// Figma order; the strip loops, so the duplicate track is hidden from assistive technology.
+const trustItems = [
+  { label: "99%+ Purity", icon: <TrustIcon><path d="M12 3.25 5.25 5.9v5.35c0 4.2 2.85 7.75 6.75 9 3.9-1.25 6.75-4.8 6.75-9V5.9L12 3.25Z" /><path d="m8.9 12.05 2.15 2.15 4.1-4.2" /></TrustIcon> },
+  { label: "Endotoxin Tested", icon: trustIconImage("biotech") },
+  { label: "COA Available", icon: trustIconImage("qr_code_2") },
+  { label: "Ships Today", icon: <TrustIcon><path d="M2.75 6.25h11v10h-11z" /><path d="M13.75 9.25h3.6l3.9 3.9v3.1h-7.5" /><circle cx="6.75" cy="17.25" r="1.75" fill="var(--verified-canvas)" /><circle cx="17" cy="17.25" r="1.75" fill="var(--verified-canvas)" /></TrustIcon> },
+  { label: "USA Lyophilized", icon: trustIconImage("globe_location_pin") },
+]
 
 const approachIcons = ["biotech", "qr_code_2", "globe_location_pin", "workspace_premium"] as const
 const categoryLabels = ["Peptides", "Bioregulators", "Blends", "Solutions"] as const
@@ -104,19 +118,40 @@ const VerifiedCategories = ({ region, catalogProducts, catalogPending, catalogEr
   )
 }
 
-const faqs = [
-  ["How is product purity verified?", "Independent laboratory reports document identity and purity for each available batch."],
-  ["How do I access the COA?", "Open Lab Reports and search by product or lot, or scan the batch QR code where available."],
-  ["Are products endotoxin tested?", "Endotoxin screening is included for applicable products and published with the batch documentation."],
-  ["When will my order ship?", "In-stock orders are prepared quickly from our U.S. facility. Shipping options and estimates appear at checkout."],
-  ["Are your products sourced in the USA?", "Bluum works with controlled U.S. sourcing, lyophilization, and fulfillment processes."],
-] as const
-
 const Check = ({ value, highlighted = false }: { value: boolean; highlighted?: boolean }) => (
   <span role="img" aria-label={value ? "Yes" : "No"}>
     <img className="verified-comparison-mark" src={`/images/themes/verified/comparison-${value ? highlighted ? "check-light" : "check" : "cross"}.svg`} alt="" />
   </span>
 )
+
+const ArrowIcon = ({ direction }: { direction: "left" | "right" }) => (
+  <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d={direction === "left" ? "M10 3.5 5.5 8l4.5 4.5" : "M6 3.5 10.5 8 6 12.5"} />
+  </svg>
+)
+
+/** Figma featured carousel: four cards in view; arrows and progress follow the real scroll position. */
+const useCarouselScroll = (itemCount: number) => {
+  const trackRef = useRef<HTMLDivElement>(null)
+  const [state, setState] = useState({ start: true, end: true, thumb: 1, offset: 0 })
+  const measure = useCallback(() => {
+    const track = trackRef.current
+    if (!track) return
+    const max = Math.max(0, track.scrollWidth - track.clientWidth)
+    const thumb = track.scrollWidth ? Math.min(1, track.clientWidth / track.scrollWidth) : 1
+    setState({ start: track.scrollLeft <= 1, end: track.scrollLeft >= max - 1, thumb, offset: max ? (track.scrollLeft / max) * (1 - thumb) : 0 })
+  }, [])
+  useEffect(() => {
+    measure()
+    const track = trackRef.current
+    if (!track || typeof ResizeObserver === "undefined") return
+    const observer = new ResizeObserver(measure)
+    observer.observe(track)
+    return () => observer.disconnect()
+  }, [measure, itemCount])
+  const page = (direction: -1 | 1) => trackRef.current?.scrollBy({ left: direction * trackRef.current.clientWidth, behavior: "smooth" })
+  return { trackRef, measure, page, ...state, scrollable: !(state.start && state.end) }
+}
 
 export const VerifiedHome = () => {
   const { region } = useLoaderData({ strict: false }) as { region: HttpTypes.StoreRegion }
@@ -131,6 +166,8 @@ export const VerifiedHome = () => {
     if (hasNextPage && !isFetchingNextPage && !isError) void fetchNextPage()
   }, [hasNextPage, isFetchingNextPage, isError, fetchNextPage])
   const products = selectVerifiedFeaturedProducts(data?.pages.flatMap((page) => page.products) || [], rankedIds)
+  const bestsellers = verifiedBestsellerIds(rankedIds)
+  const carousel = useCarouselScroll(products.length)
   const { content: hero, ref: heroRef } = useExperimentContent("hero")
   const { visible: ageGateVisible } = useAgeGate()
 
@@ -159,7 +196,12 @@ export const VerifiedHome = () => {
       </section>
 
       <aside className="verified-trust-strip" aria-label="Research quality standards">
-        {[["99%+ Purity", "workspace_premium"], ["Endotoxin Tested", "biotech"], ["COA Available", "qr_code_2"], ["USA Lyophilized", "globe_location_pin"], ["Identity Tested", "biotech"], ["Ships Today", "globe_location_pin"]].map(([label, icon]) => <span key={label}><img src={`/images/themes/verified/approach-icons/${icon}.svg`} alt="" width="20" height="20" />{label}</span>)}
+        <div className="verified-trust-strip__track">
+          {/* Two identical halves of three copies each keep the -50% loop gap-free up to ~3100px wide. */}
+          {[0, 1, 2, 3, 4, 5].map((copy) => <ul key={copy} aria-hidden={copy > 0 || undefined}>
+            {trustItems.map(({ label, icon }) => <li key={label}>{icon}{label}</li>)}
+          </ul>)}
+        </div>
       </aside>
 
       <section className="verified-section verified-compounds" aria-labelledby="verified-compounds-heading">
@@ -188,13 +230,24 @@ export const VerifiedHome = () => {
       <section className="verified-section verified-featured">
         <div className="verified-section-heading">
           <div><span>Popular Products</span><h2>Featured <em>Peptides</em></h2></div>
-          <Link to="/collections/all">View All Products</Link>
+          <div className="verified-section-heading__actions">
+            <Link to="/collections/all">View All Products</Link>
+            {products.length > 0 && carousel.scrollable && <div className="verified-carousel-arrows">
+              <button type="button" aria-label="Previous products" aria-controls="verified-featured-track" disabled={carousel.start} onClick={() => carousel.page(-1)}><ArrowIcon direction="left" /></button>
+              <button type="button" aria-label="Next products" aria-controls="verified-featured-track" disabled={carousel.end} onClick={() => carousel.page(1)}><ArrowIcon direction="right" /></button>
+            </div>}
+          </div>
         </div>
         {products.length > 0 ? (
-          <div className="verified-product-grid">
-            {products.map((product, index) => (
-              <ProductCard key={product.id} product={product} region={region} imageLoading={index < 2 ? "eager" : "lazy"} />
-            ))}
+          <div className="verified-carousel">
+            <div id="verified-featured-track" ref={carousel.trackRef} className="verified-product-grid verified-carousel-track" onScroll={carousel.measure}>
+              {products.map((product, index) => (
+                <ProductCard key={product.id} product={product} region={region} imageLoading={index < 2 ? "eager" : "lazy"} badge={bestsellers.has(product.id) ? "Bestsellers" : undefined} />
+              ))}
+            </div>
+            {carousel.scrollable && <div className="verified-carousel-progress" aria-hidden="true">
+              <span style={{ width: `${carousel.thumb * 100}%`, transform: `translateX(${(carousel.offset / carousel.thumb) * 100}%)` }} />
+            </div>}
           </div>
         ) : isPending ? (
           <div className="verified-product-skeleton" aria-label="Loading featured products">
@@ -220,7 +273,7 @@ export const VerifiedHome = () => {
             <div><dt>24<sup>hrs</sup></dt><dd>Order to dispatch</dd></div>
           </dl>
         </div>
-        <img src="/images/storefront/verified-purity.jpg" alt="Research professional inspecting a Bluum vial" loading="lazy" />
+        <img className="verified-quality-art" src="/images/themes/verified/purity-desktop-artwork.webp" alt="Hands holding a Bluum research vial behind frosted glass" width="1246" height="1155" loading="lazy" decoding="async" />
         <img className="verified-quality-mobile-art" src="/images/themes/verified/purity-mobile-artwork.png" alt="Hands holding a Bluum research vial" loading="lazy" />
       </section>
 
@@ -289,18 +342,10 @@ export const VerifiedHome = () => {
         </div>
       </section>
 
-      <section className="verified-section verified-faq">
-        <h2>Questions,<br /><em>answered</em></h2>
-        <Accordion.Root type="single" collapsible className="verified-faq-list">
-          {faqs.map(([question, answer]) => (
-            <Accordion.Item key={question} value={question}>
-              <Accordion.Trigger><span>{question}</span><span aria-hidden="true">+</span></Accordion.Trigger>
-              <Accordion.Content><div className="verified-accordion-body">{answer}</div></Accordion.Content>
-            </Accordion.Item>
-          ))}
-        </Accordion.Root>
-      </section>
+      <hr className="verified-section-rule" />
+      <VerifiedQuestions />
 
+      <hr className="verified-section-rule" />
       <VerifiedSupport />
     </div>
   )

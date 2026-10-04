@@ -29,20 +29,9 @@
     {"path":"science-usa-desktop.png","sha256":"7c2aa29880e23a86de625250dbd2f3a573b99bc60570f8d274a5968b69315ee1","previous_sha256":[]},
     {"path":"science-usa-mobile.png","sha256":"74678fe353e6837faf6b43ebbcc55b5356d78eb360bd10a5f3cba50485d60ed4","previous_sha256":[]},
     {"path":"science-vial.png","sha256":"5223c595fd64b327977a3f3fd08cab5a41a0b8a30893dfdb5080053c884d0b83","previous_sha256":[]},
-    {
-      "path": "proof-phone.png",
-      "sha256": "aa2b780971ec8d90ac479c0b033a090ae9c297c00b6d9feb78e69ed2720bf7f8",
-      "previous_sha256": []
-    },
-    {
-      "path": "proof-lab.svg",
-      "sha256": "bd814af6f007296e2f66674f0c763c83bc8120960339b970a9db7bd70c51f402",
-      "previous_sha256": []
-    },
-    {
-      "path": "proof-purity.svg",
-      "sha256": "568561f08d73642138dd07a96a98a03cdc3f8b6b92b611d6d1ffe5ce9526adbd",
-      "previous_sha256": []
-    }
+    {"path":"proof-phone.png","sha256":"aa2b780971ec8d90ac479c0b033a090ae9c297c00b6d9feb78e69ed2720bf7f8","previous_sha256":[]},
+    {"path":"proof-lab.svg","sha256":"bd814af6f007296e2f66674f0c763c83bc8120960339b970a9db7bd70c51f402","previous_sha256":[]},
+    {"path":"proof-purity.svg","sha256":"568561f08d73642138dd07a96a98a03cdc3f8b6b92b611d6d1ffe5ce9526adbd","previous_sha256":[]},
+    {"path":"purity-desktop-artwork.webp","sha256":"d9440bcfeef19bf3933789b0418811b41728c73bd38dc3fed51e10858ac430b7","previous_sha256":[]}
   ]
 }

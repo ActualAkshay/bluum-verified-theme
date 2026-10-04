@@ -1,6 +1,6 @@
 import assert from "node:assert/strict"
 import test from "node:test"
-import { featuredLookbackDays, selectVerifiedFeaturedProducts } from "../src/runtime/verified-featured.ts"
+import { featuredLookbackDays, selectVerifiedFeaturedProducts, verifiedBestsellerIds, VERIFIED_FEATURED_LIMIT } from "../src/runtime/verified-featured.ts"
 
 const product = (id, stock = 10, extra = {}) => ({
   id, handle: id, title: id,
@@ -42,4 +42,11 @@ test("defaults to 90 days with a bounded configurable window", () => {
   assert.equal(featuredLookbackDays("30"), 30)
   assert.equal(featuredLookbackDays("365"), 365)
   for (const invalid of [undefined, "", 0, -1, 366, "ten", "2.5"]) assert.equal(featuredLookbackDays(invalid), 90)
+})
+
+test("bestseller badges cover only the top live-ranked products", () => {
+  const ranked = Array.from({ length: 12 }, (_, index) => `p${index}`)
+  assert.equal(VERIFIED_FEATURED_LIMIT, 8)
+  assert.deepEqual([...verifiedBestsellerIds(ranked)], ranked.slice(0, 8))
+  assert.equal(verifiedBestsellerIds([]).size, 0)
 })
