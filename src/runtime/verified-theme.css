@@ -1507,7 +1507,8 @@
 .verified-cart-pair__product p { margin-top: 6px; }
 .verified-cart-quick-view { border: 1px solid #e4e1df; border-radius: 99px; padding: 10px 24px; min-height: 44px; white-space: nowrap; }
 .verified-cart-footer { background: #e7eef1 !important; padding: 24px 32px max(24px,env(safe-area-inset-bottom)) !important; }
-.verified-cart-footer > button { background: #24201f !important; color: #fffdfb !important; border-radius: 99px !important; min-height: 48px !important; font-weight: 400 !important; }
+.verified-cart-footer button[variant], .verified-cart-footer > button, .verified-cart-footer button[aria-busy] { background: #24201f !important; color: #fffdfb !important; border-radius: 99px !important; min-height: 48px !important; font-weight: 400 !important; }
+.verified-cart-footer button[aria-busy]:disabled { opacity: .7 !important; }
 .verified-cart-footer > div:last-child { font-size: 12px; font-weight: 400; color: #817d7b; }
 .verified-cart-totals > div { display: flex; justify-content: space-between; padding-block: 12px; font-size: 14px; }
 .verified-cart-totals > div:first-child { border-bottom: 1px solid #cfd7da; color: #817d7b; font-size: 13px; }
