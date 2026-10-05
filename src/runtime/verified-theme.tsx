@@ -10,7 +10,7 @@ import { useEffect, useRef, useState, type FormEvent, type PropsWithChildren, ty
 
 const navigation = [
   { label: "Shop", href: "/collections/all", description: "Research compounds", image: "/images/themes/verified/compound-shipping.png" },
-  { label: "Lab Reports", href: "/pages/coa-lookup", description: "Testing & COAs", image: "/images/themes/verified/science-card-usa.png" },
+  { label: "Lab Reports", href: "/pages/coa-lookup", description: "Testing & COAs", image: "/images/themes/verified/menu-lab-reports.webp" },
   { label: "Science", href: "/pages/about-us", description: "Research & standards", image: "/images/themes/verified/compound-purity.png" },
   { label: "Contact Us", href: "/pages/contact", description: "Get quick support", image: "/images/themes/verified/contact-hero.png" },
 ] as const
