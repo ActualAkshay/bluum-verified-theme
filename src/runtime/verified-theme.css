@@ -3334,3 +3334,9 @@
 /* The bubble-tail masks reach 26px outside the bubbles; clip them so pages never scroll sideways
  * (the visible 7px tails stay inside the 10px gutter). */
 .verified-chat { overflow-x: clip; padding-inline: 10px; margin-inline: -10px; }
+
+/* Header search on desktop: compact while empty, grows with results (like mobile). */
+@media (min-width: 700px) {
+  /* The panel is portalled outside the themed wrapper, so scope it by the page having the theme. */
+  :root:has([data-storefront-theme="verified"]) .bluum-search-panel { bottom: auto; height: auto; max-height: calc(100dvh - 2rem); }
+}

@@ -26,7 +26,7 @@ const MenuIcon = ({ open }: { open: boolean }) => (
     {open ? (
       <path d="M6 6l12 12M18 6 6 18" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
     ) : (
-      <path d="M4 8h16M4 16h16" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
+      <path d="M4 6.5h16M4 12h16M4 17.5h16" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
     )}
   </svg>
 )
