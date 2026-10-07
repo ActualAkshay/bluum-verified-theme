@@ -1013,7 +1013,7 @@
   [data-storefront-theme="verified"] .verified-lab-page > .verified-support { margin-top: 58px; }
 }
 
-[data-storefront-theme="verified"] .verified-policy-page[data-policy-handle="privacy-policy"] .bluum-policy-page__container {
+[data-storefront-theme="verified"] .verified-policy-page .bluum-policy-page__container {
   display: grid;
   width: min(100% - 64px, 1180px);
   max-width: none;
@@ -1023,19 +1023,19 @@
   padding-block: 72px 120px;
 }
 
-[data-storefront-theme="verified"] .verified-policy-page[data-policy-handle="privacy-policy"] .bluum-policy-page__title {
+[data-storefront-theme="verified"] .verified-policy-page .bluum-policy-page__title {
   position: sticky;
   top: 150px;
   text-align: left;
 }
 
-[data-storefront-theme="verified"] .verified-policy-page[data-policy-handle="privacy-policy"] .bluum-policy-content {
+[data-storefront-theme="verified"] .verified-policy-page .bluum-policy-content {
   padding-top: 8px;
   font-size: 17px;
   line-height: 1.68;
 }
 
-[data-storefront-theme="verified"] .verified-policy-page[data-policy-handle="privacy-policy"] .bluum-policy-content :is(h1, h2) {
+[data-storefront-theme="verified"] .verified-policy-page .bluum-policy-content :is(h1, h2) {
   margin-top: 58px;
   padding-top: 26px;
   border-top: 1px solid rgb(35 31 30 / 13%);
@@ -1925,7 +1925,7 @@
     margin-bottom: -24px;
   }
 
-  [data-storefront-theme="verified"] .verified-policy-page[data-policy-handle="privacy-policy"] .bluum-policy-page__container {
+  [data-storefront-theme="verified"] .verified-policy-page .bluum-policy-page__container {
     grid-template-columns: minmax(200px, 0.46fr) minmax(0, 1.54fr);
     gap: 48px;
   }
@@ -1972,19 +1972,19 @@
     padding-block: 44px 78px;
   }
 
-  [data-storefront-theme="verified"] .verified-policy-page[data-policy-handle="privacy-policy"] .bluum-policy-page__container {
+  [data-storefront-theme="verified"] .verified-policy-page .bluum-policy-page__container {
     width: calc(100% - 40px);
     grid-template-columns: 1fr;
     gap: 38px;
     padding-block: 48px 84px;
   }
 
-  [data-storefront-theme="verified"] .verified-policy-page[data-policy-handle="privacy-policy"] .bluum-policy-page__title {
+  [data-storefront-theme="verified"] .verified-policy-page .bluum-policy-page__title {
     position: static;
     font-size: 50px;
   }
 
-  [data-storefront-theme="verified"] .verified-policy-page[data-policy-handle="privacy-policy"] .bluum-policy-content {
+  [data-storefront-theme="verified"] .verified-policy-page .bluum-policy-content {
     font-size: 16px;
   }
 
@@ -3028,18 +3028,18 @@
   .verified-faq-v2__aside { font-size: 16px; }
 }
 /* Figma Privacy (257:9772): one centred 783px column, left-aligned title, compact legal text. */
-[data-storefront-theme="verified"] .verified-policy-page[data-policy-handle^="privacy"] .bluum-policy-page__container { display: block; width: min(calc(100% - 40px), 783px); margin-inline: auto; padding-block: 56px 96px; }
-[data-storefront-theme="verified"] .verified-policy-page[data-policy-handle^="privacy"] .bluum-policy-page__title { position: static; margin-bottom: 24px; text-align: left; font-size: clamp(36px, 3.2vw, 48px); line-height: 1.1; font-weight: 500; letter-spacing: -.04em; }
+[data-storefront-theme="verified"] .verified-policy-page .bluum-policy-page__container { display: block; width: min(calc(100% - 40px), 783px); margin-inline: auto; padding-block: 56px 96px; }
+[data-storefront-theme="verified"] .verified-policy-page .bluum-policy-page__title { position: static; margin-bottom: 24px; text-align: left; font-size: clamp(36px, 3.2vw, 48px); line-height: 1.1; font-weight: 500; letter-spacing: -.04em; }
 [data-storefront-theme="verified"] .verified-policy-page .bluum-policy-page__title em { font-family: "LibreBaskerville", Georgia, serif; font-weight: 400; }
-[data-storefront-theme="verified"] .verified-policy-page[data-policy-handle^="privacy"] .bluum-policy-content { padding-top: 0; font-size: 15px; line-height: 1.45; }
-[data-storefront-theme="verified"] .verified-policy-page[data-policy-handle^="privacy"] .bluum-policy-content :is(h1, h2) { margin: 32px 0 12px; padding-top: 0; border-top: 0; font-size: 20px; line-height: 1.25; font-weight: 500; letter-spacing: -.02em; }
-[data-storefront-theme="verified"] .verified-policy-page[data-policy-handle^="privacy"] .bluum-policy-content :is(h3, h4) { margin: 16px 0 6px; font-size: 15px; font-weight: 600; }
-[data-storefront-theme="verified"] .verified-policy-page[data-policy-handle^="privacy"] .bluum-policy-content p { margin: 0 0 10px; }
-[data-storefront-theme="verified"] .verified-policy-page[data-policy-handle^="privacy"] .bluum-policy-content :is(ul, ol) { margin: 0 0 10px; padding-left: 18px; }
-[data-storefront-theme="verified"] .verified-policy-page[data-policy-handle^="privacy"] .bluum-policy-content li { margin: 0; padding: 0; line-height: 1.45; }
-[data-storefront-theme="verified"] .verified-policy-page[data-policy-handle^="privacy"] .bluum-policy-content { font-size: 16px; line-height: 1.5; }
-[data-storefront-theme="verified"] .verified-policy-page[data-policy-handle^="privacy"] .bluum-policy-content :is(h1, h2) { margin-top: 40px; }
-[data-storefront-theme="verified"] .verified-policy-page[data-policy-handle^="privacy"] .bluum-policy-content :is(p, ul, ol) { margin-bottom: 14px; }
+[data-storefront-theme="verified"] .verified-policy-page .bluum-policy-content { padding-top: 0; font-size: 15px; line-height: 1.45; }
+[data-storefront-theme="verified"] .verified-policy-page .bluum-policy-content :is(h1, h2) { margin: 32px 0 12px; padding-top: 0; border-top: 0; font-size: 20px; line-height: 1.25; font-weight: 500; letter-spacing: -.02em; }
+[data-storefront-theme="verified"] .verified-policy-page .bluum-policy-content :is(h3, h4) { margin: 16px 0 6px; font-size: 15px; font-weight: 600; }
+[data-storefront-theme="verified"] .verified-policy-page .bluum-policy-content p { margin: 0 0 10px; }
+[data-storefront-theme="verified"] .verified-policy-page .bluum-policy-content :is(ul, ol) { margin: 0 0 10px; padding-left: 18px; }
+[data-storefront-theme="verified"] .verified-policy-page .bluum-policy-content li { margin: 0; padding: 0; line-height: 1.45; }
+[data-storefront-theme="verified"] .verified-policy-page .bluum-policy-content { font-size: 16px; line-height: 1.5; }
+[data-storefront-theme="verified"] .verified-policy-page .bluum-policy-content :is(h1, h2) { margin-top: 40px; }
+[data-storefront-theme="verified"] .verified-policy-page .bluum-policy-content :is(p, ul, ol) { margin-bottom: 14px; }
 [data-storefront-theme="verified"] .verified-policy-page > .verified-support { border-top: 1px solid rgb(35 31 30 / 16%); }
 /* Figma Account (257:11327): form column + inset rounded image panel. Sign-in stays phone/email OTP. */
 @media (min-width: 700px) {
