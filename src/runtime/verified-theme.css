@@ -3093,3 +3093,33 @@
   .verified-faq-v2__hero p { margin-top: 20px; font-size: 14px; line-height: 1.5; }
   .verified-faq-v2__search { min-height: 48px; }
 }
+
+/* Support chat: iMessage-style bubbles (grouped, tail on the last bubble of each sender). */
+.verified-chat { gap: 14px; }
+.verified-chat-group { gap: 2px; }
+.verified-chat-group--client { align-items: flex-end; }
+.verified-chat-sender { padding-inline: 14px; margin-bottom: 2px; color: #8e8e93; font-size: 12px; line-height: 1.3; letter-spacing: 0; }
+.verified-chat-bubble {
+  position: relative;
+  width: fit-content;
+  max-width: min(100%, 320px);
+  padding: 7px 13px 8px;
+  border-radius: 18px;
+  background: #1f8bff;
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", var(--verified-font, sans-serif);
+  font-size: 17px;
+  line-height: 1.3;
+  letter-spacing: -.01em;
+}
+.verified-chat-group--support .verified-chat-bubble { background: #e9e9eb; color: #000; }
+.verified-chat-bubble:last-child::before,
+.verified-chat-bubble:last-child::after { content: ""; position: absolute; bottom: 0; height: 20px; }
+.verified-chat-group--client .verified-chat-bubble:last-child::before { right: -7px; width: 20px; background: #1f8bff; border-bottom-left-radius: 16px 14px; }
+.verified-chat-group--client .verified-chat-bubble:last-child::after { right: -26px; width: 26px; background: var(--verified-canvas, #fdfcfa); border-bottom-left-radius: 10px; }
+.verified-chat-group--support .verified-chat-bubble:last-child::before { left: -7px; width: 20px; background: #e9e9eb; border-bottom-right-radius: 16px 14px; }
+.verified-chat-group--support .verified-chat-bubble:last-child::after { left: -26px; width: 26px; background: var(--verified-canvas, #fdfcfa); border-bottom-right-radius: 10px; }
+@media (max-width: 699px) {
+  .verified-chat-bubble { font-size: 16px; max-width: min(100%, 280px); }
+  .verified-chat-sender { font-size: 11px; }
+}

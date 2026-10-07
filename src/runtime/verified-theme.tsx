@@ -228,10 +228,6 @@ const footerColumns = [
       ["Privacy Policy", "/policies/privacy-policy"],
       ["Returns & Refunds", "/policies/refund-policy"],
       ["Shipping Policy", "/policies/shipping-policy"],
-      ["Payment & Billing Policy", "/pages/payment-billing-policy"],
-      ["Waiver Agreement", "/pages/indemnity-waiver"],
-      ["Your privacy choices", "/pages/data-sharing-opt-out"],
-      ["Wholesale", "/wholesale-application"],
     ],
   },
 ] as const
