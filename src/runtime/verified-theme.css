@@ -3143,3 +3143,36 @@
   .verified-mobile-nav__text { flex: 1; min-width: 0; }
   .verified-mobile-nav__arrow { display: grid; place-items: center; flex: none; width: 32px; height: 32px; border-radius: 50%; background: #ecebea; color: var(--verified-ink); }
 }
+
+/* Figma: a rule above "Need help? Our team is here." on every page (home already draws its own <hr>). */
+.verified-support { border-top: 1px solid rgb(35 31 30 / 16%); }
+.verified-section-rule + .verified-support { border-top: 0; }
+
+/* Figma Science "Our quality process": rule above the first row, none below the last;
+ * title sits next to the thumbnail (74px closed, 130px open). */
+.science-v2-process-list { border-top: 1px solid rgb(35 31 30 / 16%); }
+.science-v2-process-item:first-child { padding-top: 20px; }
+.science-v2-process-item:last-child { border-bottom: 0; }
+.science-v2-process-item button { grid-template-columns: auto 1fr 24px; gap: 16px; }
+.science-v2-process-illustration { width: 74px; height: 74px; }
+.science-v2-process-item[data-state="open"] .science-v2-process-illustration { width: 130px; height: 130px; }
+@media (max-width: 999px) {
+  .science-v2-process-item button { grid-template-columns: auto 1fr 24px; gap: 16px; }
+  .science-v2-process-item[data-state="open"] .science-v2-process-illustration { width: 110px; height: 110px; }
+}
+@media (max-width: 699px) {
+  .science-v2-process-item:first-child { padding-top: 16px; }
+  .science-v2-process-item button { grid-template-columns: auto 1fr 20px; gap: 14px; }
+  .science-v2-process-illustration { width: 60px; height: 60px; }
+}
+
+/* Support chat bubbles per Figma: site typeface, soft blue-grey replies, iOS tails kept. */
+.verified-chat-bubble { font-family: inherit; font-size: 18px; letter-spacing: -.01em; padding: 8px 16px 9px; }
+.verified-chat-group--support .verified-chat-bubble,
+.verified-chat-group--support .verified-chat-bubble:last-child::before { background: #e7eef4; }
+.verified-chat-group--support .verified-chat-bubble { color: var(--verified-ink); }
+.verified-chat-sender { font-size: 14px; letter-spacing: .02em; color: #8e8e93; padding-inline: 16px; }
+@media (max-width: 699px) {
+  .verified-chat-bubble { font-size: 16px; }
+  .verified-chat-sender { font-size: 12px; }
+}
