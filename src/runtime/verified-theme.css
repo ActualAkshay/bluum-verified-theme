@@ -3261,3 +3261,6 @@
   [data-storefront-theme="verified"] article.group [data-testid="product-card-quick-add"]:hover { box-shadow: 0 4px 16px rgb(36 32 31 / 18%); }
 }
 @media (prefers-reduced-motion: reduce) { [data-storefront-theme="verified"] article.group [data-testid="product-card-quick-add"] { transition: none; } }
+
+/* Filter popovers: "Clear" is bold and only appears once a filter is chosen. */
+.verified-filter-clear, .verified-filter-popover__content .verified-filter-clear { font-weight: 700; }

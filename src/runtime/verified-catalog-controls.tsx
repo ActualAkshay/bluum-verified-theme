@@ -54,9 +54,9 @@ function CategoryChoices({ categories, selected, onChange }: { categories: Verif
   </label>)}</div>
 }
 
-function PriceChoices({ ranges, selected, onChange }: { ranges: VerifiedPriceRange[]; selected: string; onChange: (value: string) => void }) {
+function PriceChoices({ ranges, selected, onChange, includeAll = true }: { ranges: VerifiedPriceRange[]; selected: string; onChange: (value: string) => void; includeAll?: boolean }) {
   const name = useId()
-  return <div className="verified-filter-choices">{[{ id: "all", label: "All prices" }, ...ranges].map(({ id, label }) => <label key={id} className="verified-filter-choice">
+  return <div className="verified-filter-choices">{[...(includeAll ? [{ id: "all", label: "All prices" }] : []), ...ranges].map(({ id, label }) => <label key={id} className="verified-filter-choice">
     <input type="radio" name={name} value={id} checked={selected === id} onChange={() => onChange(id)} /><span>{label}</span>
   </label>)}</div>
 }
@@ -86,11 +86,14 @@ export function VerifiedCatalogControls(props: Props) {
       <div className="verified-catalog-controls__filters">
         <div className="verified-catalog-desktop-filters">
           {showCategories && <FilterPopover label="Category">
-            <button className="verified-filter-clear" type="button" aria-label="Clear categories" onClick={() => props.onCategoryChange([])}>Clear</button>
+            {selected.length > 0 && <button className="verified-filter-clear" type="button" aria-label="Clear categories" onClick={() => props.onCategoryChange([])}>Clear</button>}
             <CategoryChoices categories={props.categories} selected={props.category} onChange={props.onCategoryChange} />
           </FilterPopover>}
           {selected.map(({ id, name, count }) => <button key={id} type="button" className="verified-filter-chip" aria-label={`Remove ${name}`} onClick={() => props.onCategoryChange(props.category.filter((value) => value !== id))}><span aria-hidden="true">×</span>{name} ({count})</button>)}
-          <FilterPopover label="Price" text={priceLabel}><PriceChoices ranges={props.priceRanges} selected={props.priceRange} onChange={props.onPriceRangeChange} /></FilterPopover>
+          <FilterPopover label="Price" text={priceLabel}>
+            {props.priceRange !== "all" && <button className="verified-filter-clear" type="button" aria-label="Clear price filter" onClick={() => props.onPriceRangeChange("all")}>Clear</button>}
+            <PriceChoices ranges={props.priceRanges} selected={props.priceRange} onChange={props.onPriceRangeChange} includeAll={false} />
+          </FilterPopover>
         </div>
         <Dialog.Root open={mobileOpen} onOpenChange={(open) => {
           if (open) { setDraftCategories([...props.category]); setDraftPrice(props.priceRange) }
