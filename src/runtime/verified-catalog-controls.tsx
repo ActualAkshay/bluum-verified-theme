@@ -133,9 +133,21 @@ export function VerifiedCatalogControls(props: Props) {
             </Dialog.Content>
           </Dialog.Portal>
         </Dialog.Root>
-        <button className="verified-catalog-search-toggle" type="button" aria-label="Search compounds" aria-expanded={searchOpen || Boolean(props.search)} aria-controls={searchId} onClick={() => setSearchOpen(!searchOpen)}>
-          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><circle cx="10.5" cy="10.5" r="6.5" /><path d="m16 16 5 5" /></svg>
-        </button>
+        {searchOpen || props.search ? (
+          // The field replaces the magnifier in place; × closes it (and clears any query).
+          <label id={searchId} className="verified-catalog-search verified-catalog-search--inline">
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><circle cx="10.5" cy="10.5" r="6.5" /><path d="m16 16 5 5" /></svg>
+            <span className="sr-only">Search compounds</span>
+            <input type="search" autoFocus value={props.search} onChange={(event) => props.onSearchChange(event.target.value)} onKeyDown={(event) => { if (event.key === "Escape") { props.onSearchChange(""); setSearchOpen(false) } }} placeholder="Search compounds" />
+            <button type="button" aria-label="Close search" onClick={() => { props.onSearchChange(""); setSearchOpen(false) }}>
+              <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="M2 2l8 8M10 2l-8 8" /></svg>
+            </button>
+          </label>
+        ) : (
+          <button className="verified-catalog-search-toggle" type="button" aria-label="Search compounds" aria-expanded={false} onClick={() => setSearchOpen(true)}>
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><circle cx="10.5" cy="10.5" r="6.5" /><path d="m16 16 5 5" /></svg>
+          </button>
+        )}
         <div className="verified-catalog-sort">
           <FilterPopover label="Sort by" text={sortLabel} sort align="end">
             {props.sort !== "default" && <button className="verified-filter-clear" type="button" data-close-popover aria-label="Clear sort" onClick={() => props.onSortChange("default")}>Clear</button>}
@@ -146,9 +158,6 @@ export function VerifiedCatalogControls(props: Props) {
         </div>
       </div>
       <div className="verified-catalog-mobile-chips">{selected.map(({ id, name, count }) => <button key={id} type="button" className="verified-filter-chip" aria-label={`Remove ${name}`} onClick={() => props.onCategoryChange(props.category.filter((value) => value !== id))}><span aria-hidden="true">×</span>{name} ({count})</button>)}{props.priceRange !== "all" && <button type="button" className="verified-filter-chip" aria-label="Remove price filter" onClick={() => props.onPriceRangeChange("all")}><span aria-hidden="true">×</span>{priceLabel}</button>}</div>
-      <label id={searchId} className="verified-catalog-search" hidden={!searchOpen && !props.search}>
-        <span className="sr-only">Search compounds</span><input type="search" value={props.search} onChange={(event) => props.onSearchChange(event.target.value)} placeholder="Search compounds" />
-      </label>
       <p className="sr-only" role="status" aria-live="polite">{props.count} {props.count === 1 ? "product" : "products"}{props.loading ? " · Loading more…" : ""}</p>
     </div>
   )
