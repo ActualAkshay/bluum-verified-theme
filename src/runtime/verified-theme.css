@@ -3127,3 +3127,19 @@
 /* Figma Menu component: desktop nav links underline on hover (no fade). */
 .verified-desktop-nav a { text-decoration: underline; text-decoration-color: transparent; text-decoration-thickness: 1px; text-underline-offset: 6px; transition: text-decoration-color 160ms ease; }
 .verified-desktop-nav a:hover, .verified-desktop-nav a:focus-visible { opacity: 1; text-decoration-color: currentColor; }
+
+/* Figma Menu_mobile (257:6941): full-screen sheet over the header, own title + close, arrow rows. */
+@media (max-width: 999px) {
+  .verified-mobile-nav { position: fixed; inset: 0; z-index: 1000; display: flex; flex-direction: column; height: 100dvh !important; max-height: none !important; width: 100%; max-width: none; margin: 0; padding: max(20px, env(safe-area-inset-top)) 20px max(24px, env(safe-area-inset-bottom)); overflow-y: auto; overscroll-behavior: contain; background: #fff; }
+  .verified-mobile-nav__head { display: flex; align-items: center; justify-content: space-between; padding-bottom: 16px; border-bottom: 1px solid rgb(35 31 30 / 12%); }
+  .verified-mobile-nav__head .verified-mobile-nav__title { margin: 0; }
+  .verified-mobile-nav__close { position: relative; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: #ecebea; color: var(--verified-ink); }
+  .verified-mobile-nav__close::after { content: ""; position: absolute; width: 44px; height: 44px; }
+  .verified-mobile-nav__list { margin: 0; }
+  .verified-mobile-nav__list li { border-bottom: 1px solid rgb(35 31 30 / 12%); }
+  .verified-mobile-nav__list li:last-child { border-bottom: 0; }
+  .verified-mobile-nav__list li + li { border-top: 0; }
+  .verified-mobile-nav .verified-mobile-nav__list a { min-height: 0; padding-block: 15px; }
+  .verified-mobile-nav__text { flex: 1; min-width: 0; }
+  .verified-mobile-nav__arrow { display: grid; place-items: center; flex: none; width: 32px; height: 32px; border-radius: 50%; background: #ecebea; color: var(--verified-ink); }
+}

@@ -81,8 +81,8 @@ const VerifiedNavbar = () => {
     if (!menuOpen) return
 
     const menu = document.getElementById("verified-mobile-menu")
-    // The header trigger is the menu's close control, so it joins the focus loop.
-    const focusable = () => [menuTriggerRef.current, ...Array.from(
+    // The full-screen sheet has its own close button, so focus stays inside the sheet.
+    const focusable = () => [...Array.from(
       menu?.querySelectorAll<HTMLElement>(
         'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])',
       ) || [],
@@ -90,7 +90,7 @@ const VerifiedNavbar = () => {
     const fitMenu = () => {
       if (menu) menu.style.height = `${Math.max(0, window.innerHeight - menu.getBoundingClientRect().top)}px`
     }
-    const frame = requestAnimationFrame(() => { fitMenu(); focusable()[1]?.focus() })
+    const frame = requestAnimationFrame(() => { fitMenu(); menu?.querySelector<HTMLElement>(".verified-mobile-nav__list a")?.focus() })
     window.addEventListener("resize", fitMenu)
     const observer = typeof ResizeObserver === "undefined" ? undefined : new ResizeObserver(fitMenu)
     if (headerRef.current) observer?.observe(headerRef.current)
@@ -169,13 +169,19 @@ const VerifiedNavbar = () => {
       </div>
       {menuOpen && (
         <nav id="verified-mobile-menu" className="verified-mobile-nav" aria-label="Mobile navigation">
-          <p className="verified-mobile-nav__title">Menu</p>
+          <div className="verified-mobile-nav__head">
+            <p className="verified-mobile-nav__title">Menu</p>
+            <button type="button" className="verified-mobile-nav__close" aria-label="Close menu" onClick={() => { setMenuOpen(false); menuTriggerRef.current?.focus() }}>
+              <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="M2 2l8 8M10 2l-8 8" /></svg>
+            </button>
+          </div>
           <ul className="verified-mobile-nav__list">
             {links.map((item) => (
               <li key={item.label}>
                 <Link to={item.href}>
                   <span className="verified-mobile-nav__thumb">{item.image && <img src={item.image} alt="" width="64" height="64" />}</span>
                   <span className="verified-mobile-nav__text"><strong>{item.label}</strong><small>{item.description}</small></span>
+                  <span className="verified-mobile-nav__arrow" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M2.5 7h9M8 3.5 11.5 7 8 10.5" /></svg></span>
                 </Link>
               </li>
             ))}
