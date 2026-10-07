@@ -25,7 +25,17 @@ export function verifiedCatalogCategories(products: CategorizedProduct[]): Verif
 export function matchesVerifiedCategory(product: CategorizedProduct, categories: string[]): boolean {
   return categories.length === 0 || Boolean(product.categories?.some(({ id }) => id && categories.includes(id)))
 }
-export type VerifiedCatalogSort = "title-asc" | "title-desc" | "price-asc" | "price-desc"
+export type VerifiedCatalogSort = "default" | "featured" | "bestselling" | "title-asc" | "title-desc" | "price-asc" | "price-desc"
+
+/** Figma sort menu, in order. "default" (no choice made) shows "Sort By" and lists A–Z. */
+export const VERIFIED_SORT_OPTIONS: Array<{ id: Exclude<VerifiedCatalogSort, "default">; label: string }> = [
+  { id: "featured", label: "Featured" },
+  { id: "bestselling", label: "Bestselling" },
+  { id: "title-asc", label: "A–Z" },
+  { id: "title-desc", label: "Z–A" },
+  { id: "price-asc", label: "Price: Low to High" },
+  { id: "price-desc", label: "Price: High to Low" },
+]
 export type VerifiedPriceRange = { id: string; label: string; min: number; max: number }
 
 type PricedProduct = {
@@ -68,10 +78,21 @@ export function matchesVerifiedPrice(product: PricedProduct, currencyCode: strin
   return price !== null && price >= range.min && price < range.max
 }
 
-export function sortVerifiedProducts<T extends PricedProduct>(products: T[], sort: VerifiedCatalogSort, currencyCode: string): T[] {
+export function sortVerifiedProducts<T extends PricedProduct & { id?: string }>(products: T[], sort: VerifiedCatalogSort, currencyCode: string, rankedIds: string[] = []): T[] {
+  // Sales rank from the live best-selling window; unranked products follow, A–Z.
+  const rank = new Map(rankedIds.map((id, index) => [id, index]))
+  const rankOf = (product: T) => (product.id && rank.has(product.id) ? rank.get(product.id)! : Infinity)
+  const featuredCount = 8
   return [...products].sort((a, b) => {
     const byTitle = (a.title || "").localeCompare(b.title || "")
-    if (sort === "title-asc") return byTitle
+    if (sort === "default" || sort === "title-asc") return byTitle
+    if (sort === "bestselling") return (rankOf(a) - rankOf(b)) || byTitle
+    if (sort === "featured") {
+      // The top sellers lead, then the rest of the catalog alphabetically.
+      const fa = rankOf(a) < featuredCount ? rankOf(a) : Infinity
+      const fb = rankOf(b) < featuredCount ? rankOf(b) : Infinity
+      return (fa === fb ? 0 : fa - fb) || byTitle
+    }
     if (sort === "title-desc") return -byTitle
     const aPrice = verifiedStartingPrice(a, currencyCode)
     const bPrice = verifiedStartingPrice(b, currencyCode)

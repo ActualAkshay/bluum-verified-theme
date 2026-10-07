@@ -1,7 +1,7 @@
 import { useEffect, useId, useRef, useState, type ReactNode } from "react"
 import * as Dialog from "@radix-ui/react-dialog"
 import * as Accordion from "@radix-ui/react-accordion"
-import type { VerifiedCatalogCategory, VerifiedCatalogSort, VerifiedCategoryOption, VerifiedPriceRange } from "./verified-catalog"
+import { VERIFIED_SORT_OPTIONS, type VerifiedCatalogCategory, type VerifiedCatalogSort, type VerifiedCategoryOption, type VerifiedPriceRange } from "./verified-catalog"
 
 type Props = {
   category: VerifiedCatalogCategory
@@ -22,7 +22,7 @@ function ControlIcon({ sort = false }: { sort?: boolean }) {
   return <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">{sort ? <path d="m8 8 4-4 4 4M8 16l4 4 4-4" /> : <path d="m5 9 7 7 7-7" />}</svg>
 }
 
-function FilterPopover({ label, text = label, children }: { label: string; text?: string; children: ReactNode }) {
+function FilterPopover({ label, text = label, sort = false, align, children }: { label: string; text?: string; sort?: boolean; align?: "end"; children: ReactNode }) {
   const [open, setOpen] = useState(false)
   const root = useRef<HTMLDivElement>(null)
   const trigger = useRef<HTMLButtonElement>(null)
@@ -30,7 +30,8 @@ function FilterPopover({ label, text = label, children }: { label: string; text?
   useEffect(() => {
     if (!open) return
     const dismiss = (event: PointerEvent | FocusEvent) => {
-      if (event.target instanceof Node && !root.current?.contains(event.target)) setOpen(false)
+      // Clicking an option's text can move focus to an ancestor (e.g. <main>); that is not "leaving".
+      if (event.target instanceof Node && !root.current?.contains(event.target) && !event.target.contains(root.current)) setOpen(false)
     }
     document.addEventListener("pointerdown", dismiss)
     document.addEventListener("focusin", dismiss)
@@ -39,11 +40,14 @@ function FilterPopover({ label, text = label, children }: { label: string; text?
       document.removeEventListener("focusin", dismiss)
     }
   }, [open])
-  return <div ref={root} className="verified-filter-popover" onKeyDown={(event) => {
+  return <div ref={root} className={`verified-filter-popover${align === "end" ? " verified-filter-popover--end" : ""}`} onKeyDown={(event) => {
     if (event.key === "Escape" && open) { event.stopPropagation(); setOpen(false); trigger.current?.focus() }
   }}>
-    <button ref={trigger} type="button" className="verified-catalog-control" aria-label={label} aria-expanded={open} aria-controls={id} onClick={() => setOpen(!open)}><ControlIcon /><span>{text}</span></button>
-    {open && <div id={id} className="verified-filter-popover__content" role="group" aria-label={`${label} options`}>{children}</div>}
+    <button ref={trigger} type="button" className="verified-catalog-control" aria-label={label} aria-expanded={open} aria-controls={id} onClick={() => setOpen(!open)}><ControlIcon sort={sort} /><span>{text}</span></button>
+    {open && <div id={id} className="verified-filter-popover__content" role="group" aria-label={`${label} options`} onClick={(event) => {
+      // Single-choice menus (sort) close once an option is picked.
+      if ((event.target as HTMLElement).closest("[data-close-popover]")) { setOpen(false); trigger.current?.focus() }
+    }}>{children}</div>}
   </div>
 }
 
@@ -72,7 +76,7 @@ export function VerifiedCatalogControls(props: Props) {
   const selectedCount = selected.length + Number(props.priceRange !== "all")
   const draftCount = validDraft.length + Number(draftPrice !== "all")
   const priceLabel = props.priceRanges.find(({ id }) => id === props.priceRange)?.label || "Price"
-  const sortLabels = { "title-asc": "Sort By", "title-desc": "Name: Z–A", "price-asc": "Price: low to high", "price-desc": "Price: high to low" }
+  const sortLabel = VERIFIED_SORT_OPTIONS.find(({ id }) => id === props.sort)?.label || "Sort By"
   const searchId = useId()
   useEffect(() => {
     if (!mobileOpen) return
@@ -132,12 +136,14 @@ export function VerifiedCatalogControls(props: Props) {
         <button className="verified-catalog-search-toggle" type="button" aria-label="Search compounds" aria-expanded={searchOpen || Boolean(props.search)} aria-controls={searchId} onClick={() => setSearchOpen(!searchOpen)}>
           <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><circle cx="10.5" cy="10.5" r="6.5" /><path d="m16 16 5 5" /></svg>
         </button>
-        <label className="verified-catalog-control verified-catalog-control--sort">
-          <ControlIcon sort /><span aria-hidden="true">{sortLabels[props.sort]}</span>
-          <select aria-label="Sort by" value={props.sort} onChange={(event) => props.onSortChange(event.target.value as VerifiedCatalogSort)}>
-            <option value="title-asc">Name: A–Z</option><option value="title-desc">Name: Z–A</option><option value="price-asc">Price: low to high</option><option value="price-desc">Price: high to low</option>
-          </select>
-        </label>
+        <div className="verified-catalog-sort">
+          <FilterPopover label="Sort by" text={sortLabel} sort align="end">
+            {props.sort !== "default" && <button className="verified-filter-clear" type="button" data-close-popover aria-label="Clear sort" onClick={() => props.onSortChange("default")}>Clear</button>}
+            <div className="verified-sort-options" role="listbox" aria-label="Sort by">
+              {VERIFIED_SORT_OPTIONS.map(({ id, label }) => <button key={id} type="button" role="option" aria-selected={props.sort === id} data-close-popover className="verified-sort-option" onClick={() => props.onSortChange(id)}>{label}</button>)}
+            </div>
+          </FilterPopover>
+        </div>
       </div>
       <div className="verified-catalog-mobile-chips">{selected.map(({ id, name, count }) => <button key={id} type="button" className="verified-filter-chip" aria-label={`Remove ${name}`} onClick={() => props.onCategoryChange(props.category.filter((value) => value !== id))}><span aria-hidden="true">×</span>{name} ({count})</button>)}{props.priceRange !== "all" && <button type="button" className="verified-filter-chip" aria-label="Remove price filter" onClick={() => props.onPriceRangeChange("all")}><span aria-hidden="true">×</span>{priceLabel}</button>}</div>
       <label id={searchId} className="verified-catalog-search" hidden={!searchOpen && !props.search}>

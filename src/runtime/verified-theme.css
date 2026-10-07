@@ -1336,7 +1336,7 @@
   .verified-product-card-price > span { font-size: 14px; }
   .verified-catalog-controls__filters { gap: 4px 12px; }
   .verified-catalog-control { font-size: 13px; gap: 5px; }
-  .verified-catalog-control--sort { margin-left: auto; }
+  .verified-catalog-control--sort, .verified-catalog-sort { margin-left: auto; }
   .verified-catalog-search-toggle { order: 4; margin-left: 0; }
   .verified-catalog-controls { margin-bottom: 16px; }
 }
@@ -3287,3 +3287,19 @@
 .verified-filter-choice input:is([type="radio"], [type="checkbox"]):checked { border-color: var(--verified-ink); background: var(--verified-ink); }
 .verified-filter-choice input[type="radio"]:checked::after,
 .verified-filter-choice input[type="checkbox"]:checked::after { content: ""; display: block; width: 8px; height: 4.5px; margin: 4px 0 0 4px; border-left: 1.6px solid #fff; border-bottom: 1.6px solid #fff; transform: rotate(-45deg); }
+
+/* Figma sort menu: bold Clear, plain rows, the chosen row in grey; trigger shows the choice. */
+.verified-filter-popover--end .verified-filter-popover__content { left: auto; right: 0; }
+.verified-sort-options { display: grid; margin-inline: -12px; }
+.verified-sort-option { display: block; width: 100%; min-height: 40px; padding: 8px 12px; border-radius: 8px; text-align: left; font-size: 16px; line-height: 1.3; color: var(--verified-ink); }
+.verified-sort-option:hover { background: #f4f3f2; }
+.verified-sort-option[aria-selected="true"] { background: #ecebea; }
+.verified-sort-option:focus-visible { outline: 2px solid #1976d2; outline-offset: -2px; }
+@media (max-width: 699px) { .verified-sort-option { font-size: 14px; } }
+
+/* All filter/sort dropdowns share one compact rhythm: 8px panel padding, 40px rows. */
+.verified-filter-popover__content { padding: 8px 12px; }
+.verified-filter-popover__content .verified-filter-clear { display: flex; align-items: center; min-height: 40px; width: 100%; padding: 0; text-align: left; }
+.verified-filter-popover__content .verified-filter-choice { min-height: 40px; padding-block: 0; }
+.verified-filter-popover__content .verified-sort-options { margin-inline: -4px; }
+.verified-filter-popover__content .verified-sort-option { min-height: 40px; padding: 0 4px; display: flex; align-items: center; }
