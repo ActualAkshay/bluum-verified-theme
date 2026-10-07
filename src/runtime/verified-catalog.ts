@@ -51,7 +51,8 @@ export function verifiedPriceRanges(currencyCode: string): VerifiedPriceRange[] 
   if (!currencyCode) return []
   const step = currencyCode.toLowerCase() === "gbp" ? 40 : currencyCode.toLowerCase() === "dkk" ? 350 : 50
   const format = (amount: number) => new Intl.NumberFormat(undefined, {
-    style: "currency", currency: currencyCode, maximumFractionDigits: 0,
+    // narrowSymbol: "$50" everywhere, not "US$50" in non-US browser locales.
+    style: "currency", currency: currencyCode, currencyDisplay: "narrowSymbol", maximumFractionDigits: 0,
   }).format(amount)
   return [
     { id: "low", label: `Under ${format(step)}`, min: 0, max: step },
