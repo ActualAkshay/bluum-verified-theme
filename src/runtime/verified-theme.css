@@ -3269,3 +3269,21 @@
 .verified-filter-choice { width: 100%; box-sizing: border-box; }
 .verified-filter-choice > span { flex: 1; min-width: 0; }
 .verified-filter-sheet .verified-filter-clear { display: block; margin-left: auto; }
+
+/* Figma filter sheet icons: grey round close, bold dash/plus toggles, Price uses the same
+ * filled check-circle as Category (still single-choice radios underneath). */
+.verified-filter-sheet__header button[aria-label="Close filters"] { display: grid; place-items: center; width: 28px; height: 28px; margin-right: -2px; border-radius: 50%; background: #ecebea; color: #76716e; font-size: 0; position: relative; }
+.verified-filter-sheet__header button[aria-label="Close filters"]::after { content: ""; position: absolute; inset: -8px; }
+.verified-filter-sheet__header button[aria-label="Close filters"] > span { display: none; }
+.verified-filter-sheet__header button[aria-label="Close filters"]::before { content: ""; width: 10px; height: 10px; background: linear-gradient(45deg, transparent calc(50% - .75px), currentColor calc(50% - .75px), currentColor calc(50% + .75px), transparent calc(50% + .75px)), linear-gradient(-45deg, transparent calc(50% - .75px), currentColor calc(50% - .75px), currentColor calc(50% + .75px), transparent calc(50% + .75px)); }
+.verified-filter-group h3 > button { font-size: 15px; font-weight: 600; }
+.verified-filter-group h3 > button > span { position: relative; width: 14px; height: 14px; flex: none; }
+.verified-filter-group h3 > button > span::after,
+.verified-filter-group h3 > button[data-state="open"] > span::after { content: ""; position: absolute; left: 0; top: 6px; width: 14px; height: 2px; border-radius: 1px; background: var(--verified-ink); }
+.verified-filter-group h3 > button > span::before { content: ""; position: absolute; left: 6px; top: 0; width: 2px; height: 14px; border-radius: 1px; background: var(--verified-ink); transition: transform .2s ease; }
+.verified-filter-group h3 > button[data-state="open"] > span::before { transform: scaleY(0); }
+.verified-filter-choice input[type="radio"] { appearance: none; flex: 0 0 18px; width: 18px; height: 18px; border: 1px solid #e4e1df; border-radius: 50%; background: #f6f5f4; }
+.verified-filter-choice input[type="checkbox"] { flex: 0 0 18px; width: 18px; height: 18px; border-color: #e4e1df; background: #f6f5f4; }
+.verified-filter-choice input:is([type="radio"], [type="checkbox"]):checked { border-color: var(--verified-ink); background: var(--verified-ink); }
+.verified-filter-choice input[type="radio"]:checked::after,
+.verified-filter-choice input[type="checkbox"]:checked::after { content: ""; display: block; width: 8px; height: 4.5px; margin: 4px 0 0 4px; border-left: 1.6px solid #fff; border-bottom: 1.6px solid #fff; transform: rotate(-45deg); }

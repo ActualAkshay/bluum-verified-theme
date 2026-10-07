@@ -57,7 +57,8 @@ export function verifiedPriceRanges(currencyCode: string): VerifiedPriceRange[] 
   return [
     { id: "low", label: `Under ${format(step)}`, min: 0, max: step },
     { id: "mid", label: `${format(step)} – under ${format(step * 2)}`, min: step, max: step * 2 },
-    { id: "high", label: `${format(step * 2)} and above`, min: step * 2, max: Infinity },
+    { id: "high", label: `${format(step * 2)} – under ${format(step * 4)}`, min: step * 2, max: step * 4 },
+    { id: "top", label: `${format(step * 4)} and above`, min: step * 4, max: Infinity },
   ]
 }
 
