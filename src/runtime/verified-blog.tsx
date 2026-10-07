@@ -3,6 +3,9 @@ import { Link } from "@tanstack/react-router"
 import { ArticleImage } from "@/components/article-image"
 import type { ResearchArticleSummary, ShopifyResearchArticle } from "@/lib/content/shopify-research"
 import { VerifiedSupport } from "./verified-support"
+import { FilterPopover } from "./verified-catalog-controls"
+
+const ARTICLE_SORTS = [{ id: "newest", label: "Newest first" }, { id: "oldest", label: "Oldest first" }, { id: "title", label: "A–Z" }] as const
 
 export const articleDate = (date: string) => new Date(date).toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" })
 export function filterArticles(articles: ResearchArticleSummary[], category: string, sort: string) {
@@ -22,7 +25,10 @@ export const VerifiedBlog = ({ articles, initialPage = 1 }: { articles: Research
   return <div className="verified-journal" data-theme-page="blog">
     <header className="verified-journal-hero"><div className="verified-journal-hero-copy"><p>Science Journal</p><h1>Behind the <em>vial</em></h1><p>From purity testing to compound comparisons, explore the science behind research peptides.</p></div><picture className="verified-journal-hero-art"><source media="(max-width: 699px)" srcSet="/images/themes/verified/blog-hero-mobile.webp" /><img src="/images/themes/verified/blog-hero-desktop.webp" alt="" width="1512" height="441" fetchPriority="high" /></picture></header>
     <section className="verified-journal-content" aria-label="Research articles">
-      <div className="verified-journal-controls"><div className="verified-journal-categories" aria-label="Article categories"><button aria-pressed={!category} onClick={() => { setCategory(""); setLimit(12) }}>All Articles</button>{categories.map(tag => <button key={tag} aria-pressed={category === tag} onClick={() => { setCategory(tag); setLimit(12) }}>{tag}</button>)}</div><label className="verified-journal-sort">Sort By <select aria-label="Sort articles" value={sort} onChange={event => { setSort(event.target.value); setLimit(12) }}><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="title">Title A–Z</option></select></label></div>
+      <div className="verified-journal-controls"><div className="verified-journal-categories" aria-label="Article categories"><button aria-pressed={!category} onClick={() => { setCategory(""); setLimit(12) }}>All Articles</button>{categories.map(tag => <button key={tag} aria-pressed={category === tag} onClick={() => { setCategory(tag); setLimit(12) }}>{tag}</button>)}</div><div className="verified-journal-sort"><FilterPopover label="Sort articles" text={sort === "newest" ? "Sort By" : ARTICLE_SORTS.find(({ id }) => id === sort)?.label} sort align="end">
+        {sort !== "newest" && <button className="verified-filter-clear" type="button" data-close-popover aria-label="Clear sort" onClick={() => { setSort("newest"); setLimit(12) }}>Clear</button>}
+        <div className="verified-sort-options" role="listbox" aria-label="Sort articles">{ARTICLE_SORTS.map(({ id, label }) => <button key={id} type="button" role="option" aria-selected={sort === id} data-close-popover className="verified-sort-option" onClick={() => { setSort(id); setLimit(12) }}>{label}</button>)}</div>
+      </FilterPopover></div></div>
       {featured ? <><article className="verified-journal-featured"><Link to="/blogs/research/$handle" params={{handle:featured.handle}} className="verified-journal-card-media" aria-label={`Read ${featured.title}`}><ArticleMedia article={featured} eager /></Link><div>{featured.tags[0] && <span className="verified-journal-tag">{featured.tags[0]}</span>}<h2><Link to="/blogs/research/$handle" params={{handle:featured.handle}}>{featured.title}</Link></h2><div><ArticleMeta article={featured}/><p>{featured.seo.description}</p><Link to="/blogs/research/$handle" params={{handle:featured.handle}} className="verified-button">Read Full Article</Link></div></div></article><div className="verified-journal-grid">{rest.slice(0,limit).map(article => <ArticleCard key={article.id} article={article} />)}</div>{rest.length > limit && <button className="verified-journal-more" onClick={() => setLimit(value=>value+12)}>Load more articles</button>}</> : <p>No articles available.</p>}
     </section><VerifiedSupport />
   </div>

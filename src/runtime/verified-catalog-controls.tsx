@@ -22,7 +22,7 @@ function ControlIcon({ sort = false }: { sort?: boolean }) {
   return <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">{sort ? <path d="m8 8 4-4 4 4M8 16l4 4 4-4" /> : <path d="m5 9 7 7 7-7" />}</svg>
 }
 
-function FilterPopover({ label, text = label, sort = false, align, children }: { label: string; text?: string; sort?: boolean; align?: "end"; children: ReactNode }) {
+export function FilterPopover({ label, text = label, sort = false, align, children }: { label: string; text?: string; sort?: boolean; align?: "end"; children: ReactNode }) {
   const [open, setOpen] = useState(false)
   const root = useRef<HTMLDivElement>(null)
   const trigger = useRef<HTMLButtonElement>(null)

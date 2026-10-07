@@ -3340,3 +3340,19 @@
   /* The panel is portalled outside the themed wrapper, so scope it by the page having the theme. */
   :root:has([data-storefront-theme="verified"]) .bluum-search-panel { bottom: auto; height: auto; max-height: calc(100dvh - 2rem); }
 }
+
+/* Figma Blog hero: taller band, art scaled to the band height and anchored bottom-right;
+ * mobile shows the whole circle (art crop 502×441). */
+.verified-journal-hero { min-height: clamp(420px, 39.6vw, 600px); }
+.verified-journal-hero-art img { object-position: right bottom; }
+@media (max-width: 699px) {
+  .verified-journal-hero { min-height: 0; }
+  .verified-journal-hero-art { aspect-ratio: 502 / 441; margin-top: -40px; }
+  .verified-journal-hero-art img { object-fit: cover; object-position: center bottom; }
+}
+
+/* Figma Blog: category badge is a white pill in the image's top-left; the featured article's
+ * badge is a soft blue-grey pill above the title. */
+.verified-journal-card-media .verified-journal-tag { top: 16px; left: 16px; background: #fff; font-size: 13px; font-weight: 500; padding: 5px 12px; line-height: 1.3; }
+.verified-journal-featured .verified-journal-tag { background: #e7eef4; font-size: 13px; font-weight: 500; padding: 4px 12px; }
+.verified-journal-sort { margin-left: auto; }
