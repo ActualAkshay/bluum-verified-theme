@@ -3264,3 +3264,8 @@
 
 /* Filter popovers: "Clear" is bold and only appears once a filter is chosen. */
 .verified-filter-clear, .verified-filter-popover__content .verified-filter-clear { font-weight: 700; }
+/* Each filter row is one full-width click target (control, text and the empty space). */
+.verified-filter-choices { display: grid; width: 100%; }
+.verified-filter-choice { width: 100%; box-sizing: border-box; }
+.verified-filter-choice > span { flex: 1; min-width: 0; }
+.verified-filter-sheet .verified-filter-clear { display: block; margin-left: auto; }

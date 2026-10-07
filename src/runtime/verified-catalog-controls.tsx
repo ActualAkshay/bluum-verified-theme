@@ -108,11 +108,17 @@ export function VerifiedCatalogControls(props: Props) {
                 <Accordion.Root type="multiple" defaultValue={["category", "price"]}>
                   {showCategories && <Accordion.Item value="category" className="verified-filter-group">
                     <Accordion.Header><Accordion.Trigger>Category<span aria-hidden="true" /></Accordion.Trigger></Accordion.Header>
-                    <Accordion.Content><CategoryChoices categories={props.categories} selected={validDraft} onChange={setDraftCategories} /></Accordion.Content>
+                    <Accordion.Content>
+                      {validDraft.length > 0 && <button className="verified-filter-clear" type="button" aria-label="Clear categories" onClick={() => setDraftCategories([])}>Clear</button>}
+                      <CategoryChoices categories={props.categories} selected={validDraft} onChange={setDraftCategories} />
+                    </Accordion.Content>
                   </Accordion.Item>}
                   <Accordion.Item value="price" className="verified-filter-group">
                     <Accordion.Header><Accordion.Trigger>Price<span aria-hidden="true" /></Accordion.Trigger></Accordion.Header>
-                    <Accordion.Content><PriceChoices ranges={props.priceRanges} selected={draftPrice} onChange={setDraftPrice} /></Accordion.Content>
+                    <Accordion.Content>
+                      {draftPrice !== "all" && <button className="verified-filter-clear" type="button" aria-label="Clear price filter" onClick={() => setDraftPrice("all")}>Clear</button>}
+                      <PriceChoices ranges={props.priceRanges} selected={draftPrice} onChange={setDraftPrice} includeAll={false} />
+                    </Accordion.Content>
                   </Accordion.Item>
                 </Accordion.Root>
               </div>
