@@ -3176,3 +3176,41 @@
   .verified-chat-bubble { font-size: 16px; }
   .verified-chat-sender { font-size: 12px; }
 }
+
+/* Judge.me ships its widget hidden (jdgm-temp-hiding-style) until its script runs; don't
+ * reserve 192px of padding for an invisible block above Related Peptides. */
+[data-storefront-theme="verified"] [data-product-section="reviews"]:has(.jdgm-temp-hiding-style) { display: none; }
+
+/* PDP description: wrap table text at word boundaries (cells size to their words and the table
+ * scrolls sideways), and tighten the space above Related Peptides. */
+[data-storefront-theme="verified"] .bluum-product-research :is(th, td) { word-break: normal; overflow-wrap: normal; hyphens: manual; }
+[data-storefront-theme="verified"] [data-product-section="research"] { padding-bottom: 72px; }
+[data-storefront-theme="verified"] [data-product-section="research"] .bluum-product-research > :last-child,
+[data-storefront-theme="verified"] [data-product-section="research"] .bluum-product-research-body > :last-child { margin-bottom: 0; }
+@media (max-width: 699px) {
+  [data-storefront-theme="verified"] [data-product-section="research"] { padding-bottom: 56px; }
+  [data-storefront-theme="verified"] .bluum-product-research table { width: max-content; min-width: 100%; max-width: none; }
+  [data-storefront-theme="verified"] .bluum-product-research :is(th, td) { max-width: 16rem; }
+}
+
+/* Figma PDP_mobile: Related Peptides is a swipe row (one large card with the next peeking). */
+@media (max-width: 699px) {
+  .verified-related .verified-product-grid {
+    display: flex;
+    gap: 12px;
+    margin-inline: -16px;
+    padding-inline: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 16px;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+  }
+  .verified-related .verified-product-grid::-webkit-scrollbar { display: none; }
+  .verified-related .verified-product-grid > * { flex: 0 0 min(68vw, 270px); scroll-snap-align: start; }
+}
+
+/* Figma PDP guarantees: icon on the label line; the detail drops to its own line, flush left. */
+.verified-product-trust__item { display: grid; grid-template-columns: 22px minmax(0, 1fr); column-gap: 10px; row-gap: 2px; align-items: center; }
+.verified-product-trust__detail { grid-column: 1 / -1; font-size: 14px; line-height: 1.35; }
+@media (max-width: 699px) { .verified-product-trust__detail { font-size: 13px; } }
