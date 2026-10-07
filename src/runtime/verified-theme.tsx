@@ -228,16 +228,14 @@ const footerColumns = [
       ["Privacy Policy", "/policies/privacy-policy"],
       ["Returns & Refunds", "/policies/refund-policy"],
       ["Shipping Policy", "/policies/shipping-policy"],
+      ["Payment & Billing Policy", "/pages/payment-billing-policy"],
+      ["Waiver Agreement", "/pages/indemnity-waiver"],
+      ["Your privacy choices", "/pages/data-sharing-opt-out"],
+      ["Wholesale", "/wholesale-application"],
     ],
   },
 ] as const
 
-const additionalFooterLinks = [
-  ["Wholesale", "/wholesale-application"],
-  ["Your privacy choices", "/pages/data-sharing-opt-out"],
-  ["Waiver Agreement", "/pages/indemnity-waiver"],
-  ["Payment & Billing Policy", "/pages/payment-billing-policy"],
-] as const
 
 const VerifiedFooter = () => {
   const [email, setEmail] = useState("")
@@ -298,20 +296,6 @@ const VerifiedFooter = () => {
       <section className="verified-footer-disclaimer" aria-label="Product and FDA disclaimer">
         <p>All products sold are intended for laboratory and research purposes only. They are not for human consumption, veterinary use, or medical applications. You must be 21 years or older to purchase. By using this site, you agree to comply with all applicable laws and regulations regarding these products. Misuse of these products is strictly prohibited. The statements made within this website have not been evaluated by the US Food and Drug Administration. The statements and the products of this company are not intended to diagnose, treat, cure or prevent any disease. All products are sold for research, laboratory, or analytical purposes only, and are not for human consumption. Bluum is a chemical supplier. Bluum is not a compounding pharmacy or chemical compounding facility as defined under 503A of the Federal Food, Drug, and Cosmetic Act. Bluum is not an outsourcing facility as defined under 503B of the Federal Food, Drug, and Cosmetic Act.</p>
       </section>
-      <details className="verified-footer-more">
-        <summary>More information</summary>
-        <div>
-          <nav aria-label="Additional information">
-            {additionalFooterLinks.map(([label, href]) => <Link key={label} to={href as string} resetScroll>{label}</Link>)}
-          </nav>
-          <address className="verified-footer-contact">
-            <a href="mailto:hello@bluumpeptides.com">hello@bluumpeptides.com</a>
-            <a href="sms:+16283037232">Text us: (628) 303-7232</a>
-            <p>30 N Gould St Ste N<br />Sheridan, WY 82801</p>
-            <a href="https://instagram.com/bluumpeptides" target="_blank" rel="noreferrer">Instagram</a>
-          </address>
-        </div>
-      </details>
     </footer>
   )
 }

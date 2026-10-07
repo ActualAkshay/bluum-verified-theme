@@ -2711,7 +2711,7 @@
 }
 
 /* Final_update footer: shared 1448px content grid, with the brand and payment
- * row kept together. Extra live-store destinations remain in More information. */
+ * row kept together. */
 .verified-footer { padding: 40px 0 32px; background: var(--verified-ink); color: white; }
 .verified-footer > * { width: min(calc(100% - 64px), 1448px); margin-inline: auto; }
 .verified-footer-grid { display: grid; grid-template-columns: minmax(0, 668fr) minmax(0, 780fr); gap: 0; }
@@ -2739,12 +2739,6 @@
 .verified-payment-methods { grid-column: 2; grid-row: 1; justify-self: end; display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
 .verified-payment-methods img { display: block; width: 38px; height: 24px; }
 .verified-footer-disclaimer { margin-top: 32px; padding: 20px; border: 1px solid rgb(255 255 255 / 25%); border-radius: 6px; color: rgb(255 255 255 / 55%); font-size: 13px; line-height: 1.2; }
-.verified-footer-more { margin-top: 16px; font-size: 13px; line-height: 1.4; }
-.verified-footer-more summary { width: fit-content; min-height: 44px; padding-block: 12px; cursor: pointer; }
-.verified-footer-more > div { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; padding-top: 12px; }
-.verified-footer-more nav, .verified-footer-contact { display: grid; align-content: start; gap: 4px; font-style: normal; overflow-wrap: anywhere; }
-.verified-footer-more a { display: flex; align-items: center; min-height: 44px; width: fit-content; max-width: 100%; }
-.verified-footer-contact p { padding-block: 12px; }
 @media (max-width: 1199px) {
   .verified-footer-grid { grid-template-columns: minmax(0, 1fr); gap: 48px; }
   .verified-footer-links { column-gap: 32px; }
@@ -2770,7 +2764,6 @@
   .verified-payment-methods { grid-column: 2; grid-row: 1; justify-self: end; gap: 4px; }
   .verified-footer-wordmark { grid-column: 1 / -1; grid-row: 2; width: 100%; }
   .verified-footer-disclaimer { margin-top: 24px; padding: 20px; font-size: 12px; line-height: 1.4; }
-  .verified-footer-more > div { grid-template-columns: minmax(0, 1fr); gap: 20px; }
 }
 @media (max-width: 359px) {
   .verified-footer-links { grid-template-columns: minmax(0, 1fr); grid-template-areas: "shop" "learn" "care"; }
