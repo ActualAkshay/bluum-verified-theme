@@ -3566,3 +3566,13 @@
 @media (min-width: 640px) {
   [data-storefront-theme="verified"] .verified-account-view.verified-order-detail > section.grid[class*="rounded-[14px]"] > div + div { border-top: 0; border-left: 1px solid rgb(35 31 30 / 10%); }
 }
+
+/* Phones/tablets: pages without a hero image (Shop, FAQ, policies, product…) keep the same frosted
+   pill look as the hero pages instead of a white pill that disappears into the canvas. */
+@media (max-width: 999px) {
+  [data-storefront-theme="verified"]:not([data-hero-underlay="true"]) .verified-nav-shell {
+    border-color: rgb(255 255 255 / 75%);
+    background: rgb(232 236 240 / 72%);
+    box-shadow: 0 13px 36px rgb(35 31 30 / 7%);
+  }
+}
