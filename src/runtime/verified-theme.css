@@ -1636,7 +1636,7 @@
   .verified-product-specifications__row:last-child .verified-product-specifications__value { border-radius: 0; }
   .verified-product-specifications__heading, .science-v2-faq-intro h2 { font-size: 30px; }
   [data-storefront-theme="verified"] [data-product-section="related"] > div > .grid:last-child { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 16px; }
-  [data-storefront-theme="verified"] [data-product-section="related"] article { flex: 0 0 82%; scroll-snap-align: start; }
+  [data-storefront-theme="verified"] [data-product-section="related"] article { flex: 0 0 66%; scroll-snap-align: start; }
 }
 
 @media (max-width: 999px) {
