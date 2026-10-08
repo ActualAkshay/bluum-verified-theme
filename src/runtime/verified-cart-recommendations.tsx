@@ -2,14 +2,16 @@ import { useState } from "react"
 import * as Dialog from "@radix-ui/react-dialog"
 import type { HttpTypes } from "@medusajs/types"
 import { Link } from "@tanstack/react-router"
-import { useRelatedProducts } from "@/lib/hooks/use-products"
+import { useCartUpsellProducts } from "@/lib/hooks/use-products"
+import { useThemeSettings } from "@/components/theme-settings-provider"
 import { formatPrice } from "@/lib/utils/price"
 import { getProductThumbnailUrl, getResponsiveProductImage } from "@/lib/product-image"
 import { useCartDrawer } from "@/lib/hooks/use-cart-drawer"
 
 export const VerifiedCartRecommendations = ({ cart }: { cart: HttpTypes.StoreCart }) => {
-  const seed = cart.items?.find((item) => item.product_id)
-  const { data } = useRelatedProducts({ product_id: seed?.product_id || "", region_id: cart.region_id, enabled: Boolean(seed) })
+  // Theme Customizer → Cart upsell: chosen products and collections, in order.
+  const { items } = useThemeSettings().cart_upsell
+  const { data } = useCartUpsellProducts({ items, region_id: cart.region_id })
   const products = (data || []).filter((product) => !cart.items?.some((item) => item.product_id === product.id))
   const [index, setIndex] = useState(0)
   const [open, setOpen] = useState(false)
