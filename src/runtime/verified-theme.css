@@ -3454,3 +3454,9 @@
   .verified-search-page form[role="search"] { margin-top: 24px; padding-left: 18px; }
   .verified-search-page form[role="search"] input { font-size: 16px; }
 }
+/* The field is the page's heading; the title and result count stay for screen readers only. */
+.verified-search-page header > h1,
+.verified-search-page #search-results-heading { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.verified-search-page header > form[role="search"] { margin-top: 0; }
+.verified-search-page section[aria-labelledby="search-results-heading"] { margin-top: 40px; }
+@media (max-width: 767px) { .verified-search-page section[aria-labelledby="search-results-heading"] { margin-top: 28px; } }
