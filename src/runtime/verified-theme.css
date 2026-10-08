@@ -3474,8 +3474,7 @@
 .verified-account-nav [aria-current="page"] { background: #e7ebee; }
 .verified-account-nav button:disabled { opacity: 0.5; }
 
-.verified-account-heading > p:first-child { font-size: 13px; font-weight: 500; }
-[data-storefront-theme="verified"] .verified-account-heading h1 { margin: 12px 0 0; font-size: clamp(40px, 3.6vw, 52px); font-weight: 500; line-height: 1; letter-spacing: -0.04em; }
+[data-storefront-theme="verified"] .verified-account-heading h1 { margin: 0; font-size: clamp(40px, 3.6vw, 52px); font-weight: 500; line-height: 1; letter-spacing: -0.04em; }
 .verified-account-heading > p:last-child { margin-top: 16px; color: rgb(35 31 30 / 78%); font-size: 16px; }
 
 .verified-orders-card { margin-top: 40px; border: 1px dashed rgb(35 31 30 / 18%); border-radius: 20px; padding: 20px 22px 8px; transition: opacity 160ms ease; }
@@ -3528,3 +3527,5 @@
   .verified-orders-card table { min-width: 560px; }
 }
 [data-storefront-theme="verified"] .verified-account-page[data-signed-in] .verified-account-view h1 { font-size: clamp(40px, 3.6vw, 52px); letter-spacing: -0.04em; }
+/* The side menu already names the page; the Settings title stays for screen readers only. */
+[data-storefront-theme="verified"] .verified-account-page[data-signed-in] [data-account-view="profile"] > div:first-child { position: absolute; width: 1px; height: 1px; margin: 0; padding: 0; overflow: hidden; clip-path: inset(50%); border: 0; }
