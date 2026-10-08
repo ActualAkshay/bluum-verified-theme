@@ -3541,7 +3541,7 @@
 .verified-order-detail > :not(a) { margin-block: 0; }
 .verified-order-detail__back { display: inline-flex; justify-self: start; align-items: center; gap: 8px; min-height: 44px; color: rgb(35 31 30 / 65%); font-size: 14px; }
 .verified-order-detail__back:hover { color: var(--verified-ink); }
-.verified-order-detail__head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 24px; padding-bottom: 20px; border-bottom: 1px solid rgb(35 31 30 / 12%); }
+.verified-order-detail__head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 24px; padding-bottom: 4px; }
 [data-storefront-theme="verified"] .verified-account-page[data-signed-in] .verified-account-view.verified-order-detail .verified-order-detail__head h1 { font-size: clamp(28px, 3vw, 36px); font-weight: 500; line-height: 1.1; letter-spacing: -0.03em; }
 .verified-order-detail__head p { margin-top: 6px; color: rgb(35 31 30 / 62%); font-size: 14px; }
 .verified-order-detail__total { margin: 0 !important; color: var(--verified-ink) !important; font-size: 24px !important; font-weight: 500; letter-spacing: -0.02em; text-align: right; }
