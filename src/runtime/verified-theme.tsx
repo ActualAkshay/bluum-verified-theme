@@ -5,6 +5,9 @@ import { ExperimentContentBlock } from "@/components/experiment-provider"
 import { sdk } from "@/lib/utils/sdk"
 import { useQuery } from "@tanstack/react-query"
 import { subscribeToNewsletter } from "@/lib/klaviyo"
+import { SocialLinks } from "@/components/social-links"
+import { useThemeSettings } from "@/components/theme-settings-provider"
+import { PAYMENT_LOGOS } from "@/lib/theme-settings"
 import { Link, useLocation } from "@tanstack/react-router"
 import { useEffect, useRef, useState, type FormEvent, type PropsWithChildren, type ReactNode } from "react"
 
@@ -14,12 +17,6 @@ const navigation = [
   { label: "Science", href: "/pages/about-us", description: "Research & standards", image: "/images/themes/verified/compound-purity.png" },
   { label: "Contact Us", href: "/pages/contact", description: "Get quick support", image: "/images/themes/verified/contact-hero.png" },
 ] as const
-
-const InstagramIcon = () => (
-  <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-    <rect x="3.5" y="3.5" width="17" height="17" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none" />
-  </svg>
-)
 
 const MenuIcon = ({ open }: { open: boolean }) => (
   <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none">
@@ -191,7 +188,7 @@ const VerifiedNavbar = () => {
           </ul>
           <div className="verified-mobile-nav__footer">
             <div className="verified-mobile-nav__social">
-              <a href="https://instagram.com/bluumpeptides" target="_blank" rel="noreferrer" aria-label="Bluum on Instagram"><InstagramIcon /></a>
+              <SocialLinks variant="verified" />
             </div>
             <Link
               className="verified-button verified-mobile-nav__account"
@@ -243,6 +240,7 @@ const footerColumns = [
 
 
 const VerifiedFooter = () => {
+  const { payment_logos: paymentLogos } = useThemeSettings()
   const [email, setEmail] = useState("")
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle")
 
@@ -290,12 +288,7 @@ const VerifiedFooter = () => {
         <img className="verified-footer-wordmark" src="/images/bluum.svg" alt="Bluum" />
         <p>© {new Date().getFullYear()}, Bluum</p>
         <ul className="verified-payment-methods" aria-label="Accepted payment methods">
-          {[
-            ["American Express", "american-express"],
-            ["Apple Pay", "apple-pay"],
-            ["Google Pay", "google-pay"],
-            ["Visa", "visa"],
-          ].map(([name, asset]) => <li key={asset}><img src={`/images/payment-${asset}.svg`} alt={name} width="38" height="24" loading="lazy" /></li>)}
+          {PAYMENT_LOGOS.filter(({ key }) => paymentLogos[key]).map(({ name, asset }) => <li key={asset}><img src={`/images/payment-${asset}.svg`} alt={name} width="38" height="24" loading="lazy" /></li>)}
         </ul>
       </div>
       <section className="verified-footer-disclaimer" aria-label="Product and FDA disclaimer">
