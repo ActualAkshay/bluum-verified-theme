@@ -44,7 +44,7 @@ const VerifiedQuickView = ({ product, cart, disabled, onDone }: { product: HttpT
   return <Dialog.Content className="verified-cart-quick-dialog">
     <div className="verified-cart-quick-dialog__head"><Dialog.Title>{product.title}</Dialog.Title><Dialog.Close className="verified-cart-quick-dialog__x" aria-label="Close quick view"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="m4 4 8 8M12 4l-8 8" /></svg></Dialog.Close></div>
     <Dialog.Description className="sr-only">Choose a size and add it to your cart.</Dialog.Description>
-    <img src={image && (getResponsiveProductImage(image)?.fallback ?? image)} alt={product.title} />
+    <img src={image && (getResponsiveProductImage(image)?.fallback ?? image)} srcSet={image ? getResponsiveProductImage(image)?.webpSrcSet : undefined} sizes="(min-width: 480px) 392px, calc(100vw - 72px)" alt={product.title} />
     {sizes.length > 0 && <fieldset className="verified-cart-quick-sizes"><legend>Size</legend><div>{sizes.map((item) => {
       const inStock = isVariantInStock(item)
       return <label key={item.id} data-selected={item.id === variantId || undefined} data-disabled={!inStock || undefined}><input type="radio" name={`quick-size-${product.id}`} value={item.id} checked={item.id === variantId} disabled={!inStock} onChange={() => setVariantId(item.id)} /><span>{item.title}</span>{!inStock && <span className="sr-only"> (sold out)</span>}</label>
