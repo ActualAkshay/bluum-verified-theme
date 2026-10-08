@@ -158,13 +158,16 @@ const VerifiedNavbar = () => {
         <div className="verified-nav-actions">
           <PredictiveSearchTrigger />
           <CartDropdown />
-          <Link
-            to={customer ? "/account" : "/login"}
-            search={customer ? undefined : { redirect: "/account" }}
-            className="verified-sign-in"
-          >
-            {customer ? "Account" : "Sign In"}
-          </Link>
+          {/* Account pages have their own menu, so the header button would only repeat it. */}
+          {!/(^|\/)account(\/|$)/.test(location.pathname) && (
+            <Link
+              to={customer ? "/account" : "/login"}
+              search={customer ? undefined : { redirect: "/account" }}
+              className="verified-sign-in"
+            >
+              {customer ? "Account" : "Sign In"}
+            </Link>
+          )}
         </div>
       </div>
       {menuOpen && (
