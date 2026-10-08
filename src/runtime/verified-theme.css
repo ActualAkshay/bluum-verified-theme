@@ -3535,3 +3535,32 @@
 @media (max-width: 767px) { .verified-addresses-head > .verified-button { width: 100%; } }
 /* Orders list sits directly on the page: no outer card. */
 .verified-orders .verified-orders-card { margin-top: 0; border: 0; border-radius: 0; padding: 0; }
+
+/* Account order details: summary (items + totals) first, then status, shipping and addresses. */
+.verified-order-detail { display: grid; gap: 20px; }
+.verified-order-detail > :not(a) { margin-block: 0; }
+.verified-order-detail__back { display: inline-flex; justify-self: start; align-items: center; gap: 8px; min-height: 44px; color: rgb(35 31 30 / 65%); font-size: 14px; }
+.verified-order-detail__back:hover { color: var(--verified-ink); }
+.verified-order-detail__head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 24px; padding-bottom: 20px; border-bottom: 1px solid rgb(35 31 30 / 12%); }
+[data-storefront-theme="verified"] .verified-account-page[data-signed-in] .verified-account-view.verified-order-detail .verified-order-detail__head h1 { font-size: clamp(28px, 3vw, 36px); font-weight: 500; line-height: 1.1; letter-spacing: -0.03em; }
+.verified-order-detail__head p { margin-top: 6px; color: rgb(35 31 30 / 62%); font-size: 14px; }
+.verified-order-detail__total { margin: 0 !important; color: var(--verified-ink) !important; font-size: 24px !important; font-weight: 500; letter-spacing: -0.02em; text-align: right; }
+.verified-order-detail__total span { display: block; color: rgb(35 31 30 / 60%); font-size: 12px; font-weight: 400; letter-spacing: 0; }
+.verified-order-detail__summary { border: 1px solid rgb(35 31 30 / 10%); border-radius: 20px; padding: 8px 24px 24px; background: #fff; }
+.verified-order-detail__summary > h2 { padding: 16px 0 4px; font-size: 18px; font-weight: 500; letter-spacing: -0.02em; }
+.verified-order-detail__items article { padding: 16px 0 !important; border-color: rgb(35 31 30 / 10%) !important; }
+.verified-order-detail__summary > dl { margin-top: 4px; padding-top: 16px; border-top: 1px solid rgb(35 31 30 / 12%); }
+.verified-order-detail > section:not(.verified-order-detail__summary) { border-radius: 20px; border-color: rgb(35 31 30 / 10%); }
+.verified-order-detail > section:not(.verified-order-detail__summary) > div { background: #fff; }
+.verified-order-detail > section[aria-labelledby="shipping-updates-title"] { background: #fff; }
+.verified-order-detail__addresses { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.verified-order-detail__addresses > section { border-radius: 20px; border-color: rgb(35 31 30 / 10%); background: #fff; }
+@media (max-width: 767px) {
+  .verified-order-detail { gap: 16px; }
+  .verified-order-detail__summary { padding: 4px 16px 18px; border-radius: 16px; }
+  .verified-order-detail > section:not(.verified-order-detail__summary), .verified-order-detail__addresses > section { border-radius: 16px; }
+  .verified-order-detail__addresses { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+}
+/* Every order-details card is white; the status card's tint only shows as its divider line. */
+[data-storefront-theme="verified"] .verified-account-view.verified-order-detail [class*="rounded-[14px]"] { background-color: #fff; }
+[data-storefront-theme="verified"] .verified-account-view.verified-order-detail > section.grid[class*="rounded-[14px]"] { background-color: rgb(35 31 30 / 10%); }
