@@ -3444,3 +3444,13 @@
 .verified-order-page .bluum-post-purchase-heading { display: flex; flex-direction: column; }
 .verified-order-page .bluum-post-purchase-heading > .bluum-post-purchase-timer,
 .verified-order-page .bluum-post-purchase-heading > .is-timer { order: 3; margin: 18px 0 0; }
+
+/* Search results page (shared links): pill search field and a quieter results heading. */
+.verified-search-page form[role="search"] { align-items: center; gap: 8px; margin-top: 32px; padding: 6px 6px 6px 24px; border: 1px solid rgb(35 31 30 / 12%); border-radius: 999px; background: #fff; }
+.verified-search-page form[role="search"] input { min-height: 44px; font-size: 17px; }
+.verified-search-page form[role="search"] button { min-height: 44px; padding: 0 22px; border-radius: 999px; background: var(--verified-ink); color: #fff; font-size: 15px; font-weight: 600; text-decoration: none; }
+.verified-search-page #search-results-heading { color: rgb(35 31 30 / 62%); font-size: 16px; font-weight: 500; }
+@media (max-width: 767px) {
+  .verified-search-page form[role="search"] { margin-top: 24px; padding-left: 18px; }
+  .verified-search-page form[role="search"] input { font-size: 16px; }
+}
