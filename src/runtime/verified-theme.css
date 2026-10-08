@@ -88,9 +88,10 @@
   color: var(--verified-ink);
 }
 
-/* The homepage artwork extends behind both navigation bars. Header measurement
-   includes optional campaign content, so the hero copy clears the entire stack. */
-[data-storefront-theme="verified"][data-hero-underlay="true"] > .verified-header {
+/* The header strip is transparent on every page so content scrolls under the frosted pills,
+   as it does over the hero art. Hero pages also pull the artwork up behind both bars; header
+   measurement includes optional campaign content, so the hero copy clears the entire stack. */
+[data-storefront-theme="verified"] > .verified-header {
   background: transparent;
 }
 
@@ -3575,3 +3576,26 @@
   }
 }
 
+
+/* Cart Quick View: size pills and Add to cart in the dialog; full details stay one link away. */
+.verified-cart-quick-dialog { display: flex; flex-direction: column; gap: 16px; }
+.verified-cart-quick-dialog__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.verified-cart-quick-dialog__head h2 { font-size: 22px; line-height: 1.2; }
+.verified-cart-quick-dialog .verified-cart-quick-dialog__x { display: grid; place-items: center; flex: none; width: 40px; height: 40px; margin: -8px -8px 0 0; padding: 0; border-radius: 50%; text-decoration: none; }
+.verified-cart-quick-dialog .verified-cart-quick-dialog__x:hover { background: #ecebea; }
+.verified-cart-quick-sizes { margin: 0; padding: 0; border: 0; min-width: 0; }
+.verified-cart-quick-sizes legend { margin-bottom: 8px; font-size: 13px; color: #817d7b; }
+.verified-cart-quick-sizes > div { display: flex; flex-wrap: wrap; gap: 8px; }
+.verified-cart-quick-sizes label { position: relative; display: inline-flex; align-items: center; min-height: 40px; padding: 0 16px; border: 1px solid #e4e1df; border-radius: 99px; font-size: 14px; cursor: pointer; transition: border-color .15s ease, background-color .15s ease; }
+.verified-cart-quick-sizes label[data-selected] { border-color: #24201f; background: #24201f; color: #fffdfb; }
+.verified-cart-quick-sizes label[data-disabled] { opacity: .45; cursor: not-allowed; text-decoration: line-through; }
+.verified-cart-quick-sizes input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: inherit; }
+.verified-cart-quick-sizes label:has(input:focus-visible) { outline: 2px solid #24201f; outline-offset: 2px; }
+.verified-cart-quick-dialog .verified-cart-quick-add { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; min-height: 48px; padding: 0 20px; border-radius: 99px; background: #24201f; color: #fffdfb; font-size: 16px; text-decoration: none; }
+.verified-cart-quick-dialog .verified-cart-quick-add:disabled { opacity: .55; cursor: not-allowed; }
+.verified-cart-quick-dialog .verified-cart-quick-details { align-self: center; padding: 10px 12px; font-size: 14px; }
+.verified-cart-quick-dialog .verified-cart-quick-error { margin: 0; font-size: 13px; color: #b42318; }
+@media (max-width: 699px) {
+  .verified-cart-quick-dialog { padding: 20px; gap: 14px; }
+  .verified-cart-quick-dialog img { height: 180px; }
+}
