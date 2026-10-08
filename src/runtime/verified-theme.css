@@ -3371,9 +3371,8 @@
 :is(.verified-order-hero, .verified-receipt) h1 { margin-top: 12px; font-size: clamp(40px, 6vw, 72px); font-weight: 500; line-height: 1.02; letter-spacing: -0.05em; text-wrap: balance; }
 .verified-order-hero { padding: 72px 16px 48px; }
 
-.verified-order-upsell, .verified-order-grid { width: min(100% - 64px, 1180px); margin-inline: auto; }
+.verified-order-grid { width: min(100% - 64px, 1180px); margin-inline: auto; }
 .verified-order-upsell:empty { display: none; }
-.verified-order-upsell { margin-bottom: 32px; }
 .verified-order-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(320px, 0.9fr); align-items: start; gap: 32px; }
 .verified-order-details { display: grid; gap: 20px; grid-column: 1; grid-row: 1; }
 .verified-order-details > .verified-button { justify-self: start; margin-top: 12px; }
@@ -3401,7 +3400,7 @@
 
 @media (max-width: 1023px) {
   .verified-order-hero { padding: 48px 16px 32px; }
-  .verified-order-upsell, .verified-order-grid { width: calc(100% - 32px); }
+  .verified-order-grid { width: calc(100% - 32px); }
   .verified-order-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
   .verified-order-summary, .verified-order-details { grid-column: 1; grid-row: auto; }
   .verified-order-summary { position: static; padding: 0; border-radius: 16px; }
@@ -3420,3 +3419,28 @@
   .verified-receipt__lead { font-size: 16px; }
   :is(.verified-order-page, .verified-receipt-page) > .verified-support { margin-top: 64px; }
 }
+
+/* Post-purchase offer inside the Verified order page: same markup and copy, Verified surfaces. */
+.verified-order-page :is(.bluum-post-purchase, .bluum-post-purchase-result) { margin: 0; border: 1px solid rgb(35 31 30 / 8%); border-radius: 20px; padding: 28px; background: #fff; color: var(--verified-ink); }
+.verified-order-page .bluum-post-purchase-timer { border-radius: 999px; padding: 10px 10px 10px 20px; background: var(--verified-ink); font-size: 14px; }
+.verified-order-page .bluum-post-purchase-timer strong { padding: 4px 14px; border-radius: 999px; background: rgb(255 255 255 / 12%); font-size: 18px; }
+.verified-order-page .bluum-post-purchase-timer.is-urgent { background: #a13926; }
+.verified-order-page .bluum-post-purchase-heading h2 { font-size: 24px; font-weight: 500; letter-spacing: -0.03em; }
+.verified-order-page :is(.bluum-post-purchase-intro, .bluum-post-purchase-variant, .bluum-post-purchase-consent, .bluum-post-purchase-result p) { color: rgb(35 31 30 / 62%); }
+.verified-order-page .bluum-post-purchase-product { border: 0; border-radius: 16px; background: var(--verified-surface); }
+.verified-order-page .bluum-post-purchase-image > :is(img, div) { border-radius: 12px; }
+.verified-order-page .bluum-post-purchase-quantity, .verified-order-page .bluum-post-purchase-accept { background: var(--verified-ink); }
+.verified-order-page .bluum-post-purchase-saving { border: 0; border-radius: 999px; padding: 4px 10px; background: #fff; font-weight: 500; }
+.verified-order-page .bluum-post-purchase-totals > .bluum-post-purchase-total { border-color: rgb(35 31 30 / 10%); }
+.verified-order-page .bluum-post-purchase-accept { min-height: 52px; border-radius: 999px; font-size: 16px; }
+.verified-order-page .bluum-post-purchase-accept:hover { background: #3a3433; }
+.verified-order-page .bluum-post-purchase-decline { font-size: 14px; color: rgb(35 31 30 / 70%); }
+.verified-order-page .bluum-post-purchase-placeholder { border-radius: 10px; background: rgb(35 31 30 / 6%); }
+@media (max-width: 1023px) {
+  .verified-order-page :is(.bluum-post-purchase, .bluum-post-purchase-result) { border-radius: 16px; padding: 20px; }
+  .verified-order-page .bluum-post-purchase-heading h2 { font-size: 21px; }
+}
+/* Title and subtitle first, then the countdown. */
+.verified-order-page .bluum-post-purchase-heading { display: flex; flex-direction: column; }
+.verified-order-page .bluum-post-purchase-heading > .bluum-post-purchase-timer,
+.verified-order-page .bluum-post-purchase-heading > .is-timer { order: 3; margin: 18px 0 0; }
