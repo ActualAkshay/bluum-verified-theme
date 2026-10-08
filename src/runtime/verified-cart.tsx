@@ -9,9 +9,10 @@ import { Minus, Plus, Trash } from "@medusajs/icons"
 import type { HttpTypes } from "@medusajs/types"
 import { useRef, useState } from "react"
 
+/** The drawer shows the subtotal only; the order total is shown at checkout. */
 export const VerifiedCartTotals = ({cart, pending = false}: {cart: HttpTypes.StoreCart; pending?: boolean}) => {
   const total = formatPrice({amount:getCartDrawerSubtotal(cart),currency_code:cart.currency_code || "usd"})
-  return <div className="verified-cart-totals" aria-busy={pending}><div><span>Subtotal</span><span>{pending ? "Updating…" : total}</span></div><div><span>Total</span><span>{pending ? "Updating…" : total}</span></div><p>Shipping & taxes calculated at checkout</p></div>
+  return <div className="verified-cart-totals" aria-busy={pending}><div><span>Subtotal</span><span>{pending ? "Updating…" : total}</span></div><p>Shipping & taxes calculated at checkout</p></div>
 }
 
 /** Item subtotal is before discounts; total includes discounts and tax. */
