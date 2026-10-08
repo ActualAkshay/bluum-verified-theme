@@ -3599,3 +3599,32 @@
   .verified-cart-quick-dialog { padding: 20px; gap: 14px; }
   .verified-cart-quick-dialog img { height: 180px; }
 }
+
+/* Shop toolbar: search field and category chips (the live store's concept, Verified styling). */
+.verified-shop-tools { display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; }
+.verified-shop-search { display: flex; align-items: center; gap: 10px; min-width: 0; height: 52px; padding: 0 8px 0 20px; border: 1px solid rgb(35 31 30 / 12%); border-radius: 999px; background: #fff; color: #817d7b; transition: border-color .15s ease, box-shadow .15s ease; }
+.verified-shop-search:hover { border-color: rgb(35 31 30 / 28%); }
+.verified-shop-search:focus-within { border-color: #24201f; box-shadow: inset 0 0 0 1px #24201f; }
+.verified-shop-search input { flex: 1; min-width: 0; height: 100%; border: 0; background: transparent; color: #24201f; font-size: 16px; outline: none; }
+.verified-shop-search input::placeholder { color: #9a9592; }
+.verified-shop-search input::-webkit-search-cancel-button { display: none; }
+.verified-shop-search button { display: grid; place-items: center; flex: none; width: 40px; height: 40px; border-radius: 50%; color: #24201f; }
+.verified-shop-search button:hover { background: #f3f2f1; }
+.verified-shop-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.verified-shop-chips button { min-height: 44px; padding: 0 20px; border: 1px solid rgb(35 31 30 / 12%); border-radius: 999px; background: #fff; color: #24201f; font-size: 15px; white-space: nowrap; transition: background-color .15s ease, border-color .15s ease, color .15s ease; }
+.verified-shop-chips button:hover { border-color: rgb(35 31 30 / 28%); }
+.verified-shop-chips button[aria-pressed="true"] { border-color: #24201f; background: #24201f; color: #fffdfb; }
+.verified-shop-chips button:focus-visible, .verified-shop-search button:focus-visible { outline: 2px solid #24201f; outline-offset: 2px; }
+@media (min-width: 1024px) {
+  .verified-shop-tools { flex-direction: row; align-items: center; justify-content: space-between; gap: 24px; }
+  .verified-shop-search { flex: 0 1 420px; }
+  .verified-shop-chips { flex-wrap: nowrap; }
+}
+@media (max-width: 599px) {
+  .verified-shop-tools { margin-bottom: 28px; }
+  .verified-shop-chips { display: grid; grid-template-columns: repeat(4, auto); justify-content: start; }
+  .verified-shop-chips button { padding: 0 14px; font-size: 14px; }
+}
+@media (max-width: 379px) {
+  .verified-shop-chips { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
