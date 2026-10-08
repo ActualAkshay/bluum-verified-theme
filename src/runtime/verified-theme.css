@@ -3095,7 +3095,7 @@
 }
 
 /* Support chat: iMessage-style bubbles (grouped, tail on the last bubble of each sender). */
-.verified-chat { gap: 14px; }
+[data-storefront-theme="verified"] .verified-chat { gap: 14px; }
 .verified-chat-group { gap: 2px; }
 .verified-chat-group--client { align-items: flex-end; }
 .verified-chat-sender { padding-inline: 14px; margin-bottom: 2px; color: #8e8e93; font-size: 12px; line-height: 1.3; letter-spacing: 0; }
@@ -3333,7 +3333,7 @@
 }
 /* The bubble-tail masks reach 26px outside the bubbles; clip them so pages never scroll sideways
  * (the visible 7px tails stay inside the 10px gutter). */
-.verified-chat { overflow-x: clip; padding-inline: 10px; margin-inline: -10px; }
+[data-storefront-theme="verified"] .verified-chat { overflow-x: clip; padding-inline: 10px; margin-inline: -10px; }
 
 /* Header search on desktop: compact while empty, grows with results (like mobile). */
 @media (min-width: 700px) {
@@ -3446,20 +3446,20 @@
 .verified-order-page .bluum-post-purchase-heading > .is-timer { order: 3; margin: 18px 0 0; }
 
 /* Search results page (shared links): pill search field and a quieter results heading. */
-.verified-search-page form[role="search"] { align-items: center; gap: 8px; margin-top: 32px; padding: 6px 6px 6px 24px; border: 1px solid rgb(35 31 30 / 12%); border-radius: 999px; background: #fff; }
-.verified-search-page form[role="search"] input { min-height: 44px; font-size: 17px; }
-.verified-search-page form[role="search"] button { min-height: 44px; padding: 0 22px; border-radius: 999px; background: var(--verified-ink); color: #fff; font-size: 15px; font-weight: 600; text-decoration: none; }
-.verified-search-page #search-results-heading { color: rgb(35 31 30 / 62%); font-size: 16px; font-weight: 500; }
+[data-storefront-theme="verified"] .verified-search-page form[role="search"] { align-items: center; gap: 8px; margin-top: 32px; padding: 6px 6px 6px 24px; border: 1px solid rgb(35 31 30 / 12%); border-radius: 999px; background: #fff; }
+[data-storefront-theme="verified"] .verified-search-page form[role="search"] input { min-height: 44px; font-size: 17px; }
+[data-storefront-theme="verified"] .verified-search-page form[role="search"] button { min-height: 44px; padding: 0 22px; border-radius: 999px; background: var(--verified-ink); color: #fff; font-size: 15px; font-weight: 600; text-decoration: none; }
+[data-storefront-theme="verified"] .verified-search-page #search-results-heading { color: rgb(35 31 30 / 62%); font-size: 16px; font-weight: 500; }
 @media (max-width: 767px) {
-  .verified-search-page form[role="search"] { margin-top: 24px; padding-left: 18px; }
-  .verified-search-page form[role="search"] input { font-size: 16px; }
+  [data-storefront-theme="verified"] .verified-search-page form[role="search"] { margin-top: 24px; padding-left: 18px; }
+  [data-storefront-theme="verified"] .verified-search-page form[role="search"] input { font-size: 16px; }
 }
 /* The field is the page's heading; the title and result count stay for screen readers only. */
-.verified-search-page header > h1,
-.verified-search-page #search-results-heading { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-.verified-search-page header > form[role="search"] { margin-top: 0; }
-.verified-search-page section[aria-labelledby="search-results-heading"] { margin-top: 40px; }
-@media (max-width: 767px) { .verified-search-page section[aria-labelledby="search-results-heading"] { margin-top: 28px; } }
+[data-storefront-theme="verified"] .verified-search-page header > h1,
+[data-storefront-theme="verified"] .verified-search-page #search-results-heading { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+[data-storefront-theme="verified"] .verified-search-page header > form[role="search"] { margin-top: 0; }
+[data-storefront-theme="verified"] .verified-search-page section[aria-labelledby="search-results-heading"] { margin-top: 40px; }
+@media (max-width: 767px) { [data-storefront-theme="verified"] .verified-search-page section[aria-labelledby="search-results-heading"] { margin-top: 28px; } }
 
 /* Account (Figma "Account"): side menu + content column; on phones the menu becomes a tab row. */
 [data-storefront-theme="verified"] .verified-account-page[data-signed-in] { display: grid; grid-template-columns: 300px minmax(0, 1fr); width: min(100% - 64px, 1400px); margin-inline: auto; }
