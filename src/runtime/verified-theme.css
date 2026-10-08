@@ -3628,3 +3628,7 @@
 @media (max-width: 379px) {
   .verified-shop-chips { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+
+/* "Popular" sticker: tinted on an unselected (white) option so it stays visible; white on the tinted selected one. */
+[data-storefront-theme="verified"] [data-volume-option] [data-volume-popular] { background: #e7eef2; border-radius: 6px; }
+[data-storefront-theme="verified"] [data-volume-option]:has([aria-pressed="true"]) [data-volume-popular] { background: var(--verified-canvas); }
