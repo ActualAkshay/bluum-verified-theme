@@ -3529,3 +3529,7 @@
 [data-storefront-theme="verified"] .verified-account-page[data-signed-in] .verified-account-view h1 { font-size: clamp(40px, 3.6vw, 52px); letter-spacing: -0.04em; }
 /* The side menu already names the page; the Settings title stays for screen readers only. */
 [data-storefront-theme="verified"] .verified-account-page[data-signed-in] [data-account-view="profile"] > div:first-child { position: absolute; width: 1px; height: 1px; margin: 0; padding: 0; overflow: hidden; clip-path: inset(50%); border: 0; }
+.verified-addresses-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px; margin-bottom: 32px; }
+.verified-addresses-head > p { max-width: 560px; color: rgb(35 31 30 / 78%); font-size: 16px; line-height: 1.5; }
+.verified-addresses-head > .verified-button { min-height: 44px; padding: 10px 26px; font-size: 15px; }
+@media (max-width: 767px) { .verified-addresses-head > .verified-button { width: 100%; } }
