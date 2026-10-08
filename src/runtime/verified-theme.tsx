@@ -206,18 +206,6 @@ const VerifiedNavbar = () => {
 
 const footerColumns = [
   {
-    title: "Shop Products",
-    links: [
-      ["NAD+", "/products/nad"],
-      ["5-Amino-1MQ", "/products/5-amino-1mq"],
-      ["BPC-157", "/products/bpc-157"],
-      ["Snap-8", "/products/snap-8"],
-      ["TB-500", "/products/tb-500"],
-      ["Tesamorelin", "/products/tesamorelin"],
-      ["Shop All", "/collections/all"],
-    ],
-  },
-  {
     title: "Learn",
     links: [
       ["Blog", "/blogs/research"],

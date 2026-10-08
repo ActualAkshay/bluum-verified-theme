@@ -1511,7 +1511,8 @@
 .verified-cart-footer button[aria-busy]:disabled { opacity: .7 !important; }
 .verified-cart-footer > div:last-child { font-size: 12px; font-weight: 400; color: #817d7b; }
 .verified-cart-totals > div { display: flex; justify-content: space-between; padding-block: 12px; font-size: 14px; }
-.verified-cart-totals > div:first-child { color: #817d7b; font-size: 13px; }
+.verified-cart-totals { border-top: 1px solid #cfd7da; margin-top: 8px; }
+.verified-cart-totals > div:first-child { color: var(--verified-ink); font-size: 14px; font-weight: 500; }
 .verified-cart-totals p { font-size: 11px; color: #817d7b; margin-bottom: 12px; }
 .verified-cart-quick-overlay { position: fixed; inset: 0; z-index: 60; background: #0006; }
 .verified-cart-quick-dialog { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); z-index: 61; width: min(440px,calc(100% - 32px)); max-height: 90dvh; overflow: auto; background: #fffdfb; padding: 24px; border-radius: 20px; }
@@ -2726,7 +2727,7 @@
 .verified-newsletter button:disabled { cursor: wait; opacity: .6; }
 .verified-newsletter button img { display: block; }
 .verified-newsletter-status { margin-top: 12px; font-size: 13px; line-height: 1.4; }
-.verified-footer-links { display: grid; grid-template-columns: repeat(3, minmax(0, 200fr)); column-gap: calc(100% * 90 / 780); }
+.verified-footer-links { display: grid; grid-template-columns: repeat(2, minmax(0, 200fr)); column-gap: calc(100% * 90 / 780); }
 .verified-footer-links nav { display: flex; flex-direction: column; align-items: flex-start; min-width: 0; }
 .verified-footer-links h2 { margin-bottom: 20px; font-size: 13px; line-height: 16px; font-weight: 600; }
 .verified-footer-links a { display: flex; align-items: center; min-height: 27px; font-size: 16px; line-height: 1.2; overflow-wrap: anywhere; }
@@ -2753,10 +2754,7 @@
   .verified-footer-grid { gap: 40px; }
   .verified-newsletter-intro { max-width: 270px; font-size: 14px; line-height: 1.4; font-weight: 400; }
   .verified-newsletter { margin-top: 20px; }
-  .verified-footer-links { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); grid-template-areas: "shop care" "learn care"; gap: 40px 16px; }
-  .verified-footer-links nav:first-child { grid-area: shop; }
-  .verified-footer-links nav:nth-child(2) { grid-area: learn; }
-  .verified-footer-links nav:last-child { grid-area: care; }
+  .verified-footer-links { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 16px; }
   .verified-footer-links h2 { font-size: 13px; }
   .verified-footer-links a { font-size: 14px; }
   .verified-footer-brand { grid-template-columns: auto minmax(0, 1fr); gap: 16px 12px; }
@@ -2766,7 +2764,7 @@
   .verified-footer-disclaimer { margin-top: 24px; padding: 20px; font-size: 12px; line-height: 1.4; }
 }
 @media (max-width: 359px) {
-  .verified-footer-links { grid-template-columns: minmax(0, 1fr); grid-template-areas: "shop" "learn" "care"; }
+  .verified-footer-links { grid-template-columns: minmax(0, 1fr); }
 }
 @media (pointer: coarse) and (min-width: 1200px) {
   .verified-footer-links a, .verified-footer-links a:last-child { min-height: 44px; }
@@ -3215,8 +3213,8 @@
 .verified-product-trust__detail { grid-column: 1 / -1; font-size: 14px; line-height: 1.35; }
 @media (max-width: 699px) { .verified-product-trust__detail { font-size: 13px; } }
 
-/* Figma cart drawer pass: compact "Pair It With", larger round arrows, no rule between
- * Discounts and Subtotal, tighter footer rhythm, Figma guarantee line, animated Discounts. */
+/* Figma cart drawer pass: compact "Pair It With", larger round arrows, tighter footer rhythm,
+ * Figma guarantee line, animated Discounts. The line above Subtotal is the totals block's border. */
 .verified-cart-pair { padding-top: 16px; }
 .verified-cart-pair header { margin-bottom: 12px; }
 .verified-cart-pair header h3 { font-size: 14px; font-weight: 500; }
@@ -3229,7 +3227,7 @@
 .verified-cart-quick-view { min-height: 40px; padding: 8px 18px; font-size: 13px; }
 .verified-cart-footer { padding-top: 16px !important; padding-bottom: max(18px, env(safe-area-inset-bottom)) !important; }
 .verified-cart-footer > .mb-4 { margin-bottom: 4px; }
-.verified-cart-footer button[aria-controls][aria-expanded] { border-bottom: 0; min-height: 40px; }
+.verified-cart-footer button[aria-controls][aria-expanded] { border-bottom: 0; min-height: 40px; color: var(--verified-ink); font-size: 14px; font-weight: 500; }
 .verified-cart-totals > div { padding-block: 9px; }
 .verified-cart-totals p { margin-bottom: 10px; }
 .verified-cart-guarantee { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 10px; color: #817d7b; font-size: 13px; line-height: 1.3; }
