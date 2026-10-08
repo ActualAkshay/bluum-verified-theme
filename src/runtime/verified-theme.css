@@ -3533,3 +3533,5 @@
 .verified-addresses-head > p { max-width: 560px; color: rgb(35 31 30 / 78%); font-size: 16px; line-height: 1.5; }
 .verified-addresses-head > .verified-button { min-height: 44px; padding: 10px 26px; font-size: 15px; }
 @media (max-width: 767px) { .verified-addresses-head > .verified-button { width: 100%; } }
+/* Orders list sits directly on the page: no outer card. */
+.verified-orders .verified-orders-card { margin-top: 0; border: 0; border-radius: 0; padding: 0; }
