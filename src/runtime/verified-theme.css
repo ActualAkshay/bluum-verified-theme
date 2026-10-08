@@ -3460,3 +3460,71 @@
 .verified-search-page header > form[role="search"] { margin-top: 0; }
 .verified-search-page section[aria-labelledby="search-results-heading"] { margin-top: 40px; }
 @media (max-width: 767px) { .verified-search-page section[aria-labelledby="search-results-heading"] { margin-top: 28px; } }
+
+/* Account (Figma "Account"): side menu + content column; on phones the menu becomes a tab row. */
+[data-storefront-theme="verified"] .verified-account-page[data-signed-in] { display: grid; grid-template-columns: 300px minmax(0, 1fr); width: min(100% - 64px, 1400px); margin-inline: auto; }
+[data-storefront-theme="verified"] .verified-account-page[data-signed-in] > .verified-account-nav { padding: 64px 28px 96px 0; border-right: 1px solid rgb(35 31 30 / 12%); background: none; }
+[data-storefront-theme="verified"] .verified-account-main { min-width: 0; }
+[data-storefront-theme="verified"] .verified-account-page[data-signed-in] .verified-account-main { padding: 56px 0 96px 28px; }
+[data-storefront-theme="verified"] .verified-account-page[data-signed-in] .verified-account-view { width: 100%; padding: 0; }
+.verified-account-nav__label { margin: 0 0 14px 12px; font-size: 13px; font-weight: 500; }
+.verified-account-nav ul { display: grid; gap: 4px; }
+.verified-account-nav :is(a, button) { display: flex; width: 100%; min-height: 44px; align-items: center; gap: 12px; padding: 0 12px; border-radius: 10px; color: var(--verified-ink); font-size: 16px; text-align: left; white-space: nowrap; transition: background 160ms ease; }
+.verified-account-nav :is(a, button):hover { background: rgb(35 31 30 / 5%); }
+.verified-account-nav [aria-current="page"] { background: #e7ebee; }
+.verified-account-nav button:disabled { opacity: 0.5; }
+
+.verified-account-heading > p:first-child { font-size: 13px; font-weight: 500; }
+[data-storefront-theme="verified"] .verified-account-heading h1 { margin: 12px 0 0; font-size: clamp(40px, 3.6vw, 52px); font-weight: 500; line-height: 1; letter-spacing: -0.04em; }
+.verified-account-heading > p:last-child { margin-top: 16px; color: rgb(35 31 30 / 78%); font-size: 16px; }
+
+.verified-orders-card { margin-top: 40px; border: 1px dashed rgb(35 31 30 / 18%); border-radius: 20px; padding: 20px 22px 8px; transition: opacity 160ms ease; }
+.verified-orders-card.is-fetching { opacity: 0.55; }
+.verified-orders-toolbar { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
+.verified-orders-toolbar > p { color: rgb(35 31 30 / 60%); font-size: 12px; font-weight: 500; }
+.verified-orders-search { display: flex; width: min(100%, 324px); min-height: 40px; align-items: center; gap: 10px; border: 1px solid rgb(35 31 30 / 14%); border-radius: 10px; padding: 0 14px; background: #fff; }
+.verified-orders-search svg { width: 18px; height: 18px; flex: none; color: rgb(35 31 30 / 55%); }
+.verified-orders-search input { min-width: 0; flex: 1; background: none; font-size: 15px; outline: none; }
+.verified-orders-search input::placeholder { color: rgb(35 31 30 / 45%); }
+.verified-orders-search:focus-within { border-color: rgb(35 31 30 / 40%); }
+.verified-orders-scroll { margin-top: 12px; overflow-x: auto; }
+.verified-orders-card table { width: 100%; border-collapse: collapse; text-align: left; }
+.verified-orders-card th { padding: 14px 16px 14px 0; border-bottom: 1px dashed rgb(35 31 30 / 16%); font-size: 12px; font-weight: 600; white-space: nowrap; }
+.verified-orders-card td { padding: 15px 16px 15px 0; border-bottom: 1px dashed rgb(35 31 30 / 16%); font-size: 15px; white-space: nowrap; }
+.verified-orders-card tbody tr:last-child td { border-bottom: 0; }
+.verified-orders-card .is-actions { padding-right: 0; text-align: right; }
+.verified-order-status[data-tone="processing"] { color: #b7892e; }
+.verified-order-status[data-tone="complete"] { color: #4f78a8; }
+.verified-order-status[data-tone="pending"] { color: #8f9a2f; }
+.verified-order-status[data-tone="canceled"] { color: #c2412d; }
+.verified-orders-action { display: inline-flex; min-width: 112px; min-height: 36px; align-items: center; justify-content: center; border-radius: 999px; padding: 0 24px; background: var(--verified-ink); color: #fff; font-size: 14px; font-weight: 600; transition: opacity 160ms ease; }
+.verified-orders-action:hover { opacity: 0.85; }
+.verified-orders-none { color: rgb(35 31 30 / 60%); text-align: center; white-space: normal !important; }
+.verified-orders-pages { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 0 12px; border-top: 1px dashed rgb(35 31 30 / 16%); font-size: 14px; }
+.verified-orders-pages button { min-height: 40px; border: 1px solid rgb(35 31 30 / 20%); border-radius: 999px; padding: 0 18px; }
+.verified-orders-pages button:disabled { opacity: 0.35; }
+.verified-orders-empty { display: grid; justify-items: start; gap: 12px; padding: 28px 24px; }
+.verified-orders-empty > p:first-child { font-size: 20px; font-weight: 500; }
+.verified-orders-empty > p:nth-child(2) { max-width: 520px; color: rgb(35 31 30 / 62%); font-size: 15px; }
+
+@media (max-width: 1023px) {
+  [data-storefront-theme="verified"] .verified-account-page[data-signed-in] { display: block; width: calc(100% - 48px); }
+  [data-storefront-theme="verified"] .verified-account-page[data-signed-in] > .verified-account-nav { padding: 24px 0 14px; border-right: 0; border-bottom: 1px solid rgb(35 31 30 / 12%); }
+  .verified-account-nav__label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .verified-account-nav ul { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; margin-inline: -24px; padding-inline: 24px; }
+  .verified-account-nav li { flex: none; }
+  .verified-account-nav :is(a, button) { width: auto; padding: 0 12px; }
+  [data-storefront-theme="verified"] .verified-account-page[data-signed-in] .verified-account-main { padding: 40px 0 72px; }
+}
+@media (max-width: 767px) {
+  [data-storefront-theme="verified"] .verified-account-page[data-signed-in] { width: calc(100% - 32px); }
+  [data-storefront-theme="verified"] .verified-account-page[data-signed-in] > .verified-account-nav { padding-top: 20px; }
+  .verified-account-nav ul { margin-inline: -16px; padding-inline: 16px; }
+  [data-storefront-theme="verified"] .verified-account-page[data-signed-in] .verified-account-main { padding: 32px 0 64px; }
+  .verified-orders-card { margin-top: 32px; padding: 16px 16px 4px; border-radius: 16px; }
+  .verified-orders-toolbar { flex-direction: column-reverse; align-items: stretch; gap: 14px; }
+  .verified-orders-search { width: 100%; }
+  .verified-orders-search input { font-size: 16px; }
+  .verified-orders-card table { min-width: 560px; }
+}
+[data-storefront-theme="verified"] .verified-account-page[data-signed-in] .verified-account-view h1 { font-size: clamp(40px, 3.6vw, 52px); letter-spacing: -0.04em; }
