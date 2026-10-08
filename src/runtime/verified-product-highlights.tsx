@@ -24,7 +24,7 @@ export const resolveHighlightContent = (handle: string, metadata: Record<string,
   }
 }
 
-const icons = ["/images/themes/verified/approach-icons/workspace_premium.svg", "/images/themes/verified/science-genetics.png", "/images/themes/verified/product-highlight-experiment.png", "/images/themes/verified/approach-icons/qr_code_2.svg", "/images/themes/verified/product-highlight-dropper.png", "/images/themes/verified/product-highlight-hematology.png"]
+const icons = ["/images/themes/verified/approach-icons/workspace_premium.svg", "/images/themes/verified/science-genetics.svg", "/images/themes/verified/product-highlight-experiment.svg", "/images/themes/verified/approach-icons/qr_code_2.svg", "/images/themes/verified/product-highlight-dropper.svg", "/images/themes/verified/product-highlight-hematology.svg"]
 
 export const VerifiedProductHighlights = ({ title, handle, metadata, researchHtml, currentLot }: {
   title: string; handle: string; metadata: Record<string, unknown>; researchHtml: string; currentLot?: CurrentLot

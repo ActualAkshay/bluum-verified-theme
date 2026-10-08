@@ -11,7 +11,7 @@ const standards = [
 
 const trust = [
   ["Quality Controlled", "/images/themes/verified/science-fact_check.png"],
-  ["Endotoxin Lab Tested", "/images/themes/verified/science-genetics.png"],
+  ["Endotoxin Lab Tested", "/images/themes/verified/science-genetics.svg"],
   ["Batch & Lot Tracking", "/images/themes/verified/science-qr_code_2.png"],
 ] as const
 

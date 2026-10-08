@@ -41,6 +41,10 @@
     {"path":"account-lab.webp","sha256":"dfb54b60acec5ee4cc90b7f6bf7025d7cdf842248adc49397958d6eeaeff637f","previous_sha256":[]},
     {"path":"blog-hero-mobile.webp","sha256":"4d4965c4c9c5a17716ba495cb4716eba4bef642a78eda18212cd18a568c09d86","previous_sha256":["bea5aa6c46879e9d9f7d2eac93eadfaaa121a9147596d0867232e0fa069309de","962cd1bc78d111b75b23afaa73dc9546cffc8665115954dc21a45124bd23fa56"]},
     {"path":"lab-documents-photo.webp","sha256":"bcc272f03c76f345ac54e72560523655716f1c12e7c3b7efc4d22f05ebdf18e9","previous_sha256":[]},
-    {"path":"menu-lab-reports.webp","sha256":"98b01692be03b084855cb599313a824a358cdd5d5c45f783db140e5b5194d5a2","previous_sha256":[]}
+    {"path":"menu-lab-reports.webp","sha256":"98b01692be03b084855cb599313a824a358cdd5d5c45f783db140e5b5194d5a2","previous_sha256":[]},
+    {"path":"science-genetics.svg","sha256":"bb09585e4ddec33f94a89922b9424ded450f96cec0028e2e9545d02411528912","previous_sha256":[]},
+    {"path":"product-highlight-experiment.svg","sha256":"cd27c78e04f81b071b091910455dcc0c7d5ac7b2b919178c668d8330ec555e3b","previous_sha256":[]},
+    {"path":"product-highlight-hematology.svg","sha256":"76a7b7d19e152821f11ea777b844b03f2ff8029c2715627914f2b589f5331978","previous_sha256":[]},
+    {"path":"product-highlight-dropper.svg","sha256":"148b8379d4ab450bb79e0a9618a3ac9dbc732cf39809071ee7de012beeb9c15b","previous_sha256":[]}
   ]
 }
