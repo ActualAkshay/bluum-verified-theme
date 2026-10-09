@@ -3653,3 +3653,12 @@
   [data-storefront-theme="verified"] .verified-product-lot-content[data-state] > * { animation: none; }
   .verified-product-lot-chevron { transition: none; }
 }
+
+/* Search fields (Shop, FAQ): no focus box on the inner input and no dark ring on the field —
+   the border just darkens slightly while typing. */
+[data-storefront-theme="verified"] .verified-shop-search input:focus,
+[data-storefront-theme="verified"] .verified-shop-search input:focus-visible,
+[data-storefront-theme="verified"] .verified-faq-v2__search input:focus,
+[data-storefront-theme="verified"] .verified-faq-v2__search input:focus-visible { outline: none; box-shadow: none; }
+[data-storefront-theme="verified"] .verified-shop-search:focus-within,
+[data-storefront-theme="verified"] .verified-faq-v2__search:focus-within { border-color: rgb(35 31 30 / 30%); box-shadow: none; }
