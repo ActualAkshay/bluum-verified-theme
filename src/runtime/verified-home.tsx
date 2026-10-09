@@ -287,7 +287,7 @@ export const VerifiedHome = () => {
           {approach.map(([title, description], index) => (
             <Accordion.Item key={title} value={title}>
               <Accordion.Header>
-                <Accordion.Trigger><img src={`/images/themes/verified/approach-icons/${approachIcons[index]}.svg`} alt="" /><span>{title}</span><span className="verified-accordion-symbol" aria-hidden="true" /></Accordion.Trigger>
+                <Accordion.Trigger><img src={`/images/themes/verified/approach-icons/${approachIcons[index]}.svg`} alt="" loading="lazy" decoding="async" /><span>{title}</span><span className="verified-accordion-symbol" aria-hidden="true" /></Accordion.Trigger>
               </Accordion.Header>
               <Accordion.Content><div className="verified-accordion-body">{description}</div></Accordion.Content>
             </Accordion.Item>
@@ -303,8 +303,8 @@ export const VerifiedHome = () => {
         <div>
           <h2>Scan the Label.<br /><em>See the Proof.</em></h2>
           <div className="verified-proof-badges">
-            <span><img src="/images/themes/verified/proof-lab.svg" alt="" />Endotoxin Lab Tested</span>
-            <span><img src="/images/themes/verified/proof-purity.svg" alt="" />99% purity of formulas</span>
+            <span><img src="/images/themes/verified/proof-lab.svg" alt="" loading="lazy" decoding="async" />Endotoxin Lab Tested</span>
+            <span><img src="/images/themes/verified/proof-purity.svg" alt="" loading="lazy" decoding="async" />99% purity of formulas</span>
           </div>
           <p>Each Bluum product label carries a unique QR code. Scan it to pull up the batch-specific Certificate of Analysis for the exact lot in your hand. No account, no email gate, no waiting.</p>
           <Link to="/pages/coa-lookup" className="verified-button">Check the COA</Link>
@@ -328,9 +328,9 @@ export const VerifiedHome = () => {
             <thead>
               <tr className="verified-comparison-head">
                 <th scope="col"><span className="sr-only">Feature</span></th>
-                <th scope="col"><div><div className="verified-comparison-art-slot"><img className="verified-comparison-art verified-comparison-art--bluum" src="/images/themes/verified/comparison-bluum.webp" alt="" /></div><img className="verified-comparison-logo" src="/images/bluum.svg" alt="Bluum" /></div></th>
-                <th scope="col"><div><div className="verified-comparison-art-slot"><img className="verified-comparison-art verified-comparison-art--vial" src="/images/themes/verified/comparison-vial.webp" alt="" /></div><span>Other peptide vendors</span></div></th>
-                <th scope="col"><div><div className="verified-comparison-art-slot"><img className="verified-comparison-art verified-comparison-art--microscope" src="/images/themes/verified/comparison-microscope.webp" alt="" /></div><span>General research vendors</span></div></th>
+                <th scope="col"><div><div className="verified-comparison-art-slot"><img className="verified-comparison-art verified-comparison-art--bluum" src="/images/themes/verified/comparison-bluum.webp" alt="" loading="lazy" decoding="async" /></div><img className="verified-comparison-logo" src="/images/bluum.svg" alt="Bluum" /></div></th>
+                <th scope="col"><div><div className="verified-comparison-art-slot"><img className="verified-comparison-art verified-comparison-art--vial" src="/images/themes/verified/comparison-vial.webp" alt="" loading="lazy" decoding="async" /></div><span>Other peptide vendors</span></div></th>
+                <th scope="col"><div><div className="verified-comparison-art-slot"><img className="verified-comparison-art verified-comparison-art--microscope" src="/images/themes/verified/comparison-microscope.webp" alt="" loading="lazy" decoding="async" /></div><span>General research vendors</span></div></th>
               </tr>
             </thead>
             <tbody>

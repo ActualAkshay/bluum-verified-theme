@@ -152,8 +152,8 @@ export const VerifiedScience = () => (
       <div className="science-v2-proof-copy">
         <h2 id="science-v2-proof-title">Scan the Label.<br /><em>See the Proof.</em></h2>
         <div className="science-v2-proof-badges">
-          <span><img src="/images/themes/verified/approach-icons/globe_location_pin.svg" alt="" />USA Lyophilized</span>
-          <span><img src="/images/themes/verified/approach-icons/qr_code_2.svg" alt="" />COA Available</span>
+          <span><img src="/images/themes/verified/approach-icons/globe_location_pin.svg" alt="" loading="lazy" decoding="async" />USA Lyophilized</span>
+          <span><img src="/images/themes/verified/approach-icons/qr_code_2.svg" alt="" loading="lazy" decoding="async" />COA Available</span>
         </div>
         <p>Each Bluum product label carries a unique QR code. Scan it to pull up the batch-specific Certificate of Analysis for the exact lot in your hand. No account, no email gate, no waiting.</p>
         <Link to="/pages/coa-lookup" className="verified-button">Check the COA</Link>
