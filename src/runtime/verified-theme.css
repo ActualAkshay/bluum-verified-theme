@@ -1512,7 +1512,6 @@
 .verified-cart-footer button[aria-busy]:disabled { opacity: .7 !important; }
 .verified-cart-footer > div:last-child { font-size: 12px; font-weight: 400; color: #817d7b; }
 .verified-cart-totals > div { display: flex; justify-content: space-between; padding-block: 12px; font-size: 14px; }
-.verified-cart-totals { border-top: 1px solid #cfd7da; margin-top: 8px; }
 .verified-cart-totals > div:first-child { color: var(--verified-ink); font-size: 14px; font-weight: 500; }
 .verified-cart-totals p { font-size: 11px; color: #817d7b; margin-bottom: 12px; }
 .verified-cart-quick-overlay { position: fixed; inset: 0; z-index: 60; background: #0006; }
@@ -3215,7 +3214,7 @@
 @media (max-width: 699px) { .verified-product-trust__detail { font-size: 13px; } }
 
 /* Figma cart drawer pass: compact "Pair It With", larger round arrows, tighter footer rhythm,
- * Figma guarantee line, animated Discounts. The line above Subtotal is the totals block's border. */
+ * Figma guarantee line, animated Discounts. No rule between Discounts and Subtotal. */
 .verified-cart-pair { padding-top: 16px; }
 .verified-cart-pair header { margin-bottom: 12px; }
 .verified-cart-pair header h3 { font-size: 14px; font-weight: 500; }
