@@ -40,5 +40,5 @@ export const VerifiedProductOrigin = () => <section className="verified-product-
     <Link to="/pages/about-us" className="verified-button">Explore the Science</Link>
   </div>
   <ProofBadges label="USA processed, lot-specific data, research catalog, heavy metals lab tested, quality controlled, endotoxin lab tested, same-day shipping, sterility tested" />
-  <div className="verified-product-origin__art"><img src="/images/themes/verified/product-usa-art.png" alt="Petri dish with a plant sprig and laboratory pipette" width="665" height="570" loading="lazy" /></div>
+  <div className="verified-product-origin__art"><img src="/images/themes/verified/product-usa-art.webp" alt="Petri dish with a plant sprig and laboratory pipette" width="665" height="570" loading="lazy" /></div>
 </section>

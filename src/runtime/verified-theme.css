@@ -1739,7 +1739,7 @@
   @media (max-width: 479px) {
     .verified-hero { min-height: calc(100vw * 798 / 393); }
     .verified-hero-picture[data-default-artwork="true"] {
-      background: url("/images/themes/verified/hero-mobile-gradient.png") center top / 100% calc(100vw * 148 / 393) no-repeat;
+      background: url("/images/themes/verified/hero-mobile-gradient.webp") center top / 100% calc(100vw * 148 / 393) no-repeat;
     }
 
     .verified-hero-picture[data-default-artwork="true"] img {

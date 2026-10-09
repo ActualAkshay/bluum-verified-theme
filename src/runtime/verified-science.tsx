@@ -3,43 +3,43 @@ import { Link } from "@tanstack/react-router"
 import { VerifiedSupport } from "./verified-support"
 
 const standards = [
-  { title: "Rigorous Testing", body: "Every batch is evaluated for purity, identity before release.", image: "/images/themes/verified/science-card-testing.png" },
-  { title: "Transparent Data", body: "Batch-specific documentation and COAs make verification simple.", image: "/images/themes/verified/science-card-transparency.png" },
-  { title: "Research Integrity", body: "We prioritize standards that support reliable laboratory work.", image: "/images/themes/verified/science-card-integrity.png" },
-  { title: "USA Quality Control", body: "Compounds are sourced and lyophilized in the USA.", image: "/images/themes/verified/science-card-usa.png" },
+  { title: "Rigorous Testing", body: "Every batch is evaluated for purity, identity before release.", image: "/images/themes/verified/science-card-testing.webp" },
+  { title: "Transparent Data", body: "Batch-specific documentation and COAs make verification simple.", image: "/images/themes/verified/science-card-transparency.webp" },
+  { title: "Research Integrity", body: "We prioritize standards that support reliable laboratory work.", image: "/images/themes/verified/science-card-integrity.webp" },
+  { title: "USA Quality Control", body: "Compounds are sourced and lyophilized in the USA.", image: "/images/themes/verified/science-card-usa.webp" },
 ] as const
 
 const trust = [
-  ["Quality Controlled", "/images/themes/verified/science-fact_check.png"],
+  ["Quality Controlled", "/images/themes/verified/science-fact_check.webp"],
   ["Endotoxin Lab Tested", "/images/themes/verified/science-genetics.svg"],
-  ["Batch & Lot Tracking", "/images/themes/verified/science-qr_code_2.png"],
+  ["Batch & Lot Tracking", "/images/themes/verified/science-qr_code_2.webp"],
 ] as const
 
 const process = [
   {
     title: "Selective Sourcing",
     body: "Raw peptide materials are sourced from FDA-registered, green-listed suppliers, then verified and third-party tested on receipt. Every lot is traceable from raw material to finished vial.",
-    image: "/images/themes/verified/science-process-source.png",
+    image: "/images/themes/verified/science-process-source.webp",
   },
   {
     title: "Lyophilization",
     body: "Controlled freeze-drying supports stable research material and consistent handling from production through dispatch.",
-    image: "/images/themes/verified/science-process-lyophilization.png",
+    image: "/images/themes/verified/science-process-lyophilization.webp",
   },
   {
     title: "Fill-Finish",
     body: "Lot-controlled filling and labeling keep product identity connected to the records researchers need.",
-    image: "/images/themes/verified/science-process-fill.png",
+    image: "/images/themes/verified/science-process-fill.webp",
   },
   {
     title: "Secure Packaging & Shipping",
     body: "Protective packaging and tracked U.S. fulfillment help preserve the chain of custody through delivery.",
-    image: "/images/themes/verified/science-process-shipping.png",
+    image: "/images/themes/verified/science-process-shipping.webp",
   },
   {
     title: "Formulation & Purification",
     body: "Purification and formulation decisions are documented so laboratories can evaluate the material behind the headline purity number.",
-    image: "/images/themes/verified/science-process-formulation.png",
+    image: "/images/themes/verified/science-process-formulation.webp",
   },
 ] as const
 
@@ -54,7 +54,7 @@ const questions = [
 
 export const VerifiedQuestions = () => (
   <section className="science-v2-faq verified-section" aria-labelledby="science-v2-faq-title">
-    <div className="science-v2-faq-intro"><h2 id="science-v2-faq-title">Questions,<br /><em>answered</em></h2><img src="/images/themes/verified/science-faq-molecule.png" width="426" height="426" alt="" loading="lazy" /></div>
+    <div className="science-v2-faq-intro"><h2 id="science-v2-faq-title">Questions,<br /><em>answered</em></h2><img src="/images/themes/verified/science-faq-molecule.webp" width="426" height="426" alt="" loading="lazy" /></div>
     <Accordion.Root type="single" collapsible className="science-v2-faq-list">
       {questions.map(([question, answer]) => (
         <Accordion.Item key={question} value={question} className="science-v2-faq-item">
@@ -70,8 +70,8 @@ export const VerifiedScience = () => (
   <main className="verified-secondary-page verified-science-page science-v2-page" data-theme-page="science">
     <section className="science-v2-hero" aria-labelledby="science-v2-title">
       <picture className="science-v2-hero-art">
-        <source media="(max-width: 699px)" srcSet="/images/themes/verified/science-hero-mobile.png" />
-        <img src="/images/themes/verified/science-hero-desktop.png" alt="" fetchPriority="high" />
+        <source media="(max-width: 699px)" srcSet="/images/themes/verified/science-hero-mobile.webp" />
+        <img src="/images/themes/verified/science-hero-desktop.webp" alt="" fetchPriority="high" />
       </picture>
       <div className="science-v2-hero-copy">
         <p className="verified-eyebrow">Research-Grade Compounds</p>
@@ -98,7 +98,7 @@ export const VerifiedScience = () => (
 
     <section className="science-v2-numbers" aria-labelledby="science-v2-numbers-title">
       <picture className="science-v2-numbers-art">
-        <source media="(max-width: 699px)" srcSet="/images/themes/verified/science-numbers-mobile.png" />
+        <source media="(max-width: 699px)" srcSet="/images/themes/verified/science-numbers-mobile.webp" />
         <img src="/images/themes/verified/science-numbers-desktop.png" alt="" loading="lazy" />
       </picture>
       <div className="science-v2-numbers-intro">
@@ -138,8 +138,8 @@ export const VerifiedScience = () => (
 
     <section className="science-v2-usa" aria-labelledby="science-v2-usa-title">
       <picture className="science-v2-usa-art">
-        <source media="(max-width: 699px)" srcSet="/images/themes/verified/science-usa-mobile.png" />
-        <img src="/images/themes/verified/science-usa-desktop.png" alt="" loading="lazy" />
+        <source media="(max-width: 699px)" srcSet="/images/themes/verified/science-usa-mobile.webp" />
+        <img src="/images/themes/verified/science-usa-desktop.webp" alt="" loading="lazy" />
       </picture>
       <div className="science-v2-usa-copy">
         <h2 id="science-v2-usa-title">Sourced and Lyophilised<br /><em>in the USA</em></h2>

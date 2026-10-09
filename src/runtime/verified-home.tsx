@@ -16,20 +16,20 @@ import { featuredLookbackDays, selectVerifiedFeaturedProducts, verifiedBestselle
 const values = [
   {
     caption: "Tested for Endotoxins",
-    image: "/images/themes/verified/compound-endotoxin.png",
+    image: "/images/themes/verified/compound-endotoxin.webp",
   },
   {
     caption: "Scan the Label. See the Proof.",
-    image: "/images/themes/verified/compound-scan-background.png",
-    overlay: "/images/themes/verified/compound-scan-phone.png",
+    image: "/images/themes/verified/compound-scan-background.webp",
+    overlay: "/images/themes/verified/compound-scan-phone.webp",
   },
   {
     caption: "Independently Verified Purity",
-    image: "/images/themes/verified/compound-purity.png",
+    image: "/images/themes/verified/compound-purity.webp",
   },
   {
     caption: "Same Day Shipping Before 1pm",
-    image: "/images/themes/verified/compound-shipping.png",
+    image: "/images/themes/verified/compound-shipping.webp",
   },
 ] as const
 
@@ -96,8 +96,8 @@ const VerifiedCategories = ({ region, catalogProducts, catalogPending, catalogEr
   return (
     <section className="verified-categories" aria-labelledby="verified-categories-heading">
       <picture className="verified-categories-background">
-        <source media="(max-width: 699px)" srcSet="/images/themes/verified/category-mobile-background.png" />
-        <img src="/images/themes/verified/category-glass-background.png" alt="" loading="lazy" />
+        <source media="(max-width: 699px)" srcSet="/images/themes/verified/category-mobile-background.webp" />
+        <img src="/images/themes/verified/category-glass-background.webp" alt="" loading="lazy" />
       </picture>
       <div className="verified-category-options">
         <h2 id="verified-categories-heading">Top Categories</h2>
@@ -176,11 +176,11 @@ export const VerifiedHome = () => {
       <section ref={heroRef} className="verified-hero">
         {!ageGateVisible && (
           <picture className="verified-hero-picture" data-default-artwork={hero?.image_url ? undefined : "true"}>
-            <source media="(max-width: 479px)" srcSet={hero?.image_url || "/images/themes/verified/hero-mobile-final.png"} />
+            <source media="(max-width: 479px)" srcSet={hero?.image_url || "/images/themes/verified/hero-mobile-final.webp"} />
             <img
               data-bluum-lcp-candidate
               data-experiment-image
-              src={hero?.image_url || "/images/themes/verified/hero-final.png"}
+              src={hero?.image_url || "/images/themes/verified/hero-final.webp"}
               alt={hero?.image_alt || "Bluum research vial surrounded by white flowers"}
               fetchPriority="high"
             />
@@ -208,11 +208,11 @@ export const VerifiedHome = () => {
         <h2 id="verified-compounds-heading">Find your <em>compound</em></h2>
         <div className="verified-compound-badges">
           <div>
-            <img src="/images/themes/verified/compound-usa.png" alt="" width="86" height="48" loading="lazy" />
+            <img src="/images/themes/verified/compound-usa.webp" alt="" width="86" height="48" loading="lazy" />
             <span>Sourced &amp; Lyophilized<br />in the USA</span>
           </div>
           <div>
-            <img src="/images/themes/verified/compound-flask.png" alt="" width="57" height="58" loading="lazy" />
+            <img src="/images/themes/verified/compound-flask.webp" alt="" width="57" height="58" loading="lazy" />
             <span>99% purity of formulas</span>
           </div>
         </div>
@@ -274,7 +274,7 @@ export const VerifiedHome = () => {
           </dl>
         </div>
         <img className="verified-quality-art" src="/images/themes/verified/purity-desktop-artwork.webp" alt="Hands holding a Bluum research vial behind frosted glass" width="1246" height="1155" loading="lazy" decoding="async" />
-        <img className="verified-quality-mobile-art" src="/images/themes/verified/purity-mobile-artwork.png" alt="Hands holding a Bluum research vial" loading="lazy" />
+        <img className="verified-quality-mobile-art" src="/images/themes/verified/purity-mobile-artwork.webp" alt="Hands holding a Bluum research vial" loading="lazy" />
       </section>
 
       <section id="verified-approach" className="verified-section verified-approach">
@@ -294,8 +294,8 @@ export const VerifiedHome = () => {
           ))}
         </Accordion.Root>
         <picture className="verified-approach-artwork">
-          <source media="(max-width: 699px)" srcSet="/images/themes/verified/approach-molecule-mobile.png" />
-          <img className="verified-molecule" src="/images/themes/verified/approach-molecule.png" alt="" loading="lazy" />
+          <source media="(max-width: 699px)" srcSet="/images/themes/verified/approach-molecule-mobile.webp" />
+          <img className="verified-molecule" src="/images/themes/verified/approach-molecule.webp" alt="" loading="lazy" />
         </picture>
       </section>
 
@@ -328,9 +328,9 @@ export const VerifiedHome = () => {
             <thead>
               <tr className="verified-comparison-head">
                 <th scope="col"><span className="sr-only">Feature</span></th>
-                <th scope="col"><div><div className="verified-comparison-art-slot"><img className="verified-comparison-art verified-comparison-art--bluum" src="/images/themes/verified/comparison-bluum.png" alt="" /></div><img className="verified-comparison-logo" src="/images/bluum.svg" alt="Bluum" /></div></th>
-                <th scope="col"><div><div className="verified-comparison-art-slot"><img className="verified-comparison-art verified-comparison-art--vial" src="/images/themes/verified/comparison-vial.png" alt="" /></div><span>Other peptide vendors</span></div></th>
-                <th scope="col"><div><div className="verified-comparison-art-slot"><img className="verified-comparison-art verified-comparison-art--microscope" src="/images/themes/verified/comparison-microscope.png" alt="" /></div><span>General research vendors</span></div></th>
+                <th scope="col"><div><div className="verified-comparison-art-slot"><img className="verified-comparison-art verified-comparison-art--bluum" src="/images/themes/verified/comparison-bluum.webp" alt="" /></div><img className="verified-comparison-logo" src="/images/bluum.svg" alt="Bluum" /></div></th>
+                <th scope="col"><div><div className="verified-comparison-art-slot"><img className="verified-comparison-art verified-comparison-art--vial" src="/images/themes/verified/comparison-vial.webp" alt="" /></div><span>Other peptide vendors</span></div></th>
+                <th scope="col"><div><div className="verified-comparison-art-slot"><img className="verified-comparison-art verified-comparison-art--microscope" src="/images/themes/verified/comparison-microscope.webp" alt="" /></div><span>General research vendors</span></div></th>
               </tr>
             </thead>
             <tbody>

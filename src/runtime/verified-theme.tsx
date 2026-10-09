@@ -12,9 +12,9 @@ import { Link, useLocation } from "@tanstack/react-router"
 import { useEffect, useRef, useState, type FormEvent, type PropsWithChildren, type ReactNode } from "react"
 
 const navigation = [
-  { label: "Shop", href: "/collections/all", description: "Research compounds", image: "/images/themes/verified/compound-shipping.png" },
+  { label: "Shop", href: "/collections/all", description: "Research compounds", image: "/images/themes/verified/compound-shipping.webp" },
   { label: "Lab Reports", href: "/pages/coa-lookup", description: "Testing & COAs", image: "/images/themes/verified/menu-lab-reports.webp" },
-  { label: "Science", href: "/pages/about-us", description: "Research & standards", image: "/images/themes/verified/compound-purity.png" },
+  { label: "Science", href: "/pages/about-us", description: "Research & standards", image: "/images/themes/verified/compound-purity.webp" },
   { label: "Contact Us", href: "/pages/contact", description: "Get quick support", image: "/images/themes/verified/contact-hero.png" },
 ] as const
 
