@@ -11,11 +11,9 @@
     {"path":"science-numbers-desktop.png","sha256":"6bbff2cebd1a7d64db990840ad99afaa053f6deb4bfa2d5334222f07676417d7","previous_sha256":[]},
     {"path":"science-proof-panel.png","sha256":"8064323b7e6782bd6f83a8db3359fe3f120bda6f596fc83ebd02a1c2a3b1a679","previous_sha256":[]},
     {"path":"science-vial.png","sha256":"5223c595fd64b327977a3f3fd08cab5a41a0b8a30893dfdb5080053c884d0b83","previous_sha256":[]},
-    {"path":"proof-phone.png","sha256":"aa2b780971ec8d90ac479c0b033a090ae9c297c00b6d9feb78e69ed2720bf7f8","previous_sha256":[]},
     {"path":"proof-lab.svg","sha256":"bd814af6f007296e2f66674f0c763c83bc8120960339b970a9db7bd70c51f402","previous_sha256":[]},
     {"path":"proof-purity.svg","sha256":"568561f08d73642138dd07a96a98a03cdc3f8b6b92b611d6d1ffe5ce9526adbd","previous_sha256":[]},
     {"path":"purity-desktop-artwork.webp","sha256":"d9440bcfeef19bf3933789b0418811b41728c73bd38dc3fed51e10858ac430b7","previous_sha256":[]},
-    {"path":"blog-hero-desktop.webp","sha256":"369cb07bb0d4d64067430afbc8927d5c78e0fffb80a4fe35b6e1f3da3062cbc5","previous_sha256":[]},
     {"path":"account-lab.webp","sha256":"dfb54b60acec5ee4cc90b7f6bf7025d7cdf842248adc49397958d6eeaeff637f","previous_sha256":[]},
     {"path":"blog-hero-mobile.webp","sha256":"4d4965c4c9c5a17716ba495cb4716eba4bef642a78eda18212cd18a568c09d86","previous_sha256":["bea5aa6c46879e9d9f7d2eac93eadfaaa121a9147596d0867232e0fa069309de","962cd1bc78d111b75b23afaa73dc9546cffc8665115954dc21a45124bd23fa56"]},
     {"path":"science-genetics.svg","sha256":"bb09585e4ddec33f94a89922b9424ded450f96cec0028e2e9545d02411528912","previous_sha256":[]},
@@ -63,6 +61,8 @@
     {"path":"science-process-source.webp","sha256":"b117cf14e4014ee97dab51a41a8d20f4f7116513559c672f3ef371723d6ce04a","previous_sha256":["745854a26dd58e423ecdf12fd24d561f151ae7aa37e17211734dcd9cf7d89897"]},
     {"path":"science-qr_code_2.webp","sha256":"002d16dc7548440fc8cb4fa8dd95ab9bea1461f20b58bba543fb4a6f1ef3acf3","previous_sha256":["55f41ec47c2c1a89c99571bde15feef04d7d895ad761c22ecc71524ff2e7c481"]},
     {"path":"science-usa-desktop.webp","sha256":"fa53fdbfc54574baaa540dcfd33b9a2a0988d5656f6537214a332b511a98f538","previous_sha256":["7c2aa29880e23a86de625250dbd2f3a573b99bc60570f8d274a5968b69315ee1"]},
-    {"path":"science-usa-mobile.webp","sha256":"0db39185f391c2fcfaaec3f48a3d797c3d0f6918bfc6015a804a3420e556a740","previous_sha256":["74678fe353e6837faf6b43ebbcc55b5356d78eb360bd10a5f3cba50485d60ed4"]}
+    {"path":"science-usa-mobile.webp","sha256":"0db39185f391c2fcfaaec3f48a3d797c3d0f6918bfc6015a804a3420e556a740","previous_sha256":["74678fe353e6837faf6b43ebbcc55b5356d78eb360bd10a5f3cba50485d60ed4"]},
+    {"path":"proof-phone.webp","sha256":"266dfaea2f59c02772101ebd86f936b0a0157aede6f0e87162654dd9ae66cb0d","previous_sha256":["aa2b780971ec8d90ac479c0b033a090ae9c297c00b6d9feb78e69ed2720bf7f8"]},
+    {"path":"blog-hero-desktop.webp","sha256":"79800218c8eba41746fc98507605df94acaa28a1e7293fc6707318460cdf34ca","previous_sha256":["369cb07bb0d4d64067430afbc8927d5c78e0fffb80a4fe35b6e1f3da3062cbc5"]}
   ]
 }

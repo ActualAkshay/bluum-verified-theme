@@ -309,7 +309,7 @@ export const VerifiedHome = () => {
           <p>Each Bluum product label carries a unique QR code. Scan it to pull up the batch-specific Certificate of Analysis for the exact lot in your hand. No account, no email gate, no waiting.</p>
           <Link to="/pages/coa-lookup" className="verified-button">Check the COA</Link>
         </div>
-        <img className="verified-proof-phone" src="/images/themes/verified/proof-phone.png" alt="Bluum vial QR code displayed inside a phone scanner" loading="lazy" />
+        <img className="verified-proof-phone" src="/images/themes/verified/proof-phone.webp" alt="Bluum vial QR code displayed inside a phone scanner" loading="lazy" />
       </section>
 
       <VerifiedCategories region={region} catalogProducts={data?.pages.flatMap((page) => page.products) || []} catalogPending={isPending} catalogError={isError} retryCatalog={() => void refetch()} />
