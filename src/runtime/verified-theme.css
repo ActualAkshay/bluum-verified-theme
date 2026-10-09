@@ -3084,7 +3084,7 @@
 }
 
 /* Figma FAQ (257:11140) + FAQ_mobile (257:12805): rounded-rect search, 14px ink answers; 32px mobile title. */
-.verified-faq-v2__search { border-radius: 8px; }
+.verified-faq-v2__search { border-radius: 14px; }
 .verified-faq-v2__list [role="region"] p { font-size: 14px; line-height: 1.5; color: var(--verified-ink); }
 @media (max-width: 699px) {
   .verified-faq-v2__hero h1 { font-size: 32px; line-height: 1.08; }
@@ -3601,7 +3601,7 @@
 
 /* Shop toolbar: search field and category chips (the live store's concept, Verified styling). */
 .verified-shop-tools { display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; }
-.verified-shop-search { display: flex; align-items: center; gap: 10px; min-width: 0; height: 52px; padding: 0 8px 0 20px; border: 1px solid rgb(35 31 30 / 12%); border-radius: 999px; background: #fff; color: #817d7b; transition: border-color .15s ease, box-shadow .15s ease; }
+.verified-shop-search { display: flex; align-items: center; gap: 10px; min-width: 0; height: 52px; padding: 0 8px 0 20px; border: 1px solid rgb(35 31 30 / 12%); border-radius: 14px; background: #fff; color: #817d7b; transition: border-color .15s ease, box-shadow .15s ease; }
 .verified-shop-search:hover { border-color: rgb(35 31 30 / 28%); }
 .verified-shop-search:focus-within { border-color: #24201f; box-shadow: inset 0 0 0 1px #24201f; }
 .verified-shop-search input { flex: 1; min-width: 0; height: 100%; border: 0; background: transparent; color: #24201f; font-size: 16px; outline: none; }
